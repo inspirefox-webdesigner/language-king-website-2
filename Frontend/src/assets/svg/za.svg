@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="667px" viewBox="0 0 1000 667" version="1.1">
+<defs>
+<clipPath id="clip1">
+  <path d="M 0 0 L 500 0 L 500 667 L 0 667 Z M 0 0 "/>
+</clipPath>
+<clipPath id="clip2">
+  <path d="M 0 0 L 500 333.5 L 0 667 "/>
+</clipPath>
+</defs>
+<g id="surface1">
+<rect x="0" y="0" width="1000" height="667" style="fill:rgb(0%,7.843138%,53.725493%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(87.843138%,23.529412%,19.215687%);fill-opacity:1;" d="M 0 0 L 0 333.5 L 1000 333.5 L 1000 0 Z M 0 0 "/>
+<path style="fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:4;" d="M 0 0 L 4.5 3 L 0 6 M 4.5 3 L 9 3 " transform="matrix(111.111111,0,0,111.166667,0,0)"/>
+<g clip-path="url(#clip1)" clip-rule="nonzero">
+<g clip-path="url(#clip2)" clip-rule="nonzero">
+<path style="fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,72.156864%,10.980392%);stroke-opacity:1;stroke-miterlimit:4;" d="M 0 0 L 4.5 3 L 0 6 " transform="matrix(111.111111,0,0,111.166667,0,0)"/>
+</g>
+</g>
+<path style="fill:none;stroke-width:1.2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,46.666667%,28.627452%);stroke-opacity:1;stroke-miterlimit:4;" d="M 0 0 L 4.5 3 L 0 6 M 4.5 3 L 9 3 " transform="matrix(111.111111,0,0,111.166667,0,0)"/>
+</g>
+</svg>
