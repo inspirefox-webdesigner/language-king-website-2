@@ -18,7 +18,6 @@ const storage = multer.diskStorage({
   }
 });
 
-
 export const upload = multer({ 
   storage: storage,
   fileFilter: (req, file, cb) => {
@@ -29,6 +28,7 @@ export const upload = multer({
     }
   }
 });
+
 
 // Get Book-Box data
 const getBookBox = async (req, res) => {

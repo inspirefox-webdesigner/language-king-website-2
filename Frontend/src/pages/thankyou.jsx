@@ -36,7 +36,7 @@ import checklist from "../assets/icons/checkmark.svg";
 import video from "../assets/videos/placeholder-video.mp4";
 import VideoModal from "../components/videoModal";
 import CallbackForm from "../components/callback-popup";
-import CallbackThankyou from '../components/Callback-thankyou'
+import CallbackThankyou from "../components/Callback-thankyou";
 // import Thankyou from "../components/Thankyou"; Remove this file when website done
 import ImageWithToggle from "../components/ImageWithToggle";
 

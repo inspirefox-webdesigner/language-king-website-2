@@ -323,15 +323,15 @@ const FreeEBook = () => {
                     >
                       {bannerData?.cta_button_text_mobile ||
                         "Start 7-Day Free Trial"}
-                      {bannerData?.cta_button_text || "Start 7-Day Trial"}
+                      {/* {bannerData?.cta_button_text || "Start 7-Day Trial"} */}
                     </a>
 
-                    <a
+                    {/* <a
                       href="#"
                       className="xs:hidden align-middle inline-flex items-center justify-center text-center primary-btn primary-btn-rounded bg-gradient-primary text-black sm:px-3 px-[0.6em] xs:py-[0.6em] py-[5vw] font-normal sm:text-[1.3227513228em] xs:text-[2.5em] text-[4.444444444444em] xs:mt-0 mt-[3vw] leading-[1.4] relative z-10 sm:min-w-[12.1em] sm:w-auto w-full rounded-lg "
                     >
                       {bannerData?.cta_button_text || "Start 7-Day Free Trial"}
-                    </a>
+                    </a> */}
                   </div>
                   <div>
                     <h4 className="xs:block hidden text-[#F1CD5A] sm:text-[1.1904761905em] text-[4.16666666667em] leading-[1.55555555] font-semibold sm:text-start text-center">

@@ -10,24 +10,32 @@ const DynamicEbookForm = ({ pageId, onBack }) => {
     page_title: '',
     is_active: true,
     // Banner fields
+    banner_bg_image: '',
+    new_tips_image: '',
     main_heading: '',
     main_description: '',
     expert_name: '',
     expert_title: '',
     expert_text: '',
+    expert_avatar: '',
     cta_button_text: '',
     cta_button_text_mobile: '',
     save_text: '',
     save_text_mobile: '',
     other_books_heading: '',
     other_books_subheading: '',
-    learning_points: ['', '', ''],
+    book_1_image: '',
+    book_2_image: '',
+    book_3_image: '',
+    book_4_image: '',
+    learning_points: [],
     // Book Box fields
     ebook_title: '',
     ebook_subtitle: '',
     ebook_price: '',
     aiportal_title: '',
     aiportal_subtitle: '',
+    aiportal_image: '',
     aiportal_features: '',
     aiportal_original_price: '',
     aiportal_price: '',
@@ -35,7 +43,7 @@ const DynamicEbookForm = ({ pageId, onBack }) => {
     prediction_file_subtitle: '',
     prediction_file_price: '',
     // FAQs
-    faqs: [{ question: '', answer: '' }],
+    faqs: [],
   });
 
   const [imageFiles, setImageFiles] = useState({});
@@ -78,6 +86,20 @@ const DynamicEbookForm = ({ pageId, onBack }) => {
     const newPoints = [...formData.learning_points];
     newPoints[index] = value;
     setFormData(prev => ({ ...prev, learning_points: newPoints }));
+  };
+
+  const addLearningPoint = () => {
+    setFormData(prev => ({
+      ...prev,
+      learning_points: [...prev.learning_points, '']
+    }));
+  };
+
+  const removeLearningPoint = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      learning_points: prev.learning_points.filter((_, i) => i !== index)
+    }));
   };
 
   const handleFAQChange = (index, field, value) => {
@@ -283,43 +305,227 @@ const DynamicEbookForm = ({ pageId, onBack }) => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Learning Points
+                  Expert Text
                 </label>
-                {formData.learning_points.map((point, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    value={point}
-                    onChange={(e) => handleLearningPointChange(index, e.target.value)}
-                    placeholder={`Point ${index + 1}`}
-                    className="w-full px-3 py-2 border rounded-lg mb-2"
-                  />
-                ))}
+                <textarea
+                  name="expert_text"
+                  value={formData.expert_text}
+                  onChange={handleInputChange}
+                  rows="2"
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    CTA Button Text
-                  </label>
-                  <input
-                    type="text"
-                    name="cta_button_text"
-                    value={formData.cta_button_text}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border rounded-lg"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Banner Background Image
+                    Expert Avatar
                   </label>
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => handleImageChange(e, 'banner_bg_image')}
+                    onChange={(e) => handleImageChange(e, 'expert_avatar')}
                     className="w-full px-3 py-2 border rounded-lg"
                   />
+                  {formData.expert_avatar && <p className="text-xs text-gray-500 mt-1">{formData.expert_avatar}</p>}
                 </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    New Tips Image
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleImageChange(e, 'new_tips_image')}
+                    className="w-full px-3 py-2 border rounded-lg"
+                  />
+                  {formData.new_tips_image && <p className="text-xs text-gray-500 mt-1">{formData.new_tips_image}</p>}
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Banner Background Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleImageChange(e, 'banner_bg_image')}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+                {formData.banner_bg_image && <p className="text-xs text-gray-500 mt-1">{formData.banner_bg_image}</p>}
+              </div>
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Learning Points
+                  </label>
+                  <button
+                    type="button"
+                    onClick={addLearningPoint}
+                    className="bg-green-600 text-white px-3 py-1 rounded text-sm"
+                  >
+                    + Add Point
+                  </button>
+                </div>
+                {formData.learning_points.map((point, index) => (
+                  <div key={index} className="flex gap-2 mb-2">
+                    <input
+                      type="text"
+                      value={point}
+                      onChange={(e) => handleLearningPointChange(index, e.target.value)}
+                      placeholder={`Point ${index + 1}`}
+                      className="flex-1 px-3 py-2 border rounded-lg"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeLearningPoint(index)}
+                      className="bg-red-600 text-white px-3 py-2 rounded-lg text-sm"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action Section */}
+          <div className="border-b pb-6">
+            <h3 className="text-lg font-semibold mb-4">Call to Action Section</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  CTA Button Text (Desktop)
+                </label>
+                <input
+                  type="text"
+                  name="cta_button_text"
+                  value={formData.cta_button_text}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  CTA Button Text (Mobile)
+                </label>
+                <input
+                  type="text"
+                  name="cta_button_text_mobile"
+                  value={formData.cta_button_text_mobile}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Save Text (Desktop)
+                </label>
+                <input
+                  type="text"
+                  name="save_text"
+                  value={formData.save_text}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Save $50"
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Save Text (Mobile)
+                </label>
+                <input
+                  type="text"
+                  name="save_text_mobile"
+                  value={formData.save_text_mobile}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Save $50"
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Other Books Section */}
+          <div className="border-b pb-6">
+            <h3 className="text-lg font-semibold mb-4">Other Books Section</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Other Books Heading
+                </label>
+                <input
+                  type="text"
+                  name="other_books_heading"
+                  value={formData.other_books_heading}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Other Books Subheading
+                </label>
+                <input
+                  type="text"
+                  name="other_books_subheading"
+                  value={formData.other_books_subheading}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Book 1 Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleImageChange(e, 'book_1_image')}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+                {formData.book_1_image && <p className="text-xs text-gray-500 mt-1">{formData.book_1_image}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Book 2 Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleImageChange(e, 'book_2_image')}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+                {formData.book_2_image && <p className="text-xs text-gray-500 mt-1">{formData.book_2_image}</p>}
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Book 3 Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleImageChange(e, 'book_3_image')}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+                {formData.book_3_image && <p className="text-xs text-gray-500 mt-1">{formData.book_3_image}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Book 4 Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleImageChange(e, 'book_4_image')}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+                {formData.book_4_image && <p className="text-xs text-gray-500 mt-1">{formData.book_4_image}</p>}
               </div>
             </div>
           </div>
@@ -361,6 +567,7 @@ const DynamicEbookForm = ({ pageId, onBack }) => {
                   name="ebook_price"
                   value={formData.ebook_price}
                   onChange={handleInputChange}
+                  placeholder="e.g., $0.99"
                   className="w-full px-3 py-2 border rounded-lg"
                 />
               </div>
@@ -380,16 +587,43 @@ const DynamicEbookForm = ({ pageId, onBack }) => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  AI Portal Price
+                  AI Portal Subtitle
                 </label>
                 <input
                   type="text"
-                  name="aiportal_price"
-                  value={formData.aiportal_price}
+                  name="aiportal_subtitle"
+                  value={formData.aiportal_subtitle}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border rounded-lg"
                 />
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  AI Portal Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleImageChange(e, 'aiportal_image')}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+                {formData.aiportal_image && <p className="text-xs text-gray-500 mt-1">{formData.aiportal_image}</p>}
+              </div>
+            </div>
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                AI Portal Features
+              </label>
+              <textarea
+                name="aiportal_features"
+                value={formData.aiportal_features}
+                onChange={handleInputChange}
+                rows="3"
+                placeholder="Enter features separated by new lines"
+                className="w-full px-3 py-2 border rounded-lg"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   AI Portal Original Price
@@ -399,6 +633,59 @@ const DynamicEbookForm = ({ pageId, onBack }) => {
                   name="aiportal_original_price"
                   value={formData.aiportal_original_price}
                   onChange={handleInputChange}
+                  placeholder="e.g., $169"
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  AI Portal Price
+                </label>
+                <input
+                  type="text"
+                  name="aiportal_price"
+                  value={formData.aiportal_price}
+                  onChange={handleInputChange}
+                  placeholder="e.g., $119"
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-4 mt-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Prediction File Title
+                </label>
+                <input
+                  type="text"
+                  name="prediction_file_title"
+                  value={formData.prediction_file_title}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Prediction File Subtitle
+                </label>
+                <input
+                  type="text"
+                  name="prediction_file_subtitle"
+                  value={formData.prediction_file_subtitle}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Prediction File Price
+                </label>
+                <input
+                  type="text"
+                  name="prediction_file_price"
+                  value={formData.prediction_file_price}
+                  onChange={handleInputChange}
+                  placeholder="e.g., $20"
                   className="w-full px-3 py-2 border rounded-lg"
                 />
               </div>

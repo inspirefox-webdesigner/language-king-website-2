@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS Course (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
- 
 -- BookTrail table for book free trail form submissions
 CREATE TABLE IF NOT EXISTS BookTrail (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -219,6 +218,8 @@ INSERT IGNORE INTO FAQs (question, answer) VALUES
 ('What happens after my free 1-week access ends?', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt maxime officia esse delectus dolore temporibus ad, repellendus aperiam iste provident veniam aut animi id impedit. Ipsa inventore tenetur dolorem ad?'),
 ('Is my information secure?', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt maxime officia esse delectus dolore temporibus ad, repellendus aperiam iste provident veniam aut animi id impedit. Ipsa inventore tenetur dolorem ad?');
 
+
+
 -- Video Lessons table
 CREATE TABLE IF NOT EXISTS video_lessons (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -226,6 +227,48 @@ CREATE TABLE IF NOT EXISTS video_lessons (
   thumbnail_img VARCHAR(255),
   video_url VARCHAR(255),
   description TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Dynamic E-book Pages table
+CREATE TABLE IF NOT EXISTS dynamic_ebook_pages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  page_slug VARCHAR(255) NOT NULL UNIQUE,
+  page_title VARCHAR(255) NOT NULL,
+  is_active BOOLEAN DEFAULT TRUE,
+  banner_bg_image VARCHAR(255),
+  new_tips_image VARCHAR(255),
+  expert_text TEXT,
+  expert_name VARCHAR(255),
+  expert_title VARCHAR(255),
+  expert_avatar VARCHAR(255),
+  main_heading TEXT,
+  main_description TEXT,
+  learning_points JSON,
+  cta_button_text VARCHAR(255),
+  cta_button_text_mobile VARCHAR(255),
+  save_text TEXT,
+  save_text_mobile TEXT,
+  other_books_heading VARCHAR(255),
+  other_books_subheading VARCHAR(255),
+  book_1_image VARCHAR(255),
+  book_2_image VARCHAR(255),
+  book_3_image VARCHAR(255),
+  book_4_image VARCHAR(255),
+  ebook_title VARCHAR(255),
+  ebook_subtitle VARCHAR(255),
+  ebook_price VARCHAR(50),
+  aiportal_title VARCHAR(255),
+  aiportal_subtitle VARCHAR(255),
+  aiportal_price VARCHAR(50),
+  aiportal_original_price VARCHAR(50),
+  aiportal_features TEXT,
+  aiportal_image VARCHAR(255),
+  prediction_file_title VARCHAR(255),
+  prediction_file_subtitle VARCHAR(255),
+  prediction_file_price VARCHAR(50),
+  faqs JSON,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

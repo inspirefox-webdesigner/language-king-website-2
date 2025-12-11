@@ -17,6 +17,8 @@ export const getAllVideoLessons = async (req, res) => {
   }
 };
 
+
+
 export const getVideoLessonById = async (req, res) => {
   try {
     const [rows] = await db.execute(
