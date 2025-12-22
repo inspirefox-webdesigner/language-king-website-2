@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS admin_auth (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Insert default credentials
+INSERT INTO admin_auth (email, password) 
+VALUES ('language-king.in', 'admin1234')
+ON DUPLICATE KEY UPDATE email = email;

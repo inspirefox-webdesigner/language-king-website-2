@@ -797,7 +797,7 @@ const NAATICCL = () => {
 
                 <ul className="tab-links">
                   {tabs.map((tab) => (
-                    <li key={tab} className="py-[2px]">
+                    <li key={tab} className="py-[0.1322751323vw]">
                       <button
                         onClick={() => setActiveTab(tab)}
                         className="flex sm:gap-[0.7936507937em] gap-[3.3vw] sm:pt-0 pt-[1.3em] items-center group w-full text-left"

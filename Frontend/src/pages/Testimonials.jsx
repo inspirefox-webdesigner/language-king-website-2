@@ -343,7 +343,7 @@ const Testimonials = () => {
                           <img
                             src={item.flag || Russia1}
                             alt="flag"
-                            className="md:w-[1.3227513228em] md:h-[1.3227513228em] sm:w-[2.5em] sm:h-[2.5em] xs:w-[3.3333333333em] xs:h-[3.3333333333em] w-[5.7291666667vw] h-[5.7291666667vw] rounded-full absolute xs:-top-[8.43px] xs:-right-[8.43px] -top-[9.3px] -right-[9.2px] z-50"
+                            className="md:w-[1.3227513228em] md:h-[1.3227513228em] sm:w-[2.5em] sm:h-[2.5em] xs:w-[3.3333333333em] xs:h-[3.3333333333em] w-[5.7291666667vw] h-[5.7291666667vw] rounded-full absolute xs:-top-[8.43px] xs:-right-[8.43px] -top-[2.5833333333vw] -right-[2.5555555556vw] z-50"
                           />
                         )}
                         <div className="gradient-border xs:rounded-[8px] rounded-[3.771px] md:w-[4.0343915344em] md:h-[4.0343915344em] sm:w-[8.125em] xs:w-[10.8333333333em] w-[16.2vw] sm:h-[8.125em] xs:h-[10.8333333333em] h-[16.2vw]">
@@ -469,7 +469,7 @@ const Testimonials = () => {
                             <img
                               src={item.flag || Russia1}
                               alt="flag"
-                              className="md:w-[1.3227513228em] md:h-[1.3227513228em] sm:w-[2.5em] sm:h-[2.5em] xs:w-[3.3333333333em] xs:h-[3.3333333333em] w-[5.7291666667vw] h-[5.7291666667vw] rounded-full absolute xs:-top-[8.43px] xs:-right-[8.43px] -top-[8.5px] -right-[8.45px] z-50"
+                              className="md:w-[1.3227513228em] md:h-[1.3227513228em] sm:w-[2.5em] sm:h-[2.5em] xs:w-[3.3333333333em] xs:h-[3.3333333333em] w-[5.7291666667vw] h-[5.7291666667vw] rounded-full absolute xs:-top-[8.43px] xs:-right-[8.43px] -top-[2.5833333333vw] -right-[2.5555555556vw] z-50"
                             />
                           )}
                           <div className="gradient-border xs:rounded-[8px] rounded-[3.771px] md:w-[4.0343915344em] md:h-[4.0343915344em] sm:w-[8.125em] xs:w-[10.8333333333em] w-[16.2vw] sm:h-[8.125em] xs:h-[10.8333333333em] h-[16.2vw]">
@@ -576,7 +576,7 @@ const Testimonials = () => {
                     src={PinkQuote}
                     alt="PinkQuote"
                     // className="sm:mt-[-1em] mt-[-2em] sm:w-[3.230em] w-8"
-                    className="mt-[-2em] sm:mt-[-1em] w-[8.3333333333vw]"
+                    className="mt-[-2em] sm:mt-[-1em] w-[3.23vw]"
                   />
                   <p className="lg:text-[1.5873015873em] md:text-[1.323em] sm:text-[3.4375em] xs:text-[4.1666666667em] text-[4.8em] leading-[1.333333] text-lg text-white">
                     Language King is perfect for new or struggling students,

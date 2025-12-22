@@ -18,6 +18,7 @@ const Layout = ({ children, activeMenu, setActiveMenu }) => {
               {activeMenu === "pteFame" && "PTE Fame"}
               {activeMenu === "naatiCclResults" && "NAATI CCL Results"}
               {activeMenu === "videoLesson" && "Video Lessons"}
+              {activeMenu === "settings" && "Settings"}
               {!activeMenu && "Dashboard"}
             </h2>
             <div className="flex items-center space-x-4">

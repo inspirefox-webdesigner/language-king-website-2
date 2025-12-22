@@ -67,10 +67,10 @@ const CallbackForm = () => {
                     src={PhoneICon}
                     className="lg:w-[2.7116402116vw] w-[1.545em]"
                   /> */}
-                  <div className="w-[2.7116402116vw] flex items-start justify-center">
+                  <div className="w-[2.646em] flex items-start justify-center">
                     <img
                       src={PhoneICon}
-                      className="xs:w-[1.4947089947vw] w-[2.2em] pt-[4px]"
+                      className="lg:w-[2.7116402116vw] w-[2.2em] pt-[4px]"
                     />
                   </div>
                   +61 488 877 999 &nbsp; / &nbsp; <br class="xs:hidden" /> +61

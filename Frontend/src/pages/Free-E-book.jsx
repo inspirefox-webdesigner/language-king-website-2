@@ -418,7 +418,9 @@ const FreeEBook = () => {
                     </span>
                   </div>
                   <div className="flex 2xl:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px]">
-                    <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl leading-[1.5] font-bold ">
+                    <h4 className={`2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl leading-[1.5] font-bold ${
+                      selectedBox === "ebook" ? "text-[#F18C2D]" : "text-[#00FEFC]"
+                    }`}>
                       {bookBoxData?.ebook_price || "$0.99"}
                     </h4>
                   </div>
@@ -476,7 +478,9 @@ const FreeEBook = () => {
                           {bookBoxData?.aiportal_original_price || "$129"}
                         </h4>
                         <div className="flex items-center gap-[2.9761904762em] justify-between">
-                          <h4 className="text-[#F0AB0F] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ">
+                          <h4 className={`2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ${
+                            selectedBox === "aiportal" ? "text-[#F18C2D]" : "text-[#00FEFC]"
+                          }`}>
                             {bookBoxData?.aiportal_price || "$99"}
                           </h4>
                         </div>
@@ -510,7 +514,9 @@ const FreeEBook = () => {
                             className="h-[1.1111111111em]"
                           />
                         </button>
-                        <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px]  font-bold ">
+                        <h4 className={`2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ${
+                          addPredictionFile ? "text-[#F18C2D]" : "text-[#00FEFC]"
+                        }`}>
                           + {bookBoxData?.prediction_file_price || "$9"}
                         </h4>
                       </div>
@@ -527,7 +533,7 @@ const FreeEBook = () => {
                     // E-Book Only Details
                     <div>
                       <div className="flex justify-between gap-[1.0582010582em]">
-                        <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.6] text-lg">
+                        <h4 className="font-semibold text-white xl:text-[1.3888888889vw] sm:text-[1.1904761905em] leading-[1.6] text-lg">
                           {bookBoxData?.ebook_title || "E-Book Only"}
                         </h4>
                       </div>
@@ -537,7 +543,7 @@ const FreeEBook = () => {
                             "Get 7-days Free Trial"}
                         </h4>
                         <div className="">
-                          <span className="text-[#F0AB0F] font-bold xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg">
+                          <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-lg">
                             {bookBoxData?.ebook_price || "$0.99"}
                           </span>
                         </div>
@@ -549,7 +555,7 @@ const FreeEBook = () => {
                             <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
                               Your total:{" "}
                             </h4>
-                            <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8em]">
+                            <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8645833333vw]">
                               $150
                             </span>
                           </div>
@@ -560,7 +566,7 @@ const FreeEBook = () => {
                         <h4 className="text-[#B0B0B0] font-bold xl:text-[4.7619047619em] text-[3.9682539683em] leading-[1.1]">
                           $119
                         </h4>
-                        <span className="text-[#B0B0B0] font-bold text-[1.0582010582em] sm:text-base">
+                        <span className="text-[#B0B0B0] font-bold text-[0.8597883598vw] sm:text-base">
                           (GST Included)
                         </span>
                       </div>
@@ -587,12 +593,12 @@ const FreeEBook = () => {
                       {/* (A) AI TOTAL WITHOUT Prediction File */}
                       {!addPredictionFile && (
                         <>
-                          <hr className="border-[#3D3D3D] my-6" />
+                          <hr className="border-[#3D3D3D] my-[1.5625vw]" />
 
                           <div className="max-w-[26.455026455em]">
                             <div className="flex justify-between items-center">
                               <div className="flex-auto">
-                                <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
+                                <h4 className="font-medium text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
                                   Your total:
                                 </h4>
                                 <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8em]">
@@ -637,7 +643,7 @@ const FreeEBook = () => {
                           <div className="max-w-[26.455026455em]">
                             <div className="flex justify-between items-center">
                               <div className="flex-auto">
-                                <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
+                                <h4 className="font-medium text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
                                   Your total:
                                 </h4>
 

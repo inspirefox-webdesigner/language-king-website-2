@@ -147,7 +147,7 @@ const Contact = () => {
                     src={PinkQuote}
                     alt="PinkQuote"
                     // className="sm:mt-[-1em] mt-[-2em] sm:w-[3.230em] w-8"
-                    className="mt-[-2em] sm:mt-[-1em] w-[8.3333333333vw]"
+                    className="mt-[-2em] sm:mt-[-1em] w-[3.23vw]"
                   />
                   <p className="lg:text-[1.5873015873em] md:text-[1.323em] sm:text-[3.4375em] xs:text-[4.1666666667em] text-[4.8em] leading-[1.333333] text-lg text-white">
                     Language King is perfect for new or struggling students,

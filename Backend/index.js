@@ -12,6 +12,7 @@ import bookBoxRoutes from "./routes/bookBoxRoutes.js";
 import videoLessonRoutes from "./routes/videoLessonRoutes.js";
 import testimonialVideoRoutes from "./routes/testimonialVideoRoutes.js";
 import dynamicEbookRoutes from "./routes/dynamicEbookRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import mysql from "mysql2/promise";
@@ -49,6 +50,21 @@ const initDatabase = async () => {
       }
     }
 
+    // Initialize admin auth table
+    const authSqlFile = path.join(__dirname, "db", "create_admin_auth_table.sql");
+    const authSql = fs.readFileSync(authSqlFile, "utf8");
+    const authQueries = authSql.split(";").filter((query) => query.trim().length > 0);
+
+    for (const query of authQueries) {
+      try {
+        await pool.execute(query);
+      } catch (err) {
+        if (!err.message.includes("already exists")) {
+          console.error("Auth table query error:", err.message);
+        }
+      }
+    }
+
     console.log(" Database initialized successfully!");
     await pool.end();
   } catch (error) {
@@ -75,6 +91,7 @@ app.use("/api/book-box", bookBoxRoutes);
 app.use("/api", videoLessonRoutes);
 app.use("/api", testimonialVideoRoutes);
 app.use("/api/dynamic-ebook", dynamicEbookRoutes);
+app.use("/api/auth", authRoutes);
 
 // Email transporter setup
 const transporter = nodemailer.createTransport({

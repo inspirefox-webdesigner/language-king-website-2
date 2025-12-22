@@ -167,6 +167,32 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
               </div>
             )}
           </div>
+
+          {/* Settings */}
+          <button
+            onClick={() => {
+              setActiveMenu('settings');
+              setIsOpen(false);
+            }}
+            className={`w-full flex items-center px-6 py-3 text-left hover:bg-gray-700 transition-colors ${
+              activeMenu === 'settings'
+                ? "bg-gray-700 border-r-4 border-blue-500"
+                : ""
+            }`}
+          >
+            <span>Settings</span>
+          </button>
+
+          {/* Logout */}
+          <button
+            onClick={() => {
+              localStorage.removeItem('adminLoggedIn');
+              window.location.reload();
+            }}
+            className="w-full flex items-center px-6 py-3 text-left hover:bg-red-600 transition-colors text-red-400 hover:text-white"
+          >
+            <span>Logout</span>
+          </button>
         </nav>
       </div>
 
