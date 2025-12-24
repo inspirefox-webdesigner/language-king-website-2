@@ -37,6 +37,7 @@ export const getVideoLessonById = async (req, res) => {
   }
 };
 
+
 export const createVideoLesson = async (req, res) => {
   try {
     const { title, thumbnail_img, video_url, description } = req.body;
@@ -55,6 +56,7 @@ export const createVideoLesson = async (req, res) => {
       .json({ error: "Failed to create video lesson", details: error.message });
   }
 };
+
 
 export const updateVideoLesson = async (req, res) => {
   try {
@@ -77,6 +79,7 @@ export const updateVideoLesson = async (req, res) => {
       .json({ error: "Failed to update video lesson", details: error.message });
   }
 };
+
 
 export const deleteVideoLesson = async (req, res) => {
   try {

@@ -15,6 +15,7 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
   const testimonialsSubItems = [
     { id: "pteFame", name: "PTE Fame" },
     { id: "naatiCclResults", name: "NAATI CCL Results" },
+    { id: "homeTestimonial", name: "Home Testimonial" },
     { id: "testimonialMainSection", name: "Main Section" },
   ];
 

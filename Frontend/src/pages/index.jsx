@@ -192,6 +192,7 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState(null);
   const [videoLessons, setVideoLessons] = useState([]);
+  const [homeTestimonials, setHomeTestimonials] = useState([]);
   const [currentVideoIndex] = useState(0);
   const videoContainerRef = useRef(null);
 
@@ -204,6 +205,7 @@ const Home = () => {
   useEffect(() => {
     console.log(" Component mounted, calling fetchVideoLessons");
     fetchVideoLessons();
+    fetchHomeTestimonials();
   }, []);
 
   const fetchVideoLessons = async () => {
@@ -214,6 +216,19 @@ const Home = () => {
       console.log("Video lessons fetched successfully.");
     } else {
       console.log("No video lessons found.");
+    }
+  };
+
+  const fetchHomeTestimonials = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/home-testimonials`);
+      if (response.data && response.data.length > 0) {
+        setHomeTestimonials(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching home testimonials:", error);
+      // Backend connect nathi to static data use thase
+      setHomeTestimonials([]);
     }
   };
 
@@ -737,7 +752,14 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              <TestimonialCarousel testimonials={testimonials} />
+              <TestimonialCarousel testimonials={homeTestimonials.length > 0 ? homeTestimonials.map(item => ({
+                ...item,
+                reviewImg: item.video_url ? `${API_BASE_URL.replace('/api','')}/uploads/${item.video_url}` : null,
+                thumbnail: item.thumbnail ? `${API_BASE_URL.replace('/api','')}/uploads/${item.thumbnail}` : null,
+                avatar: item.avatar ? `${API_BASE_URL.replace('/api','')}/uploads/${item.avatar}` : null,
+                sourceIcon: Google,
+                starIcon: Star
+              })) : testimonials} />
             </div>
             <img
               src={GrainIMG}

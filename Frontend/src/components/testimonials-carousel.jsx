@@ -165,7 +165,7 @@ const TestimonialCarousel = ({ testimonials }) => {
               <div>
                 <div className="rounded-[10px] w-full aspect-3/2 object-cover object-center relative z-10 mb-2">
                   <VideoPlayer
-                    videoSrc={item.reviewImg}
+                    videoSrc={item.reviewImg || item.video_url}
                     thumbnail={item.thumbnail}
                     wrapperClassName="rounded-[10px] h-full"
                     videoClassName="rounded-[10px] object-contain h-full"
@@ -174,8 +174,6 @@ const TestimonialCarousel = ({ testimonials }) => {
                 </div>
                 <p
                   className="text-paraGray font-light lg:text-[1.1904761905em] md:text-[1.7578125em] sm:text-[2.34375em] xs:text-[2.8125em] text-[4.6875em] leading-normal"
-                  // dangerouslySetInnerHTML={{ __html: item.text }}
-                  
                 >{item.text}</p>
               </div>
 

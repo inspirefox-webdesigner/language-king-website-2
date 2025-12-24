@@ -17,6 +17,7 @@ import VideoLesson from "./components/VideoLesson";
 import TestimonialVideoForm from "./components/TestimonialVideoForm";
 import DynamicEbookPages from "./components/DynamicEbookPages";
 import DynamicEbookForm from "./components/DynamicEbookForm";
+import HomeTestimonial from "./components/HomeTestimonial";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -186,6 +187,8 @@ function App() {
         return <BookBox />;
       case "videoLesson":
         return <VideoLesson />;
+      case "homeTestimonial":
+        return <HomeTestimonial />;
       case "testimonialMainSection":
         return (
           <TestimonialVideoForm

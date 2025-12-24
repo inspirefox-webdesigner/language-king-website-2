@@ -1,38 +1,39 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Toast from "./Toast";
-import API_BASE_URL from "../config/api"
+import API_BASE_URL from "../config/api";
 
-const PTEFameForm = ({ entryId, onBack }) => {
+const HomeTestimonialForm = ({ testimonialId, onBack }) => {
   const [formData, setFormData] = useState({
-    title: "",
-    student_name: "",
-    band: "",
     video_url: "",
-    video_placeholder_img: "",
-    student_img: "",
-    flag_img: "",
+    thumbnail: "",
+    text: "",
+    avatar: "",
+    name: "",
+    subtitle: "",
+    time: "",
+    rating: 5,
   });
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState({});
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
   useEffect(() => {
-    if (entryId) {
-      fetchEntry();
+    if (testimonialId) {
+      fetchTestimonial();
     }
-  }, [entryId]);
+  }, [testimonialId]);
 
-  const fetchEntry = async () => {
+  const fetchTestimonial = async () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${API_BASE_URL}/pte-fame/${entryId}`
+        `${API_BASE_URL}/home-testimonials/${testimonialId}`
       );
       setFormData(response.data);
     } catch (error) {
-      console.error("Error fetching entry:", error);
-      alert("Error loading entry data");
+      console.error("Error fetching testimonial:", error);
+      alert("Error loading testimonial data");
     } finally {
       setLoading(false);
     }
@@ -82,52 +83,56 @@ const PTEFameForm = ({ entryId, onBack }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.title || !formData.student_name || !formData.band) {
-      alert("Please fill in all required fields");
+    if (!formData.name || !formData.text) {
+      setToast({
+        show: true,
+        message: "Please fill in name and text fields",
+        type: "error",
+      });
       return;
     }
 
     setLoading(true);
 
     try {
-      if (entryId) {
+      if (testimonialId) {
         await axios.put(
-          `${API_BASE_URL}/pte-fame/${entryId}`,
+          `${API_BASE_URL}/home-testimonials/${testimonialId}`,
           formData
         );
         setToast({
           show: true,
-          message: "Entry updated successfully!",
+          message: "Testimonial updated successfully!",
           type: "success",
         });
       } else {
-        await axios.post(`${API_BASE_URL}/pte-fame`, formData);
+        await axios.post(`${API_BASE_URL}/home-testimonials`, formData);
         setToast({
           show: true,
-          message: "Entry created successfully!",
+          message: "Testimonial created successfully!",
           type: "success",
         });
       }
       setTimeout(() => onBack(), 1500);
     } catch (error) {
-      console.error("Error saving entry:", error);
-      setToast({
-        show: true,
-        message: "Error saving entry. Please try again.",
-        type: "error",
-      });
+      console.error("Error saving testimonial:", error);
+      const errorMsg =
+        error.response?.data?.details ||
+        error.response?.data?.error ||
+        "Error saving testimonial. Please check backend connection.";
+      setToast({ show: true, message: errorMsg, type: "error" });
     } finally {
       setLoading(false);
     }
   };
 
-  if (loading && entryId) {
+  if (loading && testimonialId) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 text-lg font-medium">
-            Loading entry data...
+            Loading testimonial data...
           </p>
         </div>
       </div>
@@ -136,64 +141,152 @@ const PTEFameForm = ({ entryId, onBack }) => {
 
   return (
     <>
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 max-w-4xl mx-auto">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            {entryId ? "Edit PTE Fame Entry" : "Add New PTE Fame Entry"}
+            {testimonialId ? "Edit Testimonial" : "Add New Testimonial"}
           </h2>
           <p className="text-gray-600">
-            Fill in the details for the PTE Hall of Fame entry
+            Fill in the details for the testimonial
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                placeholder="Enter name..."
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Subtitle
+              </label>
+              <input
+                type="text"
+                name="subtitle"
+                value={formData.subtitle}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                placeholder="e.g., PTE - 8 Each"
+              />
+            </div>
+
             <div className="md:col-span-2">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Title <span className="text-red-500">*</span>
+                Text <span className="text-red-500">*</span>
               </label>
               <textarea
-                name="title"
-                value={formData.title}
+                name="text"
+                value={formData.text}
                 onChange={handleInputChange}
                 rows={3}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                placeholder="Enter title..."
+                placeholder="Enter testimonial text..."
                 required
               />
             </div>
 
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Student Name <span className="text-red-500">*</span>
+                Time
               </label>
               <input
                 type="text"
-                name="student_name"
-                value={formData.student_name}
+                name="time"
+                value={formData.time}
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                placeholder="Enter student name..."
-                required
+                placeholder="e.g., 10 Hours ago"
               />
             </div>
 
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Band Score <span className="text-red-500">*</span>
+                Rating
               </label>
               <input
-                type="text"
-                name="band"
-                value={formData.band}
+                type="number"
+                name="rating"
+                value={formData.rating}
                 onChange={handleInputChange}
+                min="1"
+                max="5"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                placeholder="e.g., 8 band, 9 overall..."
-                required
               />
             </div>
 
             <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Thumbnail Image
+              </label>
+              <div className="space-y-2">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) =>
+                    handleFileUpload(e.target.files[0], "thumbnail")
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  disabled={uploading.thumbnail}
+                />
+                {uploading.thumbnail && (
+                  <p className="text-blue-600 text-sm">Uploading image...</p>
+                )}
+                {formData.thumbnail && (
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.thumbnail}`}
+                      alt="Thumbnail"
+                      className="w-24 h-16 object-cover rounded border"
+                    />
+                    <p className="text-green-600 text-sm">✓ Image uploaded</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Avatar Image
+              </label>
+              <div className="space-y-2">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) =>
+                    handleFileUpload(e.target.files[0], "avatar")
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  disabled={uploading.avatar}
+                />
+                {uploading.avatar && (
+                  <p className="text-blue-600 text-sm">Uploading image...</p>
+                )}
+                {formData.avatar && (
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.avatar}`}
+                      alt="Avatar"
+                      className="w-16 h-16 object-cover rounded-full border"
+                    />
+                    <p className="text-green-600 text-sm">✓ Avatar uploaded</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="md:col-span-2">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Video File
               </label>
@@ -217,96 +310,6 @@ const PTEFameForm = ({ entryId, onBack }) => {
                 )}
               </div>
             </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Video Placeholder Image
-              </label>
-              <div className="space-y-2">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) =>
-                    handleFileUpload(e.target.files[0], "video_placeholder_img")
-                  }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  disabled={uploading.video_placeholder_img}
-                />
-                {uploading.video_placeholder_img && (
-                  <p className="text-blue-600 text-sm">Uploading image...</p>
-                )}
-                {formData.video_placeholder_img && (
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.video_placeholder_img}`}
-                      alt="Video placeholder"
-                      className="w-16 h-12 object-cover rounded border"
-                    />
-                    <p className="text-green-600 text-sm">✓ Image uploaded</p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Student Image
-              </label>
-              <div className="space-y-2">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) =>
-                    handleFileUpload(e.target.files[0], "student_img")
-                  }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  disabled={uploading.student_img}
-                />
-                {uploading.student_img && (
-                  <p className="text-blue-600 text-sm">Uploading image...</p>
-                )}
-                {formData.student_img && (
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.student_img}`}
-                      alt="Student"
-                      className="w-12 h-12 object-cover rounded-full border"
-                    />
-                    <p className="text-green-600 text-sm">✓ Image uploaded</p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Flag Image
-              </label>
-              <div className="space-y-2">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) =>
-                    handleFileUpload(e.target.files[0], "flag_img")
-                  }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  disabled={uploading.flag_img}
-                />
-                {uploading.flag_img && (
-                  <p className="text-blue-600 text-sm">Uploading image...</p>
-                )}
-                {formData.flag_img && (
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.flag_img}`}
-                      alt="Flag"
-                      className="w-8 h-6 object-cover rounded border"
-                    />
-                    <p className="text-green-600 text-sm">✓ Flag uploaded</p>
-                  </div>
-                )}
-              </div>
-            </div>
           </div>
 
           <div className="flex gap-4 pt-6 border-t border-gray-200">
@@ -325,7 +328,7 @@ const PTEFameForm = ({ entryId, onBack }) => {
               {loading && (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
               )}
-              {entryId ? "Update Entry" : "Create Entry"}
+              {testimonialId ? "Update Testimonial" : "Create Testimonial"}
             </button>
           </div>
         </form>
@@ -342,4 +345,4 @@ const PTEFameForm = ({ entryId, onBack }) => {
   );
 };
 
-export default PTEFameForm;
+export default HomeTestimonialForm;

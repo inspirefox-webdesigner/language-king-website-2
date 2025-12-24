@@ -12,6 +12,7 @@ import bookBoxRoutes from "./routes/bookBoxRoutes.js";
 import videoLessonRoutes from "./routes/videoLessonRoutes.js";
 import testimonialVideoRoutes from "./routes/testimonialVideoRoutes.js";
 import dynamicEbookRoutes from "./routes/dynamicEbookRoutes.js";
+import homeTestimonialRoutes from "./routes/homeTestimonialRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -92,6 +93,7 @@ app.use("/api", videoLessonRoutes);
 app.use("/api", testimonialVideoRoutes);
 app.use("/api/dynamic-ebook", dynamicEbookRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api", homeTestimonialRoutes);
 
 // Email transporter setup
 const transporter = nodemailer.createTransport({
