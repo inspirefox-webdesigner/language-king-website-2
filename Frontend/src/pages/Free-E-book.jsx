@@ -548,7 +548,7 @@ const FreeEBook = () => {
                           </span>
                         </div>
                       </div>
-                      <hr className="border-[#3D3D3D] my-[1.9841269841em]" />
+                      <hr className="border-[#3D3D3D] my-[1.5625vw]" />
                       <div className="max-w-[26.455026455em]">
                         <div className="flex justify-between gap-[1.0582010582em] items-center">
                           <div className="w-auto flex-auto">
