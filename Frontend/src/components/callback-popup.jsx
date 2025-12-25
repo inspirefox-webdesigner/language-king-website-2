@@ -15,7 +15,6 @@ const CallbackForm = ({ onClose }) => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [ setTouched] = useState({});
 
   const validateField = (name, value) => {
     let error = "";
@@ -26,10 +25,9 @@ const CallbackForm = ({ onClose }) => {
       if (!value.trim()) {
         error = "Phone number is required";
       } else {
-        // Remove all non-digits and check if it has at least 10 digits
         const digitsOnly = value.replace(/\D/g, "");
         if (digitsOnly.length < 10) {
-          error = "Enter a valid phone number";
+          error = "Please enter valid number";
         }
       }
     } else if (name === "course" && value === "default") {
@@ -38,62 +36,54 @@ const CallbackForm = ({ onClose }) => {
 
     return error;
   };
-
+ 
   const validate = () => {
     const newErrors = {};
-
+ 
     Object.keys(formData).forEach((key) => {
       const error = validateField(key, formData[key]);
       if (error) newErrors[key] = error;
     });
-
+ 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Clear error when user starts typing
+    setFormData({ ...formData, [name]: value });
     if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
+      setErrors(prev => ({ ...prev, [name]: "" }));
     }
   };
-
+ 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    setTouched((prev) => ({ ...prev, [name]: true }));
-
     const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleDropdownBlur = () => {
-    setTouched((prev) => ({ ...prev, course: true }));
-
     const error = validateField("course", formData.course);
     setErrors((prev) => ({ ...prev, course: error }));
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+   
     if (!validate()) {
       return;
     }
-
+ 
     const submitData = {
       name: formData.name,
       phone: formData.phone,
       course: formData.course,
       form_source: "Course Form"
     };
-
+ 
     try {
+      // Store in database
       const dbRes = await fetch(`${API_BASE_URL}/forms/course`, {
         method: "POST",
         headers: {
@@ -101,14 +91,15 @@ const CallbackForm = ({ onClose }) => {
         },
         body: JSON.stringify(submitData),
       });
-
+     
       if (!dbRes.ok) {
         throw new Error(`Database request failed: ${dbRes.status}`);
       }
 
       const dbResult = await dbRes.json();
-
+     
       if (dbResult.success) {
+        // Send email after successful database save
         try {
           const emailRes = await fetch(`${API_BASE_URL.replace('/api','')}/send-email`, {
             method: "POST",
@@ -117,7 +108,7 @@ const CallbackForm = ({ onClose }) => {
             },
             body: JSON.stringify(submitData),
           });
-
+          
           if (emailRes.ok) {
             const emailResult = await emailRes.json();
             console.log("Email sent:", emailResult);
@@ -125,7 +116,7 @@ const CallbackForm = ({ onClose }) => {
         } catch (emailError) {
           console.error("Email failed but form saved:", emailError);
         }
-
+        
         console.log("Form submitted successfully", dbResult);
         setIsSubmitted(true);
       } else {

@@ -14,7 +14,6 @@ const BookFreeTrail = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [setTouched] = useState({});
 
   const validateField = (name, value) => {
     let error = "";
@@ -25,10 +24,9 @@ const BookFreeTrail = () => {
       if (!value.trim()) {
         error = "Phone number is required";
       } else {
-        // Remove all non-digits and check if it has at least 10 digits
         const digitsOnly = value.replace(/\D/g, "");
         if (digitsOnly.length < 10) {
-          error = "Enter a valid phone number";
+          error = "Please enter valid number";
         }
       }
     } else if (name === "course" && value === "default") {
@@ -64,15 +62,11 @@ const BookFreeTrail = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    setTouched((prev) => ({ ...prev, [name]: true }));
-
     const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleDropdownBlur = () => {
-    setTouched((prev) => ({ ...prev, course: true }));
-
     const error = validateField("course", formData.course);
     setErrors((prev) => ({ ...prev, course: error }));
   };

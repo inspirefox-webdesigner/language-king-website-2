@@ -274,6 +274,8 @@ import ZW from "../assets/svg/zw.svg";
 // ];
 
 const allCountries = [
+  { name: "Australia", code: "AU", dialCode: "+61", flag: AU },
+  { name: "India", code: "IN", dialCode: "+91", flag: IN },
   { name: "Afghanistan", code: "AF", dialCode: "+93", flag: AF },
   { name: "Åland Islands", code: "AX", dialCode: "+358", flag: AX },
   { name: "Albania", code: "AL", dialCode: "+355", flag: AL },
@@ -287,7 +289,6 @@ const allCountries = [
   { name: "Argentina", code: "AR", dialCode: "+54", flag: AR },
   { name: "Armenia", code: "AM", dialCode: "+374", flag: AM },
   { name: "Aruba", code: "AW", dialCode: "+297", flag: AW },
-  { name: "Australia", code: "AU", dialCode: "+61", flag: AU },
   { name: "Austria", code: "AT", dialCode: "+43", flag: AT },
   { name: "Azerbaijan", code: "AZ", dialCode: "+994", flag: AZ },
   { name: "Bahamas", code: "BS", dialCode: "+1 242", flag: BS },
@@ -412,7 +413,6 @@ const allCountries = [
   { name: "Hong Kong", code: "HK", dialCode: "+852", flag: HK },
   { name: "Hungary", code: "HU", dialCode: "+36", flag: HU },
   { name: "Iceland", code: "IS", dialCode: "+354", flag: IS },
-  { name: "India", code: "IN", dialCode: "+91", flag: IN },
   { name: "Indonesia", code: "ID", dialCode: "+62", flag: ID },
   { name: "Iran (Islamic Republic of)", code: "IR", dialCode: "+98", flag: IR },
   { name: "Iraq", code: "IQ", dialCode: "+964", flag: IQ },
@@ -926,7 +926,9 @@ const PhoneInput = ({
 
   const handlePhoneNumberChange = (e) => {
     const value = e.target.value.replace(/\D/g, "");
-    setPhoneNumber(value);
+    if (value.length <= 10) {
+      setPhoneNumber(value);
+    }
   };
 
   const handleBlur = (e) => {
@@ -975,9 +977,9 @@ const PhoneInput = ({
       </div>
 
       {/* Dial code */}
-      {/* <span className="pl-3 py-[13px] placeholder:text-[#919191] sm:text-lg text-base">
+      <span className="pl-3 py-[13px] placeholder:text-[#919191] sm:text-lg text-base">
         {selectedCountry.dialCode}
-      </span> */}
+      </span>
 
       {/* Phone number input */}
       <input
@@ -987,6 +989,7 @@ const PhoneInput = ({
         value={phoneNumber}
         onChange={handlePhoneNumberChange}
         onBlur={handleBlur}
+        maxLength={10}
         className={`flex-1 min-w-0 placeholder:text-[#919191] outline-none ${inputClassName}`}
       />
 
@@ -1020,12 +1023,6 @@ const PhoneInput = ({
 };
 
 export default PhoneInput;
-
-
-
-
-
-
 
 // new phoneinput
 
