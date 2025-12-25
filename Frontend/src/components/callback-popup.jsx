@@ -176,7 +176,7 @@ const CallbackForm = ({ onClose }) => {
                       value={formData.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`placeholder:text-[#919191] bg-white py-[5vw] xs:py-[0.7222222222em] sm:px-[1.3333333333em] px-4 sm:text-[1.1904761905em] text-[4.2vw] ${
+                      className={`placeholder:text-[#919191] bg-white py-[5vw] xs:py-[1.044973545vw] sm:px-[1.3333333333em] px-4 sm:text-[1.25vw] text-[4.2vw] ${
                         errors.name
                           ? "border-red-500 border"
                           : "border-[#949AA5] border-0"
@@ -217,7 +217,7 @@ const CallbackForm = ({ onClose }) => {
                       errors={errors}
                       onBlur={handleBlur}
                       wrapperClassName="border-0 "
-                      inputClassName="placeholder:text-[#919191] border-0 bg-white py-[5vw] xs:py-[0.7222222222em] sm:px-[1.3333333333em] px-4 sm:text-[1.1904761905em] text-[4.2vw]"
+                      inputClassName="placeholder:text-[#919191] bg-white py-[5vw] xs:py-[1.044973545vw] sm:pe-[1.3333333333em] pe-4 sm:text-[1.25vw] text-[4.2vw]"
                     />
                   </div>
 
@@ -239,7 +239,7 @@ const CallbackForm = ({ onClose }) => {
                       }}
                       onBlur={handleDropdownBlur}
                       error={errors.course}
-                      buttonClassName="placeholder:text-[#919191] border-0 bg-white py-[5vw] xs:py-[0.7222222222em] sm:px-[1.3333333333em] px-4 sm:text-[1.1904761905em] text-[4.2vw]"
+                      buttonClassName="placeholder:text-[#919191] bg-white py-[5vw] xs:py-[1.044973545vw] sm:px-[1.3333333333em] px-4 sm:text-[1.25vw] text-[4.2vw]"
                       wrapperClassName="border-0"
                       listClassName="rounded-[0px] max-h-[190px]"
                     />

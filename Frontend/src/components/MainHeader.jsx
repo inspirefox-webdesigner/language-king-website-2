@@ -121,7 +121,7 @@ const MainHeader = () => {
               </button>
             </div>
 
-            <ul className="flex flex-col justify-center items-center gap-[34px] relative">
+            <ul className="flex flex-col justify-center items-center sm:gap-[4.1720990874em] sm:pt-[5vw] gap-[10vw] pt-[15vw] relative">
               <div className="menu-ellipse"></div>
               <li className="text-center inline-flex items-center">
                 <a

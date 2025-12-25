@@ -419,7 +419,7 @@ const FreeEBook = () => {
                   </div>
                   <div className="flex 2xl:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px]">
                     <h4 className={`2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl leading-[1.5] font-bold ${
-                      selectedBox === "ebook" ? "text-[#F18C2D]" : "text-[#00FEFC]"
+                      selectedBox === "ebook" ? "text-[#F0AB0F]" : "text-[#00FEFC]"
                     }`}>
                       {bookBoxData?.ebook_price || "$0.99"}
                     </h4>
@@ -479,7 +479,7 @@ const FreeEBook = () => {
                         </h4>
                         <div className="flex items-center gap-[2.9761904762em] justify-between">
                           <h4 className={`2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ${
-                            selectedBox === "aiportal" ? "text-[#F18C2D]" : "text-[#00FEFC]"
+                            selectedBox === "aiportal" ? "text-[#F0AB0F]" : "text-[#00FEFC]"
                           }`}>
                             {bookBoxData?.aiportal_price || "$99"}
                           </h4>
@@ -515,7 +515,7 @@ const FreeEBook = () => {
                           />
                         </button>
                         <h4 className={`2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ${
-                          addPredictionFile ? "text-[#F18C2D]" : "text-[#00FEFC]"
+                          addPredictionFile ? "text-[#F0AB0F]" : "text-[#00FEFC]"
                         }`}>
                           + {bookBoxData?.prediction_file_price || "$9"}
                         </h4>
@@ -526,7 +526,7 @@ const FreeEBook = () => {
               </div>
             </div>
 
-            <div className="lg:w-[40%] w-full">
+            <div className="right-card-wrapper">
               <div className="bg-[#1B1B1B] xl:p-[2.7777777778em] sm:p-[2.1164021164em] px-4 sm:py-[1.5873015873em] py-6 rounded-[0.6613756614em]">
                 <div className="sm:block hidden">
                   {selectedBox === "ebook" ? (
@@ -581,7 +581,7 @@ const FreeEBook = () => {
                         </h4>
 
                         <div>
-                          <span className="text-[#B0B0B0] line-through font-bold me-4">
+                          <span className="text-[#B0B0B0] line-through font-bold me-4 xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg">
                             {bookBoxData?.aiportal_original_price || "$129"}
                           </span>
                           <span className="text-[#F0AB0F] font-bold xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg">
@@ -633,7 +633,7 @@ const FreeEBook = () => {
                               {bookBoxData?.prediction_file_title ||
                                 "Prediction File 2"}
                             </h4>
-                            <span className="text-[#F0AB0F] font-bold">
+                            <span className="text-[#F0AB0F] font-bold xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-l">
                               {bookBoxData?.prediction_file_price || "$9"}
                             </span>
                           </div>
