@@ -269,7 +269,8 @@ const Home = () => {
         />
         <div className="custom-container mx-auto py-0 sm:px-[2.1164021164em] px-4  w-full z-10 relative ">
           <div className="lg:max-w-[54.8941798942em] max-w-full">
-            <div className="flex flex-col 2xl:gap-6 gap-3">
+            {/* <div className="flex flex-col 2xl:gap-6 gap-3"> */}
+            <div className="flex flex-col lg:gap-6 gap-3">
               <h2 className="text-gradient-primary font-bold lg:text-[1.5873015873em] md:text-[2.34375em] sm:text-[3.125em] xs:text-[3.75em] text-[6.6666666667em] leading-[1.3333]">
                 # Australia’s No.1
               </h2>
@@ -282,49 +283,6 @@ const Home = () => {
                 Scores. Helped many students, now it's your turn!
               </p>
             </div>
-            {/* <div className="sm:mt-[3.175em] mt-[11.1111111111em] flex sm:flex-nowrap flex-wrap sm:gap-[2.050em] gap-[16px] xl:max-w-[39.6825396825em] lg:max-w-[46.875em] md:max-w-[58.59375em]">
-              <Link
-                to="/home2"
-                className="inline-flex justify-center items-center text-center primary-btn bg-gradient-primary text-black lg:p-[0.7936507937em] md:p-[1.171875em] sm:p-[1.5625em] xs:p-[1.875em] p-[3.4vw] sm:w-[50%] w-full relative z-10"
-              >
-                <span className="sm:font-semibold font-bold lg:text-[1.3227513228em] md:text-[1.953125em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5em] relative z-10 xs:leading-[1.242] leading-[1.767]">
-                  Get-a Callback
-                </span>
-              </Link>
-              <Link
-                to="/free-e-book"
-                className="align-middle inline-flex items-center gap-[18px] justify-center text-center bg-transparent border-2 border-Cadmium-Orange text-white transition-all duration-300 ease hover:bg-white/10 lg:p-[0.7936507937em] md:p-[1.171875em] sm:p-[1.5625em] xs:p-[1.875em] p-[3.4vw] sm:w-[50%] w-full relative z-10 "
-              >
-                <svg
-                  className="md:w-[1.3227513228em] md:h-[1.3227513228em] w-5 h-5"
-                  viewBox="0 0 22 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M21.93 11.9998L0 23.9253V0.0742188L21.93 11.9998Z"
-                    fill="url(#paint0_linear_702_4078)"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear_702_4078"
-                      x1="0"
-                      y1="11.9997"
-                      x2="21.93"
-                      y2="11.9997"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stopColor="#D7FF53" />
-                      <stop offset="1" stopColor="#FD4F2B" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <span className="sm:font-semibold font-bold lg:text-[1.3227513228em] md:text-[1.953125em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5em] relative z-10 xs:leading-[1.242] leading-[1.767]">
-                  Watch FREE Lessons
-                </span>
-              </Link>
-            </div> */}
-
             <div className="sm:mt-[3.175em] mt-[11.1111111111em] flex sm:flex-nowrap flex-wrap sm:gap-[2.050em] gap-[16px] xl:max-w-[39.6825396825em] lg:max-w-[46.875em] md:max-w-[58.59375em]">
               <Link
                 to="/home2"
@@ -467,59 +425,6 @@ const Home = () => {
 
       {showPopup && <CallbackForm onClose={closePopup} />}
 
-      {/* <section className="pb-[32px]">
-        <div className="custom-container mx-auto py-0 px-4 sm:px-[2.1164021164em]">
-          <div className="bg-[#252525] px-4 sm:px-[2.1164021164em] ">
-            <div className="sm:py-[2.6455026455em] pt-[7.7777777778em] pb-[12.2222222222em]">
-              <h2 className="lg:text-[1.5873015873em] md:text-[2.34375em] sm:text-[3.125em] xs:text-[3.4375em] text-[5.8333333333em] leading-normal font-bold text-white text-left mb-4">
-                Try these FREE video lessons
-              </h2>
-
-              <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 sm:gap-[28px] gap-[52px]">
-                {videoItems.map((item, index) => (
-                  <div key={index} className="relative">
-                    <div className="border-b-[8px] border-[#A6A6A6] mb-3 shadow-[0px_5.03162px_0px_#000000]">
-                      <div
-                        className="w-full aspect-16/9 cursor-pointer relative"
-                        onClick={() => {
-                          setActiveVideo(item.videoSrc);
-                          setIsModalOpen(true);
-                        }}
-                      >
-                        <ImageWithToggle
-                          src={item.thumbnail}
-                          alt={item.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center transition">
-                          <div
-                            className={`w-16 h-16 bg-black/40 rounded-full flex items-center justify-center`}
-                          >
-                            <svg
-                              className="w-10 h-10 text-white"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <h3 className="text-white font-bold 2xl:text-[1.5873015873em] lg:text-[1.455026455em] md:text-[2.34375em] sm:text-[3.125em] xs:text-[3.4375em] text-[5.5555555556em] leading-[1.3]">
-                      {item.title}
-                    </h3>
-                    <span className="text-white/60 sm:mt-[6px] mt-[4px] block lg:text-[1.0582010582em] md:text-[1.5625em] sm:text-[2.0833333333em] xs:text-[2.5em] text-[4.4444444444em] font-semibold">
-                      PTE MasterClass
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       <section className="pb-[32px]">
         <div className="custom-container mx-auto py-0 px-4 sm:px-[32px]">
           <div className="bg-[#252525] px-4 sm:px-8 ">
@@ -571,7 +476,8 @@ const Home = () => {
                             </div>
                           </div>
                         </div>
-                        <h3 className="text-white font-bold 2xl:text-[24px] text-[22px] sm:leading-[1.3] leading-[28px]">
+                        {/* <h3 className="text-white font-bold 2xl:text-[24px] text-[22px] sm:leading-[1.3] leading-[28px]"> */}
+                        <h3 className="text-white font-bold lg:text-[24px] text-[22px] sm:leading-[1.3] leading-[28px]">
                           {item.title}
                         </h3>
                         <span className="text-white/60 sm:mt-[6px] mt-[4px] block text-base font-semibold">
@@ -584,51 +490,7 @@ const Home = () => {
                       <p>Loading videos...</p>
                     </div>
                   )}
-                </div>
-                {/* {videoLessons.length > 4 && (
-                  <div className="flex gap-3 justify-center items-center mt-8">
-                    <button
-                      onClick={handlePrevVideo}
-                      disabled={currentVideoIndex === 0}
-                      className="w-12 h-12 bg-[#1A1A1A] hover:bg-white/10 transition-all duration-300 ease-in-out rounded flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
-                    >
-                      <svg
-                        className="w-6 h-6"
-                        viewBox="0 0 12 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M10 18L2 10L10 2"
-                          stroke="white"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={handleNextVideo}
-                      disabled={currentVideoIndex >= videoLessons.length - 4}
-                      className="w-12 h-12 bg-[#1A1A1A] hover:bg-white/10 transition-all duration-300 ease-in-out rounded flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
-                    >
-                      <svg
-                        className="w-6 h-6"
-                        viewBox="0 0 12 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M2 2L10 10L2 18"
-                          stroke="white"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                )} */}
+                </div>                
               </div>
             </div>
           </div>

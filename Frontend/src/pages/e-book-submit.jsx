@@ -126,11 +126,6 @@ const MinusIcon = () => (
 );
 
 const FreeEBooksubmit = () => {
-  // const [count, setCount] = useState(0);
-
-  // const increment = () => setCount((prev) => prev + 1);
-  // const decrement = () => setCount((prev) => (prev > 0 ? prev - 1 : 0));
-
   // FAq section
   const [openIndex, setOpenIndex] = useState(0);
 
@@ -142,7 +137,8 @@ const FreeEBooksubmit = () => {
     <>
       {/* black space for header */}
       <div className="bg-black w-full lg:h-[7.9365079365em] h-[120px] lg:mt-[-7.9365079365em] mt-[-120px]"></div>
-      <section className="banner-wrapper 2xl:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[60px] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]">
+      {/* <section className="banner-wrapper 2xl:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[60px] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]"> */}
+       <section className="banner-wrapper lg:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[60px] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]">
         <div className="sm:bg-transparent bg-gradient-FadetoBlack h-full w-full absolute top-0 z-10 lg:hidden block"></div>
         <ImageWithToggle
           src={BannerBg}
@@ -180,7 +176,8 @@ const FreeEBooksubmit = () => {
               <div className="flex flex-col justify-between sm:gap-y-[3.3068783069em] gap-y-[50px] h-full">
                 <div className="flex lg:flex-nowrap flex-wrap gap-5 justify-between lg:pe-[1.9841269841em]">
                   <div className="lg:max-w-[70%] max-w-full">
-                    <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] text-[36px] leading-[1.1022] 2xl:mt-2 mt-0 text-white">
+                    {/* <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] text-[36px] leading-[1.1022] 2xl:mt-2 mt-0 text-white"> */}
+                    <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] text-[36px] leading-[1.1022] lg:mt-2 mt-0 text-white">
                       PTE Reading Blanks{" "}
                       <span className="text-[#F1CD5A] block">Free E-book</span>
                     </h1>
@@ -370,7 +367,8 @@ const FreeEBooksubmit = () => {
 
         <div className="border-y border-[#707070] relative z-10">
           <div className="custom-container mx-auto md:py-[100px] sm:py-[70px] py-[40px] px-4 sm:px-[32px] w-full z-10 relative">
-            <h2 className="font-inter font-normal main-heading 2xl:mt-2 mt-0 text-white text-center sm:mb-10 mb-5">
+            {/* <h2 className="font-inter font-normal main-heading 2xl:mt-2 mt-0 text-white text-center sm:mb-10 mb-5"> */}
+             <h2 className="font-inter font-normal main-heading lg:mt-2 mt-0 text-white text-center sm:mb-10 mb-5">
               FAQ
             </h2>
             <div className="max-w-4xl mx-auto sm:p-6">
