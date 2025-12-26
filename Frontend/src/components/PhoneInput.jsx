@@ -977,7 +977,7 @@ const PhoneInput = ({
       </div>
 
       {/* Dial code */}
-      <span className="pl-3 py-[13px] placeholder:text-[#919191] sm:text-lg text-base">
+      <span className="flex items-center h-auto text-[#919191] bg-white xs:py-[1.044973545vw] py-[5vw] sm:pl-[1.3333333333em] pl-4 sm:pr-[0.3333333333em] pr-1  sm:text-[1.25vw] text-[4.2vw]">
         {selectedCountry.dialCode}
       </span>
 
@@ -997,7 +997,7 @@ const PhoneInput = ({
       {dropdownOpen && (
         <ul
           ref={dropdownRef}
-          className="absolute z-10 top-[100%] w-full bg-white border border-gray-300 shadow-lg max-h-60 overflow-y-scroll"
+          className="absolute z-10 top-[100%] w-full bg-white border border-gray-300 shadow-lg max-h-60 overflow-y-scroll country-wrapper"
         >
           {countryList.map((country) => (
             <li
@@ -1009,7 +1009,7 @@ const PhoneInput = ({
                 <img
                   src={country.flag}
                   alt={country.name}
-                  className="md:w-[2.116em] md:h-[1.323em] xs:w-[4.129074em] xs:h-[2.8em] w-[7.8125vw] h-[5.2083333333vw]"
+                  className="md:w-[2.116vw] md:h-[1.323vw] xs:w-[4.129074vw] xs:h-[2.8vw] w-[7.8125vw] h-[5.2083333333vw]"
                 />
                 <span className="">{country.name}</span>
               </div>

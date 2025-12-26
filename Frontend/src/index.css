@@ -9,6 +9,7 @@
 @theme {
   --breakpoint-xs: 481px;
   --breakpoint-xxs: 361px;
+  /* --breakpoint-2xl: 64rem !important; */
   --font-family: "Inter", sans-serif;
   --font-aileron: "Aileron";
   --color-green: #D7FF53;
@@ -508,6 +509,14 @@ header {
   padding-top: 0 !important;
 }
 
+.country-wrapper li:nth-child(2) {
+  border-bottom: 1px solid #919191;
+}
+
+.right-card-wrapper {
+  width: 31.0416666667vw;
+}
+
 
 @media (max-width: 1600px) {
   .main-heading {
@@ -533,13 +542,13 @@ header {
   }
 }
 
-
-
-
-@media (max-width: 1024px) {
+@media (max-width: 1023.98px) {
   .main-heading {
     font-size: 3rem;
     line-height: 55px;
+  }
+  .right-card-wrapper {
+    width: 100%;
   }
 }
 
@@ -606,10 +615,6 @@ header {
   }
 }
 
-
-
-
-
 @media (max-width: 480px) {
 
   header.active-header .desktop-logo,
@@ -653,7 +658,7 @@ header {
 }
 
 
-@media (max-width: 400px) {
+/* @media (max-width: 400px) {
 
   header.active-header .desktop-logo,
   .desktop-logo {
@@ -661,15 +666,17 @@ header {
     top: -30px !important;
     height: auto !important;
   }
-}
+} */
 
 @media (max-width: 360px) {
 
   header.active-header .desktop-logo,
   .desktop-logo {
-    transform: scale(1.4);
+    left: -21%;
+    transform: scale(1.5);
+    height: auto !important;
+    top: -30px !important;
   }
-
 }
 
 .swiper-pagination {

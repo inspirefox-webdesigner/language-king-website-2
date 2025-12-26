@@ -61,7 +61,7 @@ const HomeHeader = () => {
           <div className="xl:w-[40%] sm:w-[35%] flex justify-end items-center">
             {/* Hamburger Menu - Visible on Mobile */}
             <button
-              className="lg:hidden flex items-center justify-center p-3 w-[11.71875vw] h-[11.71875vw] menu-icon bg-chinese-Black border border-davys-Grey focus:outline-none cursor-pointer"
+              className="lg:hidden flex items-center justify-center p-3 md:w-[6.6vw] w-[11.71875vw] md:h-[6.6vw] h-[11.71875vw] menu-icon bg-chinese-Black border border-davys-Grey focus:outline-none cursor-pointer"
               onClick={() => setIsOpen(!isOpen)}
             >
               <img
@@ -111,7 +111,7 @@ const HomeHeader = () => {
           <nav className="lg:hidden fixed w-full h-full top-0 left-0 right-0 bottom-0 bg-noise-pattern z-50 sm:py-[48px] py-[32px] px-4 sm:px-[32px] bg-black">
             <div className="flex items-center justify-end">
               <button
-                className="lg:hidden flex items-center justify-center p-3 w-[11.71875vw] h-[11.71875vw] menu-icon bg-chinese-Black border border-davys-Grey focus:outline-none cursor-pointer shadow-[0px_4px_0px_#000000]"
+                className="lg:hidden flex items-center justify-center p-3 md:w-[6.6vw] w-[11.71875vw] md:h-[6.6vw] h-[11.71875vw] menu-icon bg-chinese-Black border border-davys-Grey focus:outline-none cursor-pointer shadow-[0px_4px_0px_#000000]"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 <img

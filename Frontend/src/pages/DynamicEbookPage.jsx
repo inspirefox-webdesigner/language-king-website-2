@@ -169,7 +169,8 @@ const DynamicEbookPage = () => {
     <>
       {/* black space for header */}
       <div className="bg-black w-full lg:h-[7.9365079365em] h-[120px] lg:mt-[-7.9365079365em] mt-[-120px]"></div>
-      <section className="banner-wrapper 2xl:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]">
+      {/* <section className="banner-wrapper 2xl:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]"> */}
+      <section className="banner-wrapper lg:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]">
         <div className="sm:bg-transparent bg-gradient-FadetoBlack h-full w-full absolute top-0 z-10 lg:hidden block"></div>
         <ImageWithToggle
           src={getImageUrl(pageData.banner_bg_image, BannerBg)}
@@ -207,7 +208,8 @@ const DynamicEbookPage = () => {
               <div className="flex flex-col justify-between sm:gap-y-[3.3068783069em] gap-y-[7vw] h-full">
                 <div className="flex lg:flex-nowrap flex-wrap gap-5 justify-between lg:pe-[1.9841269841em]">
                   <div className="lg:max-w-[70%] max-w-full">
-                    <h1 className="font-inter font-bold md:text-[4.0211640212em] xs:text-[6.258148631em] text-[9em] sm:leading-[1.1022] leading-[1.25] 2xl:mt-2 mt-0 text-white xs:pt-0 pt-[7.8125vw]">
+                    {/* <h1 className="font-inter font-bold md:text-[4.0211640212em] xs:text-[6.258148631em] text-[9em] sm:leading-[1.1022] leading-[1.25] 2xl:mt-2 mt-0 text-white xs:pt-0 pt-[7.8125vw]"> */}
+                    <h1 className="font-inter font-bold md:text-[4.0211640212em] xs:text-[6.258148631em] text-[9em] sm:leading-[1.1022] leading-[1.25] lg:mt-2 mt-0 text-white xs:pt-0 pt-[7.8125vw]">
                       <span
                         dangerouslySetInnerHTML={{
                           __html:
@@ -260,15 +262,7 @@ const DynamicEbookPage = () => {
                     >
                       {pageData.cta_button_text_mobile ||
                         "Start 7-Day Free Trial"}
-                      {/* {pageData.cta_button_text || "Start 7-Day Trial"} */}
                     </a>
-
-                    {/* <a
-                      href="#"
-                      className="xs:hidden align-middle inline-flex items-center justify-center text-center primary-btn primary-btn-rounded bg-gradient-primary text-black sm:px-3 px-[0.6em] xs:py-[0.6em] py-[5vw] font-normal sm:text-[1.3227513228em] xs:text-[2.5em] text-[4.444444444444em] xs:mt-0 mt-[3vw] leading-[1.4] relative z-10 sm:min-w-[12.1em] sm:w-auto w-full rounded-lg "
-                    >
-                      {pageData.cta_button_text || "Start 7-Day Free Trial"}
-                    </a> */}
                   </div>
                   <div>
                     <h4 className="xs:block hidden text-[#F1CD5A] sm:text-[1.1904761905em] text-[4.16666666667em] leading-[1.55555555] font-semibold sm:text-start text-center">
@@ -334,7 +328,8 @@ const DynamicEbookPage = () => {
           className="w-full h-full object-cover absolute top-0 left-0 right-0"
         />
         <div className="custom-container mx-auto sm:py-[4.2328042328em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative ">
-          <div className="flex lg:flex-nowrap flex-wrap 2xl:gap-[9.9206349206em] lg:gap-[5.291005291em] gap-[2.6455026455em]">
+          {/* <div className="flex lg:flex-nowrap flex-wrap 2xl:gap-[9.9206349206em] lg:gap-[5.291005291em] gap-[2.6455026455em]"> */}
+          <div className="flex lg:flex-nowrap flex-wrap lg:gap-[9.9206349206em] md:gap-[5.291005291em] gap-[2.6455026455em]">
             {/* Desktop Box */}
             <div className="lg:w-[60%] w-full sm:inline hidden">
               {/* E-Book Box content here */}
@@ -355,8 +350,11 @@ const DynamicEbookPage = () => {
                       {pageData.ebook_subtitle || "Get 7-days Free Trial"}
                     </span>
                   </div>
-                  <div className="flex 2xl:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px]">
-                    <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl leading-[1.5] font-bold ">
+                  {/* <div className="flex 2xl:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px]"> */}
+                  <div className="flex lg:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px]">
+                    {/* <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl 
+                    leading-[1.5] font-bold "> */}
+                    <h4 className="text-[#00FEFC] lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl leading-[1.5] font-bold ">
                       {pageData.ebook_price || "$0.99"}
                     </h4>
                   </div>
@@ -409,12 +407,15 @@ const DynamicEbookPage = () => {
                               ]}
                         </ul>
                       </div>
-                      <div className="flex justify-end items-center 2xl:gap-[3.9682539683em] sm:gap-[1.9841269841em] gap-[30px] mt-[1.6534391534em]">
-                        <h4 className="text-[#B0B0B0] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold line-through">
+                      {/* <div className="flex justify-end items-center 2xl:gap-[3.9682539683em] sm:gap-[1.9841269841em] gap-[30px] mt-[1.6534391534em]"> */}
+                      <div className="flex justify-end items-center lg:gap-[3.9682539683em] sm:gap-[1.9841269841em] gap-[30px] mt-[1.6534391534em]">
+                        {/* <h4 className="text-[#B0B0B0] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold line-through"> */}
+                        <h4 className="text-[#B0B0B0] lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold line-through">
                           {pageData.aiportal_original_price || "$129"}
                         </h4>
                         <div className="flex items-center gap-[2.9761904762em] justify-between">
-                          <h4 className="text-[#F0AB0F] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ">
+                          {/* <h4 className="text-[#F0AB0F] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold "> */}
+                          <h4 className="text-[#F0AB0F] lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ">
                             {pageData.aiportal_price || "$99"}
                           </h4>
                         </div>
@@ -428,12 +429,14 @@ const DynamicEbookPage = () => {
                           +{" "}
                           {pageData.prediction_file_title || "Prediction File"}
                         </h3>
-                        <span className="text-[#B8B8B8] font-normal 2xl:text-[1.3227513228em] xl:text-[1.1904761905em] text-base">
+                        {/* <span className="text-[#B8B8B8] font-normal 2xl:text-[1.3227513228em] xl:text-[1.1904761905em] text-base"> */}
+                        <span className="text-[#B8B8B8] font-normal lg:text-[1.3227513228em] md:text-[1.1904761905em] text-base">
                           {pageData.prediction_file_subtitle ||
                             "Get monthly updates for 6 months"}
                         </span>
                       </div>
-                      <div className="flex 2xl:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px] items-center">
+                      {/* <div className="flex 2xl:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px] items-center"> */}
+                      <div className="flex lg:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px] items-center">
                         <button
                           onClick={() =>
                             setAddPredictionFile(!addPredictionFile)
@@ -447,7 +450,8 @@ const DynamicEbookPage = () => {
                             className="h-[1.1111111111em]"
                           />
                         </button>
-                        <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px]  font-bold ">
+                        {/* <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px]  font-bold "> */}
+                        <h4 className="text-[#00FEFC] lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px]  font-bold ">
                           + {pageData.prediction_file_price || "$9"}
                         </h4>
                       </div>
@@ -456,7 +460,7 @@ const DynamicEbookPage = () => {
                 </div>
               </div>
             </div>
-            <div className="lg:w-[40%] w-full">
+            <div className="right-card-wrapper">
               <div className="bg-[#1B1B1B] xl:p-[2.7777777778em] sm:p-[2.1164021164em] px-4 sm:py-[1.5873015873em] py-6 rounded-[0.6613756614em]">
                 <div className="sm:block hidden">
                   {selectedBox === "ebook" ? (
@@ -707,12 +711,19 @@ const DynamicEbookPage = () => {
                 </div>
                 <form className="sm:pt-[1.5873015873em] pt-[12px]">
                   <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
-                    <input
+                    {/* <input
                       type="text"
                       name="name"
                       id=""
                       placeholder="Full Name"
                       className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
+                    /> */}
+                    <input
+                      type="text"
+                      name="name"
+                      id=""
+                      placeholder="Full Name"
+                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
                     />
                   </div>
                   <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
@@ -721,7 +732,7 @@ const DynamicEbookPage = () => {
                       name="email"
                       id=""
                       placeholder="Email Address"
-                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
+                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
                     />
                   </div>
                   <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
@@ -730,24 +741,17 @@ const DynamicEbookPage = () => {
                       name="tel"
                       id=""
                       placeholder="Mobile number e.g: 0444786999"
-                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
+                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
                     />
                   </div>
-                  <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
-                    {/* <input
-                      type="tel"
-                      name="ccn"
-                      id=""
-                      placeholder="Card Number  "
-                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
-                    /> */}
+                  <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">                   
                     <div className="rounded-[3px] flex items-center justify-between bg-white">
                       <input
                         type="tel"
                         name="ccn"
                         id=""
                         placeholder="Card Number "
-                        className="placeholder:text-[#707070] outline-none w-[54%] px-[1.3333333333em] sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] leading-[1.723] 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
+                        className="placeholder:text-[#707070] outline-none w-[54%] px-[1.3333333333em] sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
                       />
                       <div className="flex gap-0 w-[46%] justify-end">
                         {/* Expiry Date */}
@@ -756,7 +760,7 @@ const DynamicEbookPage = () => {
                           name="expiry_date"
                           placeholder="MM / YY"
                           required
-                          className="placeholder:text-[#707070] outline-none sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] leading-[1.723] 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em] max-w-[4.2em]"
+                          className="placeholder:text-[#707070] outline-none sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em] max-w-[4.2em]"
                         />
 
                         {/* CVC */}
@@ -765,7 +769,7 @@ const DynamicEbookPage = () => {
                           name="cvc"
                           placeholder="/ CVC"
                           required
-                          className="placeholder:text-[#707070] outline-none sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] pe-[1.3333333333em]  leading-[1.723] 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em] max-w-[4.2em]"
+                          className="placeholder:text-[#707070] outline-none sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] pe-[1.3333333333em]  leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em] max-w-[4.2em]"
                         />
                       </div>
                     </div>
@@ -779,7 +783,6 @@ const DynamicEbookPage = () => {
 
                   <hr className="border-[#3D3D3D] sm:mt-[0.7936507937em] mt-3 sm:mb-[1.9841269841em] mb-4" />
                   <Link
-                    // type="submit"
                     to="/ebook-submit"
                     className="align-middle inline-flex items-center justify-center text-center primary-btn bg-gradient-OrangeRed text-white sm:px-[0.6em] sm:py-[0.8em] xs:py-[0.5em] px-3 py-[5.2vw] w-full font-bold sm:text-[1.3227513228em] text-[4.444444em] relative z-10 leading-[1.4] rounded-sm"
                   >
@@ -799,7 +802,7 @@ const DynamicEbookPage = () => {
         </div>
         <div className="border-y border-[#707070] relative z-10 sm:mb-[0] mb-[-13.8888888889vw]">
           <div className="custom-container mx-auto md:py-[6.6137566138em] sm:py-[4.6296296296em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative">
-            <h2 className="font-inter font-normal md:text-[4.0211640212em] sm:text-[6.258148631em] text-[11em] leading-[1.11] 2xl:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-white text-center sm:mb-[0.6578947368em] mb-[7.8125vw] xs:tracking-normal tracking-[2.2px]">
+            <h2 className="font-inter font-normal md:text-[4.0211640212em] sm:text-[6.258148631em] text-[11em] leading-[1.11] lg:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-white text-center sm:mb-[0.6578947368em] mb-[7.8125vw] xs:tracking-normal tracking-[2.2px]">
               FAQ
             </h2>
             <div className="md:max-w-[59.2592592593em] mx-auto sm:p-[1.5873015873em]">
