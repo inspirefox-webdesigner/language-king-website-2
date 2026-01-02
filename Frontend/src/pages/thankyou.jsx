@@ -133,11 +133,14 @@ const Home2 = () => {
         />
         <div className="custom-container mx-auto py-0 px-4 sm:px-[32px] w-full z-10 relative ">
           <div className="max-w-[830px]">
-            <div className="flex flex-col 2xl:gap-6 gap-3">
-              <h2 className="text-gradient-primary font-bold 2xl:text-[32px] text-2xl">
+            {/* <div className="flex flex-col 2xl:gap-6 gap-3"> */}
+              <div className="flex flex-col lg:gap-6 gap-3">
+              {/* <h2 className="text-gradient-primary font-bold 2xl:text-[32px] text-2xl"> */}
+                <h2 className="text-gradient-primary font-bold lg:text-[32px] text-2xl">
                 # Australia’s No.1
               </h2>
-              <h1 className="font-inter font-bold main-heading 2xl:mt-2 mt-0 text-white">
+              {/* <h1 className="font-inter font-bold main-heading 2xl:mt-2 mt-0 text-white"> */}
+                <h1 className="font-inter font-bold main-heading lg:mt-2 mt-0 text-white">
                 PTE, IELTS & NAATI CCL Coaching Institute
               </h1>
               <p className="md:text-lg text-base font-light max-w-[600px] text-white/75">
@@ -364,13 +367,21 @@ const Home2 = () => {
                 {videoItems.map((item, index) => (
                   <div key={index} className="relative">
                     <div className="border-b-[8px] border-[#A6A6A6] mb-3 shadow-[0px_5.03162px_0px_#000000]">
-                      <div
+                      {/* <div
                         className="w-full h-[220px] 2xl:h-[200px] sm:h-[180px] cursor-pointer relative"
                         onClick={() => {
                           setActiveVideo(item.videoSrc);
                           setIsModalOpen(true);
                         }}
+                      > */}
+                        <div
+                        className="w-full h-[220px] lg:h-[200px] sm:h-[180px] cursor-pointer relative"
+                        onClick={() => {
+                          setActiveVideo(item.videoSrc);
+                          setIsModalOpen(true);
+                        }}
                       >
+                        
                         <ImageWithToggle
                           src={item.thumbnail}
                           alt={item.title}
@@ -391,7 +402,8 @@ const Home2 = () => {
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-white font-bold 2xl:text-[24px] text-[22px] sm:leading-[1.3] leading-[28px]">
+                    {/* <h3 className="text-white font-bold 2xl:text-[24px] text-[22px] sm:leading-[1.3] leading-[28px]"> */}
+                      <h3 className="text-white font-bold lg:text-[24px] text-[22px] sm:leading-[1.3] leading-[28px]">
                       {item.title}
                     </h3>
                     <span className="text-white/60 sm:mt-[6px] mt-[4px] block text-base font-semibold">
@@ -513,9 +525,13 @@ const Home2 = () => {
                   Testimonials
                 </h2>
                 <div className="flex items-center justify-end">
-                  <Link
+                  {/* <Link
                     to="/testimonials"
                     className="bg-black2 2xl:p-[16px] sm:p-[12px] p-[9px] 2xl:min-w-[166px] sm:min-w-[140px] min-w-[100px] text-center rounded-[6px] text-white 2xl:text-[22px] sm:text-lg text-base font-semibold "
+                  > */}
+                    <Link
+                    to="/testimonials"
+                    className="bg-black2 lg:p-[16px] sm:p-[12px] p-[9px] lg:min-w-[166px] sm:min-w-[140px] min-w-[100px] text-center rounded-[6px] text-white lg:text-[22px] sm:text-lg text-base font-semibold "
                   >
                     View all
                   </Link>

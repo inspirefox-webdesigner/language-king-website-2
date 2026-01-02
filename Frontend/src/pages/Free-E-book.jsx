@@ -12,6 +12,7 @@ import BGgradient from "../assets/ebook/gradient.png";
 import Rectangle from "../assets/ebook/rectangle.png";
 import badge from "../assets/ebook/badge.svg";
 import Plus from "../assets/icons/plus.svg";
+import Minus from "../assets/icons/minus1.svg";
 import ImageWithToggle from "../components/ImageWithToggle";
 import useFreeEbookBanner from "../hooks/useFreeEbookBanner";
 import useFAQs from "../hooks/useFAQs";
@@ -526,8 +527,8 @@ const FreeEBook = () => {
                         >
                           {addPredictionFile ? "Remove" : "Add"}
                           <img
-                            src={Plus}
-                            alt="plus-icon"
+                            src={addPredictionFile ? Minus : Plus}
+                            alt="icon"
                             className="h-[1.1111111111em]"
                           />
                         </button>
@@ -553,7 +554,7 @@ const FreeEBook = () => {
             </div>
 
             <div className="right-card-wrapper">
-              <div className="bg-[#1B1B1B] xl:p-[2.7777777778em] sm:p-[2.1164021164em] px-4 sm:py-[1.5873015873em] py-6 rounded-[0.6613756614em]">
+              <div className="bg-[#1B1B1B]  sm:p-[2.1164021164em] px-4 sm:py-[1.5873015873em] py-6 rounded-[0.6613756614em]">
                 <div className="sm:block hidden">
                   {selectedBox === "ebook" ? (
                     // E-Book Only Details
@@ -607,7 +608,7 @@ const FreeEBook = () => {
                         <h4 className="text-[#B0B0B0] font-bold xl:text-[4.7619047619em] text-[3.9682539683em] leading-[1.1]">
                           $119
                         </h4>
-                        <span className="text-[#B0B0B0] font-bold text-[0.8597883598vw] sm:text-base">
+                        <span className="text-[#B0B0B0] font-bold text-[0.8597883598vw] text-base">
                           (GST Included)
                         </span>
                       </div>
@@ -625,13 +626,24 @@ const FreeEBook = () => {
                           <span className="text-[#B0B0B0] line-through font-bold me-4 xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg">
                             {bookBoxData?.aiportal_original_price || "$129"}
                           </span>
-                          <span className="text-[#F0AB0F] font-bold xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg">
+                          <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-lg">
                             {bookBoxData?.aiportal_price || "$99"}
                           </span>
                         </div>
                       </div>
+                      {addPredictionFile && (
+                        <div className="flex justify-between">
+                          <h4 className="font-semibold text-white xl:text-[1.3888888889vw]">
+                            {bookBoxData?.prediction_file_title ||
+                              "Prediction File"}
+                          </h4>
+                          <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-l">
+                            {bookBoxData?.prediction_file_price || "$9"}
+                          </span>
+                        </div>
+                      )}
                       <div className="flex justify-between gap-[1.0582010582em]">
-                        <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.6] text-lg">
+                        <h4 className="font-semibold text-white  sm:text-[1.1904761905em] leading-[1.6] xl:text-[1.3888888889vw]">
                           GST (10%)
                         </h4>
                         <div className="">
@@ -640,6 +652,7 @@ const FreeEBook = () => {
                           </span>
                         </div>
                       </div>
+
                       {/* (A) AI TOTAL WITHOUT Prediction File */}
                       {!addPredictionFile && (
                         <>
@@ -651,7 +664,7 @@ const FreeEBook = () => {
                                 <h4 className="font-medium text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
                                   Your total:
                                 </h4>
-                                <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8em]">
+                                <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8645833333vw]">
                                   $152
                                 </span>
                               </div>
@@ -665,7 +678,7 @@ const FreeEBook = () => {
                               $119
                             </h4>
 
-                            <span className="text-[#B0B0B0] font-bold text-base">
+                            <span className="text-[#B0B0B0] font-bold text-base text-[0.8597883598vw]">
                               (GST Included)
                             </span>
                           </div>
@@ -676,17 +689,17 @@ const FreeEBook = () => {
                       {addPredictionFile && (
                         <>
                           {/* Prediction File item */}
-                          <div className="flex justify-between mb-4">
-                            <h4 className="font-semibold text-white text-lg">
+                          {/* <div className="flex justify-between mb-4">
+                            <h4 className="font-semibold text-white xl:text-[1.3888888889vw]">
                               {bookBoxData?.prediction_file_title ||
-                                "Prediction File 2"}
+                                "Prediction File"}
                             </h4>
-                            <span className="text-[#F0AB0F] font-bold xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-l">
+                            <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-l">
                               {bookBoxData?.prediction_file_price || "$9"}
                             </span>
-                          </div>
+                          </div> */}
 
-                          <hr className="border-[#3D3D3D] my-6" />
+                          <hr className="border-[#3D3D3D] my-[ 1.5625vw]" />
 
                           <div className="max-w-[26.455026455em]">
                             <div className="flex justify-between items-center">
@@ -695,7 +708,7 @@ const FreeEBook = () => {
                                   Your total:
                                 </h4>
 
-                                <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8em]">
+                                <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8645833333vw]">
                                   $161
                                 </span>
                               </div>
@@ -705,11 +718,11 @@ const FreeEBook = () => {
                               </span>
                             </div>
 
-                            <h4 className="text-[#B0B0B0] font-bold text-[3.8em] leading-[1.1]">
+                            <h4 className="text-[#B0B0B0] font-bold text-[4.7619vw] leading-[1.1]">
                               $128
                             </h4>
 
-                            <span className="text-[#B0B0B0] font-bold text-base">
+                            <span className="text-[#B0B0B0] font-bold text-base text-[0.8597883598vw]">
                               (GST Included)
                             </span>
                           </div>

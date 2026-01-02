@@ -73,19 +73,28 @@ const HomeHeader = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex justify-end items-center ">
-              <ul className="flex 2xl:gap-[77px] xl:gap-[62px] gap-[32px]">
+              {/* <ul className="flex 2xl:gap-[77px] xl:gap-[62px] gap-[32px]"> */}
+                <ul className="flex lg:gap-[77px] xl:gap-[62px] gap-[32px]">
                 <li className="text-center inline-flex items-center">
-                  <a
+                  {/* <a
                     href="#courses"
                     className="text-white inline-flex items-center justify-center font-bold 2xl:text-[1.3227513228em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
+                  > */}
+                    <a
+                    href="#courses"
+                    className="text-white inline-flex items-center justify-center font-bold lg:text-[1.3227513228em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   >
                     Courses
                   </a>
                 </li>
                 <li className="text-center inline-flex items-center">
-                  <Link
+                  {/* <Link
                     to="/testimonials"
                     className="text-white inline-flex items-center justify-center font-bold 2xl:text-[1.3227513228em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
+                  > */}
+                     <Link
+                    to="/testimonials"
+                    className="text-white inline-flex items-center justify-center font-bold lg:text-[1.3227513228em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   >
                     Testimonials
                   </Link>

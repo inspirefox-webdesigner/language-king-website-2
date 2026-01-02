@@ -278,6 +278,7 @@ const allCountries = [
   { name: "India", code: "IN", dialCode: "+91", flag: IN },
   { name: "Afghanistan", code: "AF", dialCode: "+93", flag: AF },
   { name: "Åland Islands", code: "AX", dialCode: "+358", flag: AX },
+  { name: "Australia", code: "AU", dialCode: "+61", flag: AU },
   { name: "Albania", code: "AL", dialCode: "+355", flag: AL },
   { name: "Algeria", code: "DZ", dialCode: "+213", flag: DZ },
   { name: "American Samoa", code: "AS", dialCode: "+1 684", flag: AS },
@@ -418,6 +419,7 @@ const allCountries = [
   { name: "Iraq", code: "IQ", dialCode: "+964", flag: IQ },
   { name: "Ireland", code: "IE", dialCode: "+353", flag: IE },
   { name: "Isle of Man", code: "IM", dialCode: "+44", flag: IM },
+  { name: "India", code: "IN", dialCode: "+91", flag: IN },
   { name: "Israel", code: "IL", dialCode: "+972", flag: IL },
   { name: "Italy", code: "IT", dialCode: "+39", flag: IT },
   { name: "Jamaica", code: "JM", dialCode: "+1 876", flag: JM },
@@ -639,6 +641,7 @@ const PhoneInput = ({
     "US",
     "AF",
     "AX",
+    "AU",
     "AL",
     "DZ",
     "AS",
@@ -746,6 +749,7 @@ const PhoneInput = ({
     "IQ",
     "IE",
     "IM",
+    "IN",
     "IL",
     "IT",
     "JM",
@@ -977,7 +981,7 @@ const PhoneInput = ({
       </div>
 
       {/* Dial code */}
-      <span className="flex items-center h-auto text-[#919191] bg-white xs:py-[1.044973545vw] py-[5vw] sm:pl-[1.3333333333em] pl-4 sm:pr-[0.3333333333em] pr-1  sm:text-[1.25vw] text-[4.2vw]">
+      <span className="flex items-center h-auto text-[#626161] bg-white xs:py-[0.666666667em] py-[5vw] sm:pl-[1.3333333333em] pl-4 sm:pr-[0.3333333333em] pr-1  sm:text-[1.25vw] text-[4.2vw]">
         {selectedCountry.dialCode}
       </span>
 
@@ -985,19 +989,19 @@ const PhoneInput = ({
       <input
         type="tel"
         inputMode="numeric"
-        placeholder="412 345 678"
+        placeholder="Mobile Number"
         value={phoneNumber}
         onChange={handlePhoneNumberChange}
         onBlur={handleBlur}
         maxLength={10}
-        className={`flex-1 min-w-0 placeholder:text-[#919191] outline-none ${inputClassName}`}
+        className={`flex-1 min-w-0 placeholder:text-[#919191] outline-none  ${inputClassName}`}
       />
 
       {/* Dropdown */}
       {dropdownOpen && (
         <ul
           ref={dropdownRef}
-          className="absolute z-10 top-[100%] w-full bg-white border border-gray-300 shadow-lg max-h-60 overflow-y-scroll country-wrapper"
+          className="absolute z-10 top-[100%] w-full bg-white border border-gray-300 shadow-lg max-h-[15.873015873vw] overflow-y-scroll country-wrapper"
         >
           {countryList.map((country) => (
             <li

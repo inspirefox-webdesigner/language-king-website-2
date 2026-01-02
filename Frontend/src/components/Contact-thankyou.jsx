@@ -13,7 +13,8 @@ const ContactThankyou = () => {
           alt="checkmark"
           className="mx-auto sm:w-[3.505em] w-[50px] mb-2 h-auto zoom-pulse"
         />
-        <h2 className="font-bold 2xl:text-[2.778em] md:text-[2.249em] text-3xl text-center text-[#00C360]">
+        {/* <h2 className="font-bold 2xl:text-[2.778em] md:text-[2.249em] text-3xl text-center text-[#00C360]"> */}
+          <h2 className="font-bold lg:text-[2.778em] md:text-[2.249em] text-3xl text-center text-[#00C360]">
           Thank You!
         </h2>
         <h3 className="font-medium sm:text-[1.1904761905em] text-base text-white">

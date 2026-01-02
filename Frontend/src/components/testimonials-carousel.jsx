@@ -192,25 +192,30 @@ const TestimonialCarousel = ({ testimonials }) => {
                   ))}
                 </div>
 
-                <div className="2xl:pt-[64px] md:pt-[52px] sm:pt-[42px] pt-8 border-t border-[#3D3D3D] flex flex-col 2xl:gap-y-[58px] md:gap-y-[42px] gap-7">
-                  <div className="flex items-center 2xl:gap-[33px] gap-[20px]">
+                {/* <div className="2xl:pt-[64px] md:pt-[52px] sm:pt-[42px] pt-8 border-t border-[#3D3D3D] flex flex-col 2xl:gap-y-[58px] md:gap-y-[42px] gap-7"> */}
+                  <div className="lg:pt-[64px] md:pt-[52px] sm:pt-[42px] pt-8 border-t border-[#3D3D3D] flex flex-col 2xl:gap-y-[58px] md:gap-y-[42px] gap-7">
+                  {/* <div className="flex items-center 2xl:gap-[33px] gap-[20px]"> */}
+                    <div className="flex items-center lg:gap-[33px] gap-[20px]">
                     <ImageWithToggle
                       src={item.avatar}
                       alt="Avatar"
                       className="lg:w-[4.7619047619em] lg:h-[4.7619047619em] md:w-[7.03125em] md:h-[7.03125em] sm:w-[9.375em] xs:w-[9.6875em] sm:h-[9.375em] xs:h-[9.6875em] w-[17.2222222222em] h-[17.2222222222em] rounded-full object-cover"
                     />
                     <div>
-                      <h4 className="font-medium text-white/60 2xl:text-[1.5625em] lg:text-[1.455026455em] md:text-[2.34375em] sm:text-[2.8125em] xs:text-[3.75em] text-[5.7291666667em] xl:mb-2 mb-1">
+                      {/* <h4 className="font-medium text-white/60 2xl:text-[1.5625em] lg:text-[1.455026455em] md:text-[2.34375em] sm:text-[2.8125em] xs:text-[3.75em] text-[5.7291666667em] xl:mb-2 mb-1"> */}
+                      <h4 className="font-medium text-white/60 lg:text-[1.455026455em] md:text-[2.34375em] sm:text-[2.8125em] xs:text-[3.75em] text-[5.7291666667em] xl:mb-2 mb-1">
                         {item.name}
                       </h4>
-                      <span className="font-normal text-[#D8D8D8] 2xl:text-[1.171875em] lg:text-[1.0582010582em] md:text-[1.5625em] sm:text-[2.34375em] xs:text-[2.8125em] text-[4.6875em]">
+                      {/* <span className="font-normal text-[#D8D8D8] 2xl:text-[1.171875em] lg:text-[1.0582010582em] md:text-[1.5625em] sm:text-[2.34375em] xs:text-[2.8125em] text-[4.6875em]"> */}
+                        <span className="font-normal text-[#D8D8D8] lg:text-[1.0582010582em] md:text-[1.5625em] sm:text-[2.34375em] xs:text-[2.8125em] text-[4.6875em]">
                         {item.subtitle}
                       </span>
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center 2xl:text-base sm:text-base text-[3.6458333333em] font-light text-white gap-3">
+                    {/* <div className="flex items-center 2xl:text-base sm:text-base text-[3.6458333333em] font-light text-white gap-3"> */}
+                      <div className="flex items-center lg:text-base sm:text-base text-[3.6458333333em] font-light text-white gap-3">
                       <img
                         src={item.sourceIcon}
                         alt="source"

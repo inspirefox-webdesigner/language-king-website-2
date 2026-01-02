@@ -189,8 +189,10 @@ const Testimonials = () => {
         <div className="custom-container mx-auto py-0 px-4 sm:px-[2.1164021164em] w-full relative z-10">
           <div className="grid items-start lg:grid-cols-2 xl:gap-[7.9365079365em] gap-[5.9523809524em]">
             <div>
-              <div className="2xl:max-w-[39.0211640212em] xl:max-w-[34.7222222222em] lg:max-w-[34.96875em]">
-                <h1 className="font-inter font-bold lg:text-[3.6375661376em] md:text-[4.1015625em] sm:text-[6.5625em] xs:text-[8.75em] text-[10em] xs:leading-[normal] leading-[1.147] inline-block 2xl:mt-2 mt-0 text-white">
+              {/* <div className="2xl:max-w-[39.0211640212em] xl:max-w-[34.7222222222em] lg:max-w-[34.96875em]"> */}
+                <div className="lg:max-w-[39.0211640212em] xl:max-w-[34.7222222222em] md:max-w-[34.96875em]">
+                {/* <h1 className="font-inter font-bold lg:text-[3.6375661376em] md:text-[4.1015625em] sm:text-[6.5625em] xs:text-[8.75em] text-[10em] xs:leading-[normal] leading-[1.147] inline-block 2xl:mt-2 mt-0 text-white"> */}
+                  <h1 className="font-inter font-bold lg:text-[3.6375661376em] md:text-[4.1015625em] sm:text-[6.5625em] xs:text-[8.75em] text-[10em] xs:leading-[normal] leading-[1.147] inline-block lg:mt-2 mt-0 text-white">
                   {testimonialVideo.heading}
                 </h1>
                 <div className="lg:py-[4.8828125em] md:py-[6.518904824em] sm:py-[7.8125em] xs:py-[10.4166666667em] py-[9.3333333333vw] lg:hidden w-full">
@@ -346,7 +348,7 @@ const Testimonials = () => {
                             className="md:w-[1.3227513228em] md:h-[1.3227513228em] sm:w-[2.5em] sm:h-[2.5em] xs:w-[3.3333333333em] xs:h-[3.3333333333em] w-[5.7291666667vw] h-[5.7291666667vw] rounded-full absolute xs:-top-[8.43px] xs:-right-[8.43px] -top-[2.5833333333vw] -right-[2.5555555556vw] z-50"
                           />
                         )}
-                        <div className="gradient-border xs:rounded-[8px] rounded-[3.771px] md:w-[4.0343915344em] md:h-[4.0343915344em] sm:w-[8.125em] xs:w-[10.8333333333em] w-[16.2vw] sm:h-[8.125em] xs:h-[10.8333333333em] h-[16.2vw]">
+                        <div className="gradient-border xs:rounded-[8px] rounded-[0.2494047619vw] md:w-[4.0343915344em] md:h-[4.0343915344em] sm:w-[8.125em] xs:w-[10.8333333333em] w-[16.2vw] sm:h-[8.125em] xs:h-[10.8333333333em] h-[16.2vw]">
                           <ImageWithToggle
                             src={item.avatar || Mainavatar}
                             alt="Student Avatar"

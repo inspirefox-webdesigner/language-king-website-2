@@ -194,7 +194,7 @@ const GetInTouch = () => {
                 wrapperClassName={`w-full border-1 xs:rounded-md rounded-[3px] bg-white ${
                   errors.phone ? "border-red-500" : "border-[#949AA5]"
                 }`}
-                inputClassName="xs:py-[0.6666666667em] py-[4.4444444444vw] xs:pe-[1em] pe-[4.4444444444vw] md:text-[1.1904761905em] xs:text-[3.3333333333em] text-[4.16667em] leading-[1.556]"
+                inputClassName="xs:py-[0.666666667em] py-[4.4444444444vw] xs:pe-[1em] pe-[4.4444444444vw] md:text-[1.1904761905em] xs:text-[3.3333333333em] text-[4.16667em] leading-[1.556]"
               />
               {errors.phone && (
                 <span className="text-red-500 text-sm mt-1 flex items-center gap-1">

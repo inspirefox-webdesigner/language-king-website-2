@@ -172,8 +172,8 @@ const BookFreeTrail = () => {
               setFormData={setFormData}
               errors={errors}
               onBlur={handleBlur}
-              wrapperClassName="border"
-              inputClassName="w-full rounded-[0px] border border-transparent md:text-[1.1904761905em] xs:text-[2.5em] text-[4.1666666667em] md:py:[0.8888888889em] xs:py-[0.7222222222em] py-[4.223vw] md:px-[1.3333333333em] px-4 leading-[1.778] placeholder:text-[#919191] bg-white"
+              wrapperClassName="border-0"
+              inputClassName="w-full rounded-[0px] border border-transparent md:text-[1.1904761905em] xs:text-[2.5em] text-[4.1666666667em] md:py:[0.8888888889em] xs:py-[0.7222222222em] py-[4.223vw]   leading-[1.778] placeholder:text-[#919191] bg-white"
             />
             {errors.phone && (
               <span className="text-red-500 text-sm mt-1 flex items-center gap-1">

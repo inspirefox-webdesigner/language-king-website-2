@@ -134,7 +134,8 @@ const Home = () => {
         />
         <div className="custom-container mx-auto py-0 sm:px-[2.1164021164em] px-4  w-full z-10 relative ">
           <div className="lg:max-w-[54.8941798942em] max-w-full">
-            <div className="flex flex-col 2xl:gap-6 gap-3">
+            {/* <div className="flex flex-col 2xl:gap-6 gap-3"> */}
+              <div className="flex flex-col lg:gap-6 gap-3">
               <h2 className="text-gradient-primary font-bold lg:text-[1.5873015873em] sm:text-[2.34375em] text-2xl leading-[1.3333]">
                 # Australia’s No.1
               </h2>
@@ -395,7 +396,8 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-white font-bold 2xl:text-[1.5873015873em] lg:text-[1.455026455em] md:text-[2.34375em] sm:text-[3.125em] xs:text-[3.4375em] text-[5.5555555556em] leading-[1.3]">
+                    {/* <h3 className="text-white font-bold 2xl:text-[1.5873015873em] lg:text-[1.455026455em] md:text-[2.34375em] sm:text-[3.125em] xs:text-[3.4375em] text-[5.5555555556em] leading-[1.3]"> */}
+                      <h3 className="text-white font-bold  lg:text-[1.455026455em] md:text-[2.34375em] sm:text-[3.125em] xs:text-[3.4375em] text-[5.5555555556em] leading-[1.3]">
                       {item.title}
                     </h3>
                     <span className="text-white/60 sm:mt-[6px] mt-[4px] block lg:text-[1.0582010582em] md:text-[1.5625em] sm:text-[2.0833333333em] xs:text-[2.5em] text-[4.4444444444em] font-semibold">

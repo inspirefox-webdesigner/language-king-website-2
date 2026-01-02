@@ -13,7 +13,8 @@ const CallbackForm = () => {
         alt="checkmark"
         className="mx-auto sm:w-[3.8vw] w-[13.8888888889vw] mb-2 h-auto zoom-pulse"
       />
-      <h2 className="font-bold 2xl:text-[2.778em] sm:text-[2.6455026455vw] mt-[0.9920634921vw] text-[7.8125em] text-center leading-[1.11] inline-block text-gradient-OrangeRed">
+      {/* <h2 className="font-bold 2xl:text-[2.778em] sm:text-[2.6455026455vw] mt-[0.9920634921vw] text-[7.8125em] text-center leading-[1.11] inline-block text-gradient-OrangeRed"> */}
+        <h2 className="font-bold lg:text-[2.778em] sm:text-[2.6455026455vw] mt-[0.9920634921vw] text-[7.8125em] text-center leading-[1.11] inline-block text-gradient-OrangeRed">
         Thank You!
       </h2>
       <h3 className="font-medium sm:text-[1.455026455vw] text-[4.1666666667vw] text-white">

@@ -151,7 +151,8 @@ const Footer = () => {
                     <h4 className="text-white font-bold lg:text-[1.455026455em] md:text-[2.1484375em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5.7291666667em] lg:leading-[1.5]">
                       Devices Supported
                     </h4>
-                    <ul className="flex sm:flex-col flex-wrap 2xl:gap-[1.4322916667em] sm:gap-[1.1904761905em] gap-[18px]">
+                    {/* <ul className="flex sm:flex-col flex-wrap 2xl:gap-[1.4322916667em] sm:gap-[1.1904761905em] gap-[18px]"> */}
+                      <ul className="flex sm:flex-col flex-wrap lg:gap-[1.4322916667em] sm:gap-[1.1904761905em] gap-[18px]">
                       <li>
                         <a
                           href="#"
@@ -432,7 +433,8 @@ const Footer = () => {
           </div>
 
           <div className="sm:pb-[3.5714285714em] sm:pt-0 pt-[2.0833333333vw] pb-[6.25vw] sm:px-0 px-4">
-            <h5 className="2xl:text-[1.3227513228em] 2xl:leading-[1.4] sm:text-[1.1904761905em] xs:text-[2.9166666667em] sm:leading-[1.56] text-[3.8888888889em] font-light text-[#8B8C8D] tracking-[0.3px]">
+            {/* <h5 className="2xl:text-[1.3227513228em] 2xl:leading-[1.4] sm:text-[1.1904761905em] xs:text-[2.9166666667em] sm:leading-[1.56] text-[3.8888888889em] font-light text-[#8B8C8D] tracking-[0.3px]"> */}
+              <h5 className="lg:text-[1.3227513228em] lg:leading-[1.4] sm:text-[1.1904761905em] xs:text-[2.9166666667em] sm:leading-[1.56] text-[3.8888888889em] font-light text-[#8B8C8D] tracking-[0.3px]">
               Disclaimer - Language King is an independent coaching provider for
               the NAATI CCL and PTE tests. We are not affiliated with, endorsed
               by, or sponsored by NAATI or PTE. All test applications must be

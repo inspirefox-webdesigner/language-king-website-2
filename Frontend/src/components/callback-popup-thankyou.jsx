@@ -93,7 +93,8 @@ const CallbackPopupThankyou = () => {
         alt="checkmark"
         className="mx-auto sm:w-[3.505em] w-[50px] mb-2 h-auto zoom-pulse"
       />
-      <h2 className="inline-block font-bold 2xl:text-[2.778em] md:text-[2.1164021164vw] text-3xl text-center text-gradient-OrangeRed">
+      {/* <h2 className="inline-block font-bold 2xl:text-[2.778em] md:text-[2.1164021164vw] text-3xl text-center text-gradient-OrangeRed"> */}
+        <h2 className="inline-block font-bold lg:text-[2.778em] md:text-[2.1164021164vw] text-3xl text-center text-gradient-OrangeRed">
         Thank You!
       </h2>
       <h3 className="font-medium sm:text-[1.1904761905em] text-base text-white">
@@ -137,17 +138,17 @@ const CallbackPopupThankyou = () => {
               Need urgent assistance?{" "}
             </h4>
 
-            <ul className="flex flex-col xs:gap-[0.8855820106vw] gap-[2.7777777778em] mx-auto">
+            <ul className="flex flex-col xs:gap-[0.8855820106vw] gap-[2.7777777778em] mx-auto ">
               <li>
                 <a
                   href="tel:+61488876999"
-                  className="flex items-center xs:gap-[1.058em] gap-[0.7142857143em]  text-white font-medium md:text-[1.0416666667vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]"
+                  className="flex items-start xs:gap-[1.058em] gap-[0.7142857143em]  text-white font-medium md:text-[1.0416666667vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]"
                 >
                   {/* <img src={PhoneICon} className="lg:w-[2.3148148148vw] w-[1.545em]" /> */}
                   <div className="w-[2.646em] flex items-start justify-center">
                     <img
                       src={PhoneICon}
-                      className="xs:w-[1.4947089947vw] pt-[4px] w-[2.2em]"
+                      className="xs:w-[1.4947089947vw] pt-[4px] w-[2.2em] items-start"
                     />
                   </div>
                   +61 488 877 999 &nbsp; / &nbsp; <br class="xs:hidden" /> +61

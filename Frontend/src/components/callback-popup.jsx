@@ -3,7 +3,7 @@ import CloseIcon from "../assets/close.svg"; // Custom close icon
 import PhoneInput from "./PhoneInput";
 import CustomDropdown from "./custom-dropdown";
 import { Link } from "react-router-dom";
-import CallbackThankyou from "./callback-thankyou";
+import CallbackThankyou from "./callback-popup-thankyou";
 import API_BASE_URL from "../config/api";
 
 const CallbackForm = ({ onClose }) => {
@@ -135,14 +135,19 @@ const CallbackForm = ({ onClose }) => {
         className="fixed h-full top-0 bottom-0 left-0 right-0 inset-0 z-[51] bg-black/[94.5%] flex items-start justify-center xs:py-[1em] py-[3vw]"
         onClick={onClose}
       >
-        <div
+        {/* <div
           className="bg-[#121212] 2xl:p-[1.5873015873em] sm:px-[1.8518518519em] sm:pt-[1.1904761905em] sm:pb-[1.6792328042vw] px-[18px] py-[18px] w-full md:max-w-[34.1931216931vw] xs:max-w-[73.0117340287em] max-w-[92%] relative max-h-[99%] sm:h-auto overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+        > */}
+          <div
+          className="bg-[#121212] lg:p-[1.5873015873em] sm:px-[1.8518518519em] sm:pt-[1.1904761905em] sm:pb-[1.6792328042vw] px-[18px] py-[18px] w-full md:max-w-[34.1931216931vw] xs:max-w-[73.0117340287em] max-w-[92%] relative max-h-[99%] sm:h-auto overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
           {!isSubmitted ? (
             <>
               <div className="flex justify-between items-center border-b-[0.1041666667vw] border-[#2A2A2A] xs:pb-[1.1904761905em] pb-[14px]">
-                <h2 className="text-white 2xl:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
+                {/* <h2 className="text-white 2xl:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold"> */}
+                  <h2 className="text-white lg:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
                   Get-a-Callback
                 </h2>
                 <button
@@ -156,16 +161,21 @@ const CallbackForm = ({ onClose }) => {
                   />
                 </button>
               </div>
-              <p className="font-normal text-white/75 2xl:text-[1.3227513228em] md:text-[1.1904761905em] sm:text-[2.1875em] xs:text-[2.9166666667em] text-[3.88889em] leading-[1.4] pt-[1.2em]">
+              {/* <p className="font-normal text-white/75 2xl:text-[1.3227513228em] md:text-[1.1904761905em] sm:text-[2.1875em] xs:text-[2.9166666667em] text-[3.88889em] leading-[1.4] pt-[1.2em]"> */}
+              <p className="font-normal text-white/75 lg:text-[1.3227513228em] md:text-[1.1904761905em] sm:text-[2.1875em] xs:text-[2.9166666667em] text-[3.88889em] leading-[1.4] pt-[1.2em]">
                 Please fill out the below form. Our team will be in touch with
                 you shortly.
               </p>
               <div className="sm:pt-[1.5873015873em] pt-4">
                 <form onSubmit={handleSubmit} className="">
                   <div className="flex flex-col mb-4">
-                    <label
+                    {/* <label
                       htmlFor="name"
                       className="text-white font-semibold 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
+                    > */}
+                      <label
+                      htmlFor="name"
+                      className="text-white font-semibold lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     >
                       Full Name*
                     </label>
@@ -205,9 +215,13 @@ const CallbackForm = ({ onClose }) => {
                   </div>
 
                   <div className="flex flex-col mb-4">
-                    <label
+                    {/* <label
                       htmlFor="phone"
                       className="text-white font-semibold 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
+                    > */}
+                      <label
+                      htmlFor="phone"
+                      className="text-white font-semibold lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     >
                       Phone Number*
                     </label>
@@ -222,9 +236,13 @@ const CallbackForm = ({ onClose }) => {
                   </div>
 
                   <div className="flex flex-col xs:mb-4 mb-[3.75em]">
-                    <label
+                    {/* <label
                       htmlFor="course"
                       className="text-white font-semibold 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
+                    > */}
+                       <label
+                      htmlFor="course"
+                      className="text-white font-semibold lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     >
                       Course Interested in*
                     </label>
@@ -285,7 +303,8 @@ const CallbackForm = ({ onClose }) => {
           ) : (
             <div className="">
               <div className="flex justify-between items-center border-b-[0.1041666667vw] border-[#2A2A2A] xs:pb-[1.1904761905em] pb-[14px] xs:mb-6 mb-[4.6875vw]">
-                <h2 className="text-white 2xl:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
+                {/* <h2 className="text-white 2xl:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold"> */}
+                  <h2 className="text-white lg:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
                   Get-a-Callback
                 </h2>
                 <button

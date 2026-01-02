@@ -483,9 +483,9 @@ header {
 .gradient-border {
   position: relative;
   display: inline-block;
-  padding: 2.2px;
+  padding: 0.1455026455vw;
   /* border thickness */
-  border-radius: 3.771px;
+  border-radius: 0.2494047619vw;
   background: linear-gradient(90deg, #D7FF53 0%, #FD4F2B 100%);
 }
 
@@ -502,7 +502,7 @@ header {
 }
 
 .gradient-border img {
-  border-radius: calc(3.771px - 2.2px);
+  border-radius: 0.1039021164vw;
 }
 
 .support-grid>.grid-block:first-of-type>.inner {
