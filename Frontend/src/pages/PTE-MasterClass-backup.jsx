@@ -554,13 +554,13 @@ const PTEMasterClass = () => {
             <div className="grid lg:grid-cols-2 items-end">
               <div className="">
                 {/* <div className="flex flex-col 2xl:gap-[1.0582010582em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]"> */}
-                  <div className="flex flex-col lg:gap-[.793651em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]">
+                  <div className="flex flex-col lg:gap-[1.0582010582em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]">
                   {/* <h2 className="text-[#0A8AF2] font-bold 2xl:text-[1.8229166667em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]"> */}
-                    <h2 className="text-[#0A8AF2] font-bold lg:text-[1.5873em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]">
+                    <h2 className="text-[#0A8AF2] font-bold lg:text-[1.8229166667em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]">
                     PTE MasterClass
                   </h2>
                   {/* <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] 2xl:mt-2 mt-0 text-white"> */}
-                    <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] lg:mt-0 mt-0 text-white">
+                    <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] lg:mt-2 mt-0 text-white">
                     Missed your score! <br />
                     Clear in 2 weeks
                   </h1>
@@ -584,7 +584,7 @@ const PTEMasterClass = () => {
                     </h3>
                   </div>
                 </div>
-                <div className="sm:mt-[1.9841269841vw] mt-[4.8vw] flex sm:flex-nowrap flex-wrap sm:gap-[2.0502645503em] gap-[4.2vw] xl:max-w-[39.6825396825em] lg:max-w-[46.875em] md:max-w-[58.59375em]">
+                <div className="sm:mt-[2.5132275132em] mt-[4.8vw] flex sm:flex-nowrap flex-wrap sm:gap-[2.0502645503em] gap-[4.2vw] xl:max-w-[39.6825396825em] lg:max-w-[46.875em] md:max-w-[58.59375em]">
                   <a
                     href="#"
                     className="primary-btn bg-gradient-secondary md:p-[0.7936507937em] sm:p-[1.5645371578em] xs:p-[1.875em] p-[4.2vw] md:w-[50%] w-full relative z-10 text-center"
@@ -678,7 +678,7 @@ const PTEMasterClass = () => {
           <div className="custom-container mx-auto py-0 px-4 sm:px-[2.1164021164em] w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-[2.1080368906em] sm:gap-y-[3.8208168643em] gap-[18em]">
               {/* <h2 className="text-gradient-secondary font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block 2xl:max-w-[350px] lg:max-w-[300px] xs:mb-0 mb-[1vw]"> */}
-                <h2 className="text-gradient-secondary font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block lg:max-w-[19.8412698413vw] md:max-w-[19.8412698413vw] xs:mb-0 mb-[1vw]">
+                <h2 className="text-gradient-secondary font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block lg:max-w-[350px] md:max-w-[300px] xs:mb-0 mb-[1vw]">
                 This course covers all 22 tasks{" "}
                 <i className="font-normal">(Updated 2025 Aug)</i> with easy to
                 understand video lessons, live classes and more.
@@ -751,13 +751,13 @@ const PTEMasterClass = () => {
                   Watch AB grade students’ responses and give Feedback
                 </h2>
                 {/* <p className="font-normal 2xl:text-[1.3227513228em] sm:leading-[1.3333333] lg:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60"> */}
-                <p className="font-normal lg:text-[1.19048em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
+                <p className="font-normal lg:text-[1.3227513228em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
                   One of the best ways to learn what works and what doesn’t is
                   to simply review other students’ responses and scores.
                 </p>
 
                 {/* <p className="font-normal 2xl:text-[1.3227513228em] sm:leading-[1.3333333] lg:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60"> */}
-                <p className="font-normal lg:text-[1.19048em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
+                <p className="font-normal lg:text-[1.3227513228em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
                   We'll review scores for:
                 </p>
 
@@ -782,7 +782,7 @@ const PTEMasterClass = () => {
                           }`}
                         > */}
                           <span
-                          className={`font-medium lg:text-[1.19048em] sm:leading-[1.55] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] cursor-pointer transition-all duration-300 ease-in-out ${
+                          className={`font-medium lg:text-[1.3227513228em] sm:leading-[1.55] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] cursor-pointer transition-all duration-300 ease-in-out ${
                             activeTab === tab
                               ? "text-white"
                               : "text-white/60 group-hover:text-white"
@@ -1012,13 +1012,13 @@ const PTEMasterClass = () => {
                     Try a Free Lesson <br></br> Real Quick
                   </h2>
                   {/* <p className="font-normal 2xl:text-[1.3227513228em] sm:leading-[1.3333333] lg:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60"> */}
-                  <p className="font-normal lg:text-[1.19048em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
+                  <p className="font-normal lg:text-[1.3227513228em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
                     Watch AB guiding a student and a funny interaction between
                     them.
                   </p>
 
                   {/* <p className="font-normal 2xl:text-[1.3227513228em] sm:leading-[1.3333333] lg:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60"> */}
-                  <p className="font-normal lg:text-[1.19048em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
+                  <p className="font-normal lg:text-[1.3227513228em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
                     As an expert - AB guides his students through various
                     hurdles, by providing insightful feedback.
                   </p>
@@ -1040,7 +1040,7 @@ const PTEMasterClass = () => {
         <section className="custom-container sm:px-[2.1164021164em] px-4">
           <div className="sm:pb-[5.291005291em] xs:pb-[16.6666666667em] pb-[22.2222222222em] border-y-2 border-[#252525]">
             {/* <div className="mx-auto 2xl:px-[8.9285714286em] md:px-[6.6137566138em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid"> */}
-              <div className="mx-auto lg:px-[6.61376em] md:px-[6.6137566138em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid">
+              <div className="mx-auto lg:px-[8.9285714286em] md:px-[6.6137566138em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid">
               <div className="sm:pt-[3.4391534392em] pt-[7.7777777778vw]">
                 <h2 className="text-black lg:text-[3.1746031746em] md:text-[3.1746031746em] sm:text-[5.625em] xs:text-[7.5em] text-[7.7777777778em] sm:font-bold font-extrabold xs:leading-normal  leading-[1.2]">
                   Support{" "}
