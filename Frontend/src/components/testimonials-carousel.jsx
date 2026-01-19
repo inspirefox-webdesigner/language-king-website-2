@@ -193,9 +193,9 @@ const TestimonialCarousel = ({ testimonials }) => {
                 </div>
 
                 {/* <div className="2xl:pt-[64px] md:pt-[52px] sm:pt-[42px] pt-8 border-t border-[#3D3D3D] flex flex-col 2xl:gap-y-[58px] md:gap-y-[42px] gap-7"> */}
-                  <div className="lg:pt-[64px] md:pt-[52px] sm:pt-[42px] pt-8 border-t border-[#3D3D3D] flex flex-col 2xl:gap-y-[58px] md:gap-y-[42px] gap-7">
+                  <div className="lg:pt-[3.4391534392vw] md:pt-[52px] sm:pt-[42px] pt-8 border-t border-[#3D3D3D] flex flex-col 2xl:gap-y-[58px] md:gap-y-[42px] gap-7">
                   {/* <div className="flex items-center 2xl:gap-[33px] gap-[20px]"> */}
-                    <div className="flex items-center lg:gap-[33px] gap-[20px]">
+                    <div className="flex items-center lg:gap-[1.3227513228vw] gap-[20px]">
                     <ImageWithToggle
                       src={item.avatar}
                       alt="Avatar"

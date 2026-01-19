@@ -11,6 +11,7 @@ import Book4 from "../assets/ebook/book4.png";
 import BGgradient from "../assets/ebook/gradient.png";
 import Rectangle from "../assets/ebook/rectangle.png";
 import badge from "../assets/ebook/badge.svg";
+import Minus from "../assets/icons/minus1.svg";
 import Plus from "../assets/icons/plus.svg";
 import { Link } from "react-router-dom";
 import ImageWithToggle from "../components/ImageWithToggle";
@@ -354,7 +355,13 @@ const DynamicEbookPage = () => {
                   <div className="flex lg:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px]">
                     {/* <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl 
                     leading-[1.5] font-bold "> */}
-                    <h4 className="text-[#00FEFC] lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl leading-[1.5] font-bold ">
+                    <h4
+                      className={`lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-3xl leading-[1.5] font-bold ${
+                        selectedBox === "ebook"
+                          ? "text-[#F0AB0F]"
+                          : "text-[#00FEFC]"
+                      }`}
+                    >
                       {pageData.ebook_price || "$0.99"}
                     </h4>
                   </div>
@@ -415,7 +422,13 @@ const DynamicEbookPage = () => {
                         </h4>
                         <div className="flex items-center gap-[2.9761904762em] justify-between">
                           {/* <h4 className="text-[#F0AB0F] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold "> */}
-                          <h4 className="text-[#F0AB0F] lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ">
+                          <h4
+                            className={`lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ${
+                              selectedBox === "aiportal"
+                                ? "text-[#F0AB0F]"
+                                : "text-[#00FEFC]"
+                            }`}
+                          >
                             {pageData.aiportal_price || "$99"}
                           </h4>
                         </div>
@@ -437,21 +450,27 @@ const DynamicEbookPage = () => {
                       </div>
                       {/* <div className="flex 2xl:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px] items-center"> */}
                       <div className="flex lg:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px] items-center">
-                        <button
-                          onClick={() =>
-                            setAddPredictionFile(!addPredictionFile)
-                          }
-                          className="flex items-center gap-[0.6666666667em] bg-[#45595A] rounded-[0.5555555556em] sm:px-4 px-[0.8888888889em] sm:py-2 py-[0.4444444444em] text-white font-semibold text-[1.1904761905em] leading-[1.5555555] cursor-pointer"
-                        >
-                          {addPredictionFile ? "Remove" : "Add"}
-                          <img
-                            src={Plus}
-                            alt="plus-icon"
-                            className="h-[1.1111111111em]"
-                          />
-                        </button>
+                         <button
+                                                  onClick={() =>
+                                                    setAddPredictionFile(!addPredictionFile)
+                                                  }
+                                                  className="flex items-center gap-[0.6666666667em] bg-[#45595A] rounded-[0.5555555556em] sm:px-4 px-[0.8888888889em] sm:py-2 py-[0.4444444444em] text-white font-semibold text-[1.1904761905em] leading-[1.5555555] cursor-pointer"
+                                                >
+                                                  {addPredictionFile ? "Remove" : "Add"}
+                                                  <img
+                                                    src={addPredictionFile ? Minus : Plus}
+                                                    alt="icon"
+                                                    className="h-[1.1111111111em]"
+                                                  />
+                                                </button>
                         {/* <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px]  font-bold "> */}
-                        <h4 className="text-[#00FEFC] lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px]  font-bold ">
+                        <h4
+                          className={`lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ${
+                            addPredictionFile
+                              ? "text-[#F0AB0F]"
+                              : "text-[#00FEFC]"
+                          }`}
+                        >
                           + {pageData.prediction_file_price || "$9"}
                         </h4>
                       </div>

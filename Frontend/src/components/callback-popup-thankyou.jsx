@@ -94,7 +94,7 @@ const CallbackPopupThankyou = () => {
         className="mx-auto sm:w-[3.505em] w-[50px] mb-2 h-auto zoom-pulse"
       />
       {/* <h2 className="inline-block font-bold 2xl:text-[2.778em] md:text-[2.1164021164vw] text-3xl text-center text-gradient-OrangeRed"> */}
-        <h2 className="inline-block font-bold lg:text-[2.778em] md:text-[2.1164021164vw] text-3xl text-center text-gradient-OrangeRed">
+      <h2 className="inline-block font-bold lg:text-[2.1164vw] md:text-[2.1164021164vw] text-3xl text-center text-gradient-OrangeRed">
         Thank You!
       </h2>
       <h3 className="font-medium sm:text-[1.1904761905em] text-base text-white">
@@ -109,7 +109,7 @@ const CallbackPopupThankyou = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:gap-[1.0416666667vw] gap-4 md:mt-[1.3227513228vw] mt-6 text-start">
-          <div className="flex items-start sm:gap-[1.455026455vw] gap-5 text-white font-normal md:text-[1.0582010582em] text-[3.8888888889em] xs:leading-[1.375] leading-[1.3] lg:max-w-[26.5486725664vw]">
+          <div className="flex items-start sm:gap-[1.455026455vw] gap-[16px] text-white font-normal md:text-[1.0582010582em] text-[3.8888888889em] xs:leading-[1.375] leading-[1.3] lg:max-w-[26.5486725664vw]">
             <img
               src={CallIcon}
               alt="checklist"
@@ -118,7 +118,7 @@ const CallbackPopupThankyou = () => {
             We’ll call you within 24 hours to discuss your preferred course,
             target score, and learning needs.
           </div>
-          <div className="flex items-start sm:gap-[1.455026455vw] gap-5 text-white font-normal md:text-[1.0582010582em] text-[3.8888888889em] xs:leading-[1.375] leading-[1.3] lg:max-w-[26.5486725664vw]">
+          <div className="flex items-start sm:gap-[1.455026455vw] gap-[16px] text-white font-normal md:text-[1.0582010582em] text-[3.8888888889em] xs:leading-[1.375] leading-[1.3] lg:max-w-[26.5486725664vw]">
             <img
               src={MemberIcon}
               alt="checklist"
@@ -148,7 +148,7 @@ const CallbackPopupThankyou = () => {
                   <div className="w-[2.646em] flex items-start justify-center">
                     <img
                       src={PhoneICon}
-                      className="xs:w-[1.4947089947vw] pt-[4px] w-[2.2em] items-start"
+                      className="w-[2.2em] pt-[4px] lg:w-[2.2em] items-start"
                     />
                   </div>
                   +61 488 877 999 &nbsp; / &nbsp; <br class="xs:hidden" /> +61
@@ -163,10 +163,10 @@ const CallbackPopupThankyou = () => {
                   <div className="w-[2.646em] flex items-center justify-center">
                     <img
                       src={CalenderIcon}
-                      className="xs:w-[1.4947089947vw] w-[1.545em]"
+                      className="xs:w-[1.4947089947vw] w-[1.545em] items-start"
                     />
                   </div>
-                  <span>
+                  <span className="lg:text-[1.19048vw] text-[4vw]">
                     10 A.M - 7 P.M <br />
                     <span className="italic text-[#abaaa6] font-normal block xs:text-[0.9259259259vw] text-[3.3333333vw]">
                       (Mon - Sun | Melbourne Time)

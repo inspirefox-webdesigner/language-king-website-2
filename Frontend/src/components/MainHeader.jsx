@@ -33,10 +33,11 @@ const MainHeader = () => {
 
   return (
     <header
-      className={`text-white xl:py-[2.116em] py-[32px] z-50 active-header ${isSticky
-        ? "lg:sticky lg:top-0 lg:bg-black lg:shadow-md"
-        : "lg:bg-noise-pattern relative"
-        }`}
+      className={`text-white xl:py-[2.116em] py-[32px] z-50 active-header ${
+        isSticky
+          ? "lg:sticky lg:top-0 lg:bg-black lg:shadow-md"
+          : "lg:bg-noise-pattern relative"
+      }`}
     >
       <div className="custom-container mx-auto py-0 px-4 sm:px-[2.116em]">
         <div className="flex items-center justify-between relative">
@@ -73,15 +74,15 @@ const MainHeader = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex justify-end items-center ">
               {/* <ul className="flex 2xl:gap-[77px] xl:gap-[62px] gap-[32px]"> */}
-                <ul className="flex lg:gap-[77px] xl:gap-[62px] gap-[32px]">
+              <ul className="flex lg:gap-[77px] xl:gap-[4.1005291005vw] gap-[32px]">
                 <li className="text-center inline-flex items-center">
                   {/* <a
                     href="#courses"
                     className="text-white inline-flex items-center justify-center font-bold 2xl:text-[20px] text-[16px] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   > */}
-                    <a
+                  <a
                     href="#courses"
-                    className="text-white inline-flex items-center justify-center font-bold lg:text-[20px] text-[16px] border-b-2 border-transparent hover:border-white transition-all duration-300"
+                    className="text-white inline-flex items-center justify-center font-bold lg:text-[1.0582em] text-[16px] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   >
                     Courses
                   </a>
@@ -91,9 +92,9 @@ const MainHeader = () => {
                     to="/testimonials"
                     className="text-white inline-flex items-center justify-center font-bold 2xl:text-[20px] text-[16px] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   > */}
-                    <Link
+                  <Link
                     to="/testimonials"
-                    className="text-white inline-flex items-center justify-center font-bold lg:text-[20px] text-[16px] border-b-2 border-transparent hover:border-white transition-all duration-300"
+                    className="text-white inline-flex items-center justify-center font-bold lg:text-[1.0582em] text-[16px] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   >
                     Testimonials
                   </Link>
@@ -101,10 +102,11 @@ const MainHeader = () => {
                 <li className="text-center inline-flex items-center">
                   <Link
                     to="/contact"
-                    className={`px-4 py-2 text-base w-auto text-center focus:outline-none relative inline-flex items-center justify-center font-bold transition-all duration-300 header-btn z-10  min-w-[150px] ${isSticky
-                      ? "primary-btn bg-gradient-primary text-black border-none "
-                      : "text-white border border-white/25 hover:border-white bg-black"
-                      } `}
+                    className={`px-4 py-2 text-base w-auto text-center focus:outline-none relative inline-flex items-center justify-center font-bold transition-all duration-300 header-btn z-10  min-w-[150px] ${
+                      isSticky
+                        ? "primary-btn bg-gradient-primary text-black border-none "
+                        : "text-white border border-white/25 hover:border-white bg-black"
+                    } `}
                   >
                     Get-a Callback
                   </Link>
@@ -156,7 +158,7 @@ const MainHeader = () => {
                   onClick={() => setIsOpen(false)}
                   className="text-white inline-flex items-center justify-center font-medium text-[32px] border-b-2 border-transparent hover:border-white transition-all duration-300 [text-shadow:0px_4px_0px_#000000]"
                 >
-                  Contact us
+                  Contact Us
                 </Link>
               </li>
             </ul>

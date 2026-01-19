@@ -848,7 +848,7 @@ const PTEMasterClass = () => {
                     />
                     <div>
                       <h4 className="font-aileron lg:text-[0.9259259259em] md:text-[1.8252933507em] sm:text-[2.1875em] xs:text-[2.9166666667em] text-[4.6em] text-white transition-all duration-300 ease group-hover:text-black font-bold leading-[1.1]">
-                        Follow us on Instagram
+                        Follow Us on Instagram
                       </h4>
                       <span className="lg:text-[0.7936507937em] md:text-[1.5645371578em] sm:text-[1.875em] xs:text-[2.5em] text-[4.2em] text-white/50 font-medium transition-all duration-300 ease group-hover:text-black/50 break-all block leading-[14px] mt-1">
                         instagram.com/languageking

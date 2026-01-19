@@ -14,6 +14,7 @@ import badge from "../assets/ebook/badge.svg";
 import Plus from "../assets/icons/plus.svg";
 import Minus from "../assets/icons/minus1.svg";
 import ImageWithToggle from "../components/ImageWithToggle";
+import PhoneInput from "../components/PhoneInput";
 import useFreeEbookBanner from "../hooks/useFreeEbookBanner";
 import useFAQs from "../hooks/useFAQs";
 import useBookBox from "../hooks/useBookBox";
@@ -162,6 +163,7 @@ const FreeEBook = () => {
   const [selected, setSelected] = useState("ebook");
   const [selectedBox, setSelectedBox] = useState("ebook");
   const [addPredictionFile, setAddPredictionFile] = useState(false);
+  const [formData, setFormData] = useState({ phone: "" });
 
   if (loading || faqsLoading || bookBoxLoading) {
     return (
@@ -232,11 +234,14 @@ const FreeEBook = () => {
       {/* <section className="banner-wrapper 2xl:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]"> */}
       <section className="banner-wrapper lg:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]">
         <div className="sm:bg-transparent bg-gradient-FadetoBlack h-full w-full absolute top-0 z-10 lg:hidden block"></div>
+         <div className="lg:w-[66%] w-full lg:h-[75%] sm:h-full h-[50%] top-0 right-0 bottom-0 absolute">
         <ImageWithToggle
           src={getImageUrl(bannerData?.banner_bg_image, BannerBg)}
           alt="BannerBg"
           className="absolute w-full h-full top-0 left-0 right-0 bottom-0 object-cover"
         />
+        <div className="course-banner-gradient absolute w-full h-full top-0 left-0 right-0 bottom-0"></div>
+        </div>
         <div className="custom-container mx-auto py-0 px-4 sm:px-[2.1164021164em] w-full z-10 relative">
           <div className="flex lg:gap-x-[6.6137566138em] sm:gap-x-[13.671875em] gap-x-[140px] sm:flex-nowrap flex-wrap">
             <div className="sm:w-[20%] w-full flex flex-col justify-between">
@@ -308,7 +313,7 @@ const FreeEBook = () => {
                   </div>
                 </div>
                 <div className="lg:max-w-[70%] max-w-full flex lg:flex-nowrap flex-wrap items-center sm:justify-start justify-center lg:gap-[2.6455026455em] sm:gap-7 gap-4 sm:order-0 -order-1 ">
-                  <div className="relative rounded-lg sm:w-auto w-full ">
+                  <div className="relative rounded-lg sm:w-auto w-full">
                     <a
                       href="#"
                       className="align-middle xs:inline-flex hidden items-center justify-center text-center primary-btn primary-btn-rounded bg-gradient-primary text-black sm:px-3 px-[0.6em] xs:py-[0.6em] py-[5vw] font-normal sm:text-[1.3227513228em] xs:text-[2.5em] text-[4.444444444444em] xs:mt-0 mt-[3vw] leading-[1.4] relative z-10 sm:min-w-[12.1em] sm:w-auto w-full rounded-lg "
@@ -386,7 +391,7 @@ const FreeEBook = () => {
           alt="BGgradient"
           className="w-full h-full object-cover absolute top-0 left-0 right-0"
         />
-        <div className="custom-container mx-auto sm:py-[4.2328042328em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative ">
+        <div className="custom-container mx-auto sm:py-[4.2328042328em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative">
           {/* <div className="flex lg:flex-nowrap flex-wrap 2xl:gap-[9.9206349206em] lg:gap-[5.291005291em] gap-[2.6455026455em]"> */}
           <div className="flex lg:flex-nowrap flex-wrap lg:gap-[9.9206349206em] md:gap-[5.291005291em] gap-[2.6455026455em]">
             {/* Desktop Box */}
@@ -581,7 +586,7 @@ const FreeEBook = () => {
                         </div>
                       </div> */}
                       <div className="flex justify-between gap-[1.0582010582em]">
-                        <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.6] text-lg">
+                        <h4 className="font-semibold text-white xl:text-[1.38889vw] sm:text-[1.1904761905em] leading-[1.6] text-lg">
                           GST (10%)
                         </h4>
                         <div className="">
@@ -699,7 +704,7 @@ const FreeEBook = () => {
                             </span>
                           </div> */}
 
-                          <hr className="border-[#3D3D3D] my-[ 1.5625vw]" />
+                          <hr className="border-[#3D3D3D] my-[1.5625vw]" />
 
                           <div className="max-w-[26.455026455em]">
                             <div className="flex justify-between items-center">
@@ -874,20 +879,20 @@ const FreeEBook = () => {
                     />
                   </div>
                   <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
+                    <PhoneInput
+                      formData={formData}
+                      setFormData={setFormData}
+                      name="phone"
+                      wrapperClassName="rounded-[3px]"
+                      inputClassName="placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] sm:pe-[1.3333333333em] pe-4 leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
+                    />
                     {/* <input
                       type="tel"
                       name="tel"
                       id=""
                       placeholder="Mobile number e.g: 0444786999"
-                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
-                    /> */}
-                    <input
-                      type="tel"
-                      name="tel"
-                      id=""
-                      placeholder="Mobile number e.g: 0444786999"
                       className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
-                    />
+                    /> */}
                   </div>
                   <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
                     <div className="rounded-[3px] flex items-center justify-between bg-white">

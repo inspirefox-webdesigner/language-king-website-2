@@ -36,27 +36,27 @@ const CallbackForm = ({ onClose }) => {
 
     return error;
   };
- 
+
   const validate = () => {
     const newErrors = {};
- 
+
     Object.keys(formData).forEach((key) => {
       const error = validateField(key, formData[key]);
       if (error) newErrors[key] = error;
     });
- 
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
- 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
- 
+
   const handleBlur = (e) => {
     const { name, value } = e.target;
     const error = validateField(name, value);
@@ -67,21 +67,21 @@ const CallbackForm = ({ onClose }) => {
     const error = validateField("course", formData.course);
     setErrors((prev) => ({ ...prev, course: error }));
   };
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
+
     if (!validate()) {
       return;
     }
- 
+
     const submitData = {
       name: formData.name,
       phone: formData.phone,
       course: formData.course,
-      form_source: "Course Form"
+      form_source: "Course Form",
     };
- 
+
     try {
       // Store in database
       const dbRes = await fetch(`${API_BASE_URL}/forms/course`, {
@@ -91,24 +91,27 @@ const CallbackForm = ({ onClose }) => {
         },
         body: JSON.stringify(submitData),
       });
-     
+
       if (!dbRes.ok) {
         throw new Error(`Database request failed: ${dbRes.status}`);
       }
 
       const dbResult = await dbRes.json();
-     
+
       if (dbResult.success) {
         // Send email after successful database save
         try {
-          const emailRes = await fetch(`${API_BASE_URL.replace('/api','')}/send-email`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+          const emailRes = await fetch(
+            `${API_BASE_URL.replace("/api", "")}/send-email`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(submitData),
             },
-            body: JSON.stringify(submitData),
-          });
-          
+          );
+
           if (emailRes.ok) {
             const emailResult = await emailRes.json();
             console.log("Email sent:", emailResult);
@@ -116,7 +119,7 @@ const CallbackForm = ({ onClose }) => {
         } catch (emailError) {
           console.error("Email failed but form saved:", emailError);
         }
-        
+
         console.log("Form submitted successfully", dbResult);
         setIsSubmitted(true);
       } else {
@@ -139,15 +142,15 @@ const CallbackForm = ({ onClose }) => {
           className="bg-[#121212] 2xl:p-[1.5873015873em] sm:px-[1.8518518519em] sm:pt-[1.1904761905em] sm:pb-[1.6792328042vw] px-[18px] py-[18px] w-full md:max-w-[34.1931216931vw] xs:max-w-[73.0117340287em] max-w-[92%] relative max-h-[99%] sm:h-auto overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         > */}
-          <div
-          className="bg-[#121212] lg:p-[1.5873015873em] sm:px-[1.8518518519em] sm:pt-[1.1904761905em] sm:pb-[1.6792328042vw] px-[18px] py-[18px] w-full md:max-w-[34.1931216931vw] xs:max-w-[73.0117340287em] max-w-[92%] relative max-h-[99%] sm:h-auto overflow-y-auto"
+        <div
+          className="bg-[#121212] lg:pb-[1.67923vw] lg:pt-[1.19048em] lg:px-[1.85185em] sm:px-[1.8518518519em] sm:pt-[1.1904761905em] sm:pb-[1.6792328042vw] px-[18px] py-[18px] w-full md:max-w-[34.1931216931vw] xs:max-w-[73.0117340287em] max-w-[92%] relative max-h-[99%] sm:h-auto overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
           {!isSubmitted ? (
             <>
               <div className="flex justify-between items-center border-b-[0.1041666667vw] border-[#2A2A2A] xs:pb-[1.1904761905em] pb-[14px]">
                 {/* <h2 className="text-white 2xl:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold"> */}
-                  <h2 className="text-white lg:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
+                <h2 className="text-white lg:text-[1.95106vw] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
                   Get-a-Callback
                 </h2>
                 <button
@@ -162,7 +165,7 @@ const CallbackForm = ({ onClose }) => {
                 </button>
               </div>
               {/* <p className="font-normal text-white/75 2xl:text-[1.3227513228em] md:text-[1.1904761905em] sm:text-[2.1875em] xs:text-[2.9166666667em] text-[3.88889em] leading-[1.4] pt-[1.2em]"> */}
-              <p className="font-normal text-white/75 lg:text-[1.3227513228em] md:text-[1.1904761905em] sm:text-[2.1875em] xs:text-[2.9166666667em] text-[3.88889em] leading-[1.4] pt-[1.2em]">
+              <p className="font-normal text-white/75 lg:text-[1.19048em] md:text-[1.1904761905em] sm:text-[2.1875em] xs:text-[2.9166666667em] text-[3.88889em] leading-[1.4] pt-[1.2em]">
                 Please fill out the below form. Our team will be in touch with
                 you shortly.
               </p>
@@ -173,9 +176,9 @@ const CallbackForm = ({ onClose }) => {
                       htmlFor="name"
                       className="text-white font-semibold 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     > */}
-                      <label
+                    <label
                       htmlFor="name"
-                      className="text-white font-semibold lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
+                      className="text-white font-semibold lg:text-[1.0582em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     >
                       Full Name*
                     </label>
@@ -219,9 +222,9 @@ const CallbackForm = ({ onClose }) => {
                       htmlFor="phone"
                       className="text-white font-semibold 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     > */}
-                      <label
+                    <label
                       htmlFor="phone"
-                      className="text-white font-semibold lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
+                      className="text-white font-semibold lg:text-[1.0582em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     >
                       Phone Number*
                     </label>
@@ -240,9 +243,9 @@ const CallbackForm = ({ onClose }) => {
                       htmlFor="course"
                       className="text-white font-semibold 2xl:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     > */}
-                       <label
+                    <label
                       htmlFor="course"
-                      className="text-white font-semibold lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
+                      className="text-white font-semibold lg:text-[1.0582em] sm:text-[1.0582010582em] xs:text-[2.9166666667em]  text-[3.8888888888889em] mb-[0.3333333333em]"
                     >
                       Course Interested in*
                     </label>
@@ -304,7 +307,7 @@ const CallbackForm = ({ onClose }) => {
             <div className="">
               <div className="flex justify-between items-center border-b-[0.1041666667vw] border-[#2A2A2A] xs:pb-[1.1904761905em] pb-[14px] xs:mb-6 mb-[4.6875vw]">
                 {/* <h2 className="text-white 2xl:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold"> */}
-                  <h2 className="text-white lg:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
+                <h2 className="text-white lg:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
                   Get-a-Callback
                 </h2>
                 <button
@@ -328,8 +331,6 @@ const CallbackForm = ({ onClose }) => {
 };
 
 export default CallbackForm;
-
-
 
 // new code for callback form
 
@@ -512,7 +513,6 @@ export default CallbackForm;
 //             </>
 //           ) : (
 //             <div className="">
-
 
 //               <div className="flex justify-between items-center xs:border-b-[0.1041666667vw] border-b-[0.3649635036vw] border-[#2A2A2A] xs:pb-[1.1904761905em] pb-[14px] xs:mb-[1.5873015873em] mb-[4.6875vw]">
 //                 <h2 className="text-white 2xl:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">

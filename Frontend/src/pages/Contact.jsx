@@ -84,10 +84,10 @@ const Contact = () => {
             <div className="flex md:flex-nowrap justify-between flex-wrap gap-[8.856em]">
               <div className="md:w-[50%] w-full">
                 <h2 className="lg:text-[3.4391534392em] sm:text-[4.1015625em] xs:text-[8.75em] text-[8.8888888889em] leading-[1.2] -mt-[10px] font-bold text-white text-left lg:max-w-full">
-                  Get in touch with us
+                  Get in touch with Us
                 </h2>
                 <p className="relative text-[#B7B7B7] md:text-[1.1904761905em] sm:text-[2.5em] xs:text-[3.3333333333em] leading-[1.556] text-[3.8888888889em] max-w-[33.3333333333em] sm:my-[0.6666666667em] mt-[-5.5px] xs:pb-0 pb-[0.7vw] xs:ps-0 ps-[0.2777777778vw]">
-                  Contact us on xxxxxxxxx/ xxxxxxxxx
+                  Contact Us on xxxxxxxxx/ xxxxxxxxx
                 </p>
                 {/* Mobile Form */}
                 <div className="md:hidden block pt-3">
@@ -103,7 +103,6 @@ const Contact = () => {
                         src={CheckmarkGray}
                         alt="CheckmarkGray"
                         className="lg:w-[1.0582010582vw] w-[4.2vw] pt-1"
-
                       />
                       Learn from 8 each tutors. The best way to crack any exam
                       is to learn from the person who has cracked it.
@@ -113,7 +112,6 @@ const Contact = () => {
                         src={CheckmarkGray}
                         alt="CheckmarkGray"
                         className="lg:w-[1.0582010582vw] w-[4.2vw] pt-1"
-
                       />
                       Stay up-to-date with changes in exam, and learn the latest
                       strategies from carefully designed video lectures by
@@ -124,7 +122,6 @@ const Contact = () => {
                         src={CheckmarkGray}
                         alt="CheckmarkGray"
                         className="lg:w-[1.0582010582vw] w-[4.2vw] pt-1"
-
                       />
                       1-to-1 feedback from experts & personalized timetable to
                       fit your busy schedule, learn from the comfort of your
@@ -147,7 +144,7 @@ const Contact = () => {
                     src={PinkQuote}
                     alt="PinkQuote"
                     // className="sm:mt-[-1em] mt-[-2em] sm:w-[3.230em] w-8"
-                    className="mt-[-2em] sm:mt-[-1em] w-[3.23vw]"
+                    className="mt-[-2em] sm:mt-[-1em] w-[8.33333vw] lg:w-[3.23vw]"
                   />
                   <p className="lg:text-[1.5873015873em] md:text-[1.323em] sm:text-[3.4375em] xs:text-[4.1666666667em] text-[4.8em] leading-[1.333333] text-lg text-white">
                     Language King is perfect for new or struggling students,
@@ -251,7 +248,7 @@ const Contact = () => {
                   />
                   <div>
                     <h4 className="font-aileron sm:text-[1.190em] text-base  text-white transition-all duration-300 ease group-hover:text-black font-bold leading-[1.1]">
-                      Follow us on Instagram
+                      Follow Us on Instagram
                     </h4>
                     <span className="text-sm text-white/50 font-semibold transition-all duration-300 ease group-hover:text-black/50 break-all block leading-[0.926em] mt-1">
                       instagram.com/languageking

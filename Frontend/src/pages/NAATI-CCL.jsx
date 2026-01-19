@@ -600,13 +600,13 @@ const NAATICCL = () => {
             <div className="grid lg:grid-cols-2 items-end">
               <div className="">
                 {/* <div className="flex flex-col 2xl:gap-[1.0582010582em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]"> */}
-                  <div className="flex flex-col lg:gap-[1.0582010582em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]">
+                  <div className="flex flex-col lg:gap-[.793651em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]">
                   {/* <h2 className="text-[#52D34E] font-bold 2xl:text-[1.8229166667em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]"> */}
-                    <h2 className="text-[#52D34E] font-bold lg:text-[1.8229166667em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]">
-                    NAATI CCL FAST COURSE
+                    <h2 className="text-[#52D34E] font-bold lg:text-[1.5873em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]">
+                    NAATI CCL Fast Course
                   </h2>
                   {/* <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] 2xl:mt-2 mt-0 text-white"> */}
-                    <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] lg:mt-2 mt-0 text-white">
+                    <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] mt-0 text-white">
                     Exam in 7 days? <br />
                     we've got you covered!
                   </h1>
@@ -629,7 +629,7 @@ const NAATICCL = () => {
                     </h3>
                   </div>
                 </div>
-                <div className="sm:mt-[2.5132275132em] mt-[4.8vw] flex sm:flex-nowrap flex-wrap sm:gap-[2.0502645503em] gap-[4.2vw] xl:max-w-[39.6825396825em] lg:max-w-[46.875em] md:max-w-[58.59375em]">
+                <div className="sm:mt-[1.98413vw] mt-[1.98413vw] flex sm:flex-nowrap flex-wrap sm:gap-[2.0502645503em] gap-[4.2vw] xl:max-w-[39.6825396825em] lg:max-w-[46.875em] md:max-w-[58.59375em]">
                   <a
                     href="#"
                     className="primary-btn bg-gradient-GreenBtn md:p-[0.7936507937em] sm:p-[1.5645371578em] xs:p-[1.875em] p-[4.2vw] md:w-[50%] w-full relative z-10 text-center"
@@ -705,12 +705,12 @@ const NAATICCL = () => {
             <div className="flex justify-between items-center relative">
               <div className="text-center w-auto mx-auto z-10 relative bg-[#0c0c0c]/80 px-3">
                 <span className="font-normal lg:text-[1.3227513228em] md:text-[2.0860495437em] sm:text-[2.5em] xs:text-[3.3333333333em] text-[5em] lg:leading-[1.4] text-white/60 text-center sm:inline hidden">
-                  Helped <strong className="text-white">5000+</strong> students
+                  Helped <strong className="text-white">5,000+</strong> students
                   pass the exam
                 </span>
                 <span className="font-bold lg:text-[1.3227513228em] md:text-[2.0860495437em] sm:text-[2.5em] xs:text-[3.3333333333em] text-[5em] text-white/60 text-center sm:hidden inline w-[320px]">
                   Now teaching{" "}
-                  <div className="text-white inline-block">2k+ students!</div>
+                  <div className="text-white inline-block">5,000+ students!</div>
                 </span>
               </div>
               <hr className="border-[#252525] w-full absolute left-0 right-0 z-[-1]" />
@@ -793,13 +793,13 @@ const NAATICCL = () => {
                   Watch AB grade students’ responses and give Feedback
                 </h2>
                 {/* <p className="font-normal 2xl:text-[1.3227513228em] sm:leading-[1.3333333] lg:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60"> */}
-                <p className="font-normal lg:text-[1.3227513228em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
+                <p className="font-normal lg:text-[1.19048em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
                   One of the best ways to learn what works and what doesn’t is
                   to simply see if you are making the same mistakes.
                 </p>
 
                 {/* <p className="font-normal 2xl:text-[1.3227513228em] sm:leading-[1.3333333] lg:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60"> */}
-                <p className="font-normal lg:text-[1.3227513228em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
+                <p className="font-normal lg:text-[1.19048em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
                   We'll be covering in detail:
                 </p>
 
@@ -823,7 +823,7 @@ const NAATICCL = () => {
                           }`}
                         > */}
                           <span
-                          className={`font-medium lg:text-[1.3227513228em] sm:leading-[1.55] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] cursor-pointer transition-all duration-300 ease-in-out ${
+                          className={`font-medium lg:text-[1.19048em] sm:leading-[1.55] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] cursor-pointer transition-all duration-300 ease-in-out ${
                             activeTab === tab
                               ? "text-white"
                               : "text-white/60 group-hover:text-white"
@@ -891,7 +891,7 @@ const NAATICCL = () => {
                     />
                     <div>
                       <h4 className="font-aileron lg:text-[0.9259259259em] md:text-[1.8252933507em] sm:text-[2.1875em] xs:text-[2.9166666667em] text-[4.6em] text-white transition-all duration-300 ease group-hover:text-black font-bold leading-[1.1]">
-                        Follow us on Instagram
+                        Follow Us on Instagram
                       </h4>
                       <span className="lg:text-[0.7936507937em] md:text-[1.5645371578em] sm:text-[1.875em] xs:text-[2.5em] text-[4.2em] text-white/50 font-medium transition-all duration-300 ease group-hover:text-black/50 break-all block leading-[14px] mt-1">
                         instagram.com/languageking
@@ -1055,13 +1055,13 @@ const NAATICCL = () => {
                     Try a Free Lesson <br></br> Real Quick
                   </h2>
                   {/* <p className="font-normal 2xl:text-[1.3227513228em] sm:leading-[1.3333333] lg:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60"> */}
-                  <p className="font-normal lg:text-[1.3227513228em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
+                  <p className="font-normal lg:text-[1.19048em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
                     Watch AB guiding a student and a funny interaction between
                     them.
                   </p>
 
                   {/* <p className="font-normal 2xl:text-[1.3227513228em] sm:leading-[1.3333333] lg:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60"> */}
-                  <p className="font-normal lg:text-[1.3227513228em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
+                  <p className="font-normal lg:text-[1.19048em] sm:leading-[1.3333333] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] text-white/60">
                     As an expert - AB guides his students through various
                     hurdles, by providing insightful feedback.
                   </p>
@@ -1083,7 +1083,7 @@ const NAATICCL = () => {
         <section className="custom-container sm:px-[2.1164021164em] px-4">
           <div className="sm:pb-[5.291005291em] xs:pb-[16.6666666667em] pb-[22.2222222222em] border-y-2 border-[#252525]">
             {/* <div className="mx-auto 2xl:px-[8.9285714286em] md:px-[6.6137566138em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid"> */}
-              <div className="mx-auto lg:px-[8.9285714286em] md:px-[6.6137566138em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid">
+              <div className="mx-auto lg:px-[6.61376em] md:px-[6.61376em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid">
               <div className="sm:pt-[3.4391534392em] pt-[7.7777777778vw]">
                 <h2 className="text-black lg:text-[3.1746031746em] md:text-[3.1746031746em] sm:text-[5.625em] xs:text-[7.5em] text-[7.7777777778em] sm:font-bold font-extrabold xs:leading-normal  leading-[1.2]">
                   Support{" "}

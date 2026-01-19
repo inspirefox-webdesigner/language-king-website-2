@@ -160,22 +160,30 @@ const Testimonials = () => {
     try {
       const [videoRes, heroRes] = await Promise.all([
         axios.get(`${API_BASE_URL}/testimonial-video`),
-        axios.get(`${API_BASE_URL}/testimonial-hero-section`)
+        axios.get(`${API_BASE_URL}/testimonial-hero-section`),
       ]);
 
       setTestimonialVideo({
         video_url: videoRes.data?.video_url
-          ? `${API_BASE_URL.replace("/api", "")}/uploads/${videoRes.data.video_url}`
+          ? `${API_BASE_URL.replace("/api", "")}/uploads/${
+              videoRes.data.video_url
+            }`
           : TestVideo,
         video_placeholder_img: videoRes.data?.video_placeholder_img
-          ? `${API_BASE_URL.replace("/api", "")}/uploads/${videoRes.data.video_placeholder_img}`
+          ? `${API_BASE_URL.replace("/api", "")}/uploads/${
+              videoRes.data.video_placeholder_img
+            }`
           : TestPlaceholder,
         heading: heroRes.data?.heading || "Why Students Love Learning With Us",
-        description: heroRes.data?.description || "When I started my journey I really thought that it would be impossible for me to clear he test due to my background. xxxxxxxxxxxxx",
+        description:
+          heroRes.data?.description ||
+          "When I started my journey I really thought that it would be impossible for me to clear he test due to my background. xxxxxxxxxxxxx",
         student_name: heroRes.data?.student_name || "NATALIA",
         student_tag: heroRes.data?.student_tag || "PTE & NAATI CCL",
         student_avatar: heroRes.data?.student_avatar
-          ? `${API_BASE_URL.replace("/api", "")}/uploads/${heroRes.data.student_avatar}`
+          ? `${API_BASE_URL.replace("/api", "")}/uploads/${
+              heroRes.data.student_avatar
+            }`
           : Mainavatar,
       });
     } catch (error) {
@@ -190,9 +198,9 @@ const Testimonials = () => {
           <div className="grid items-start lg:grid-cols-2 xl:gap-[7.9365079365em] gap-[5.9523809524em]">
             <div>
               {/* <div className="2xl:max-w-[39.0211640212em] xl:max-w-[34.7222222222em] lg:max-w-[34.96875em]"> */}
-                <div className="lg:max-w-[39.0211640212em] xl:max-w-[34.7222222222em] md:max-w-[34.96875em]">
+              <div className="lg:max-w-[39.0211640212em] xl:max-w-[34.7222222222em] md:max-w-[34.96875em]">
                 {/* <h1 className="font-inter font-bold lg:text-[3.6375661376em] md:text-[4.1015625em] sm:text-[6.5625em] xs:text-[8.75em] text-[10em] xs:leading-[normal] leading-[1.147] inline-block 2xl:mt-2 mt-0 text-white"> */}
-                  <h1 className="font-inter font-bold lg:text-[3.6375661376em] md:text-[4.1015625em] sm:text-[6.5625em] xs:text-[8.75em] text-[10em] xs:leading-[normal] leading-[1.147] inline-block lg:mt-2 mt-0 text-white">
+                <h1 className="font-inter font-bold lg:text-[3.6375661376em] md:text-[4.1015625em] sm:text-[6.5625em] xs:text-[8.75em] text-[10em] xs:leading-[normal] leading-[1.147] inline-block lg:mt-2 mt-0 text-white">
                   {testimonialVideo.heading}
                 </h1>
                 <div className="lg:py-[4.8828125em] md:py-[6.518904824em] sm:py-[7.8125em] xs:py-[10.4166666667em] py-[9.3333333333vw] lg:hidden w-full">
@@ -217,7 +225,7 @@ const Testimonials = () => {
                 {testimonialVideo.description}
               </div>
               <div className="flex sm:gap-[1.3227513228em] gap-4 items-center sm:mt-[3.3068783069em] mt-[9.3333333333vw]">
-                <div className="gradient-border xs:rounded-[8px] rounded-[3.771px] md:w-[4.0343915344em] md:h-[4.0343915344em] sm:w-[8.125em] xs:w-[10.8333333333em] w-[16.2vw] sm:h-[8.125em] xs:h-[10.8333333333em] h-[16.2vw]">
+                <div className="gradient-border xs:rounded-[1.0475vw] rounded-[1.0475vw] md:w-[4.0343915344em] md:h-[4.0343915344em] sm:w-[8.125em] xs:w-[10.8333333333em] w-[16.2vw] sm:h-[8.125em] xs:h-[10.8333333333em] h-[16.2vw]">
                   <ImageWithToggle
                     src={testimonialVideo.student_avatar}
                     alt="Student Avatar"
@@ -514,10 +522,10 @@ const Testimonials = () => {
             <div className="flex md:flex-nowrap justify-between flex-wrap gap-[8.856em]">
               <div className="md:w-[50%] w-full">
                 <h2 className="lg:text-[3.4391534392em] sm:text-[4.1015625em] xs:text-[8.75em] text-[8.8888888889em] leading-[1.2] -mt-[10px] font-bold text-white text-left lg:max-w-full">
-                  Get in touch with us
+                  Get in touch with Us
                 </h2>
                 <p className="relative text-[#B7B7B7] md:text-[1.1904761905em] sm:text-[2.5em] xs:text-[3.3333333333em] leading-[1.556] text-[3.8888888889em] max-w-[33.3333333333em] sm:my-[0.6666666667em] mt-[-5.5px] xs:pb-0 pb-[0.7vw] xs:ps-0 ps-[0.2777777778vw]">
-                  Contact us on xxxxxxxxx/ xxxxxxxxx
+                  Contact Us on xxxxxxxxx/ xxxxxxxxx
                 </p>
                 {/* Mobile Form */}
                 <div className="md:hidden block pt-3">
@@ -533,7 +541,6 @@ const Testimonials = () => {
                         src={CheckmarkGray}
                         alt="CheckmarkGray"
                         className="lg:w-[1.0582010582vw] w-[4.2vw] pt-1"
-
                       />
                       Learn from 8 each tutors. The best way to crack any exam
                       is to learn from the person who has cracked it.
@@ -543,7 +550,6 @@ const Testimonials = () => {
                         src={CheckmarkGray}
                         alt="CheckmarkGray"
                         className="lg:w-[1.0582010582vw] w-[4.2vw] pt-1"
-
                       />
                       Stay up-to-date with changes in exam, and learn the latest
                       strategies from carefully designed video lectures by
@@ -554,7 +560,6 @@ const Testimonials = () => {
                         src={CheckmarkGray}
                         alt="CheckmarkGray"
                         className="lg:w-[1.0582010582vw] w-[4.2vw] pt-1"
-
                       />
                       1-to-1 feedback from experts & personalized timetable to
                       fit your busy schedule, learn from the comfort of your
@@ -565,7 +570,6 @@ const Testimonials = () => {
                         src={CheckmarkGray}
                         alt="CheckmarkGray"
                         className="lg:w-[1.0582010582vw] w-[4.2vw] pt-1"
-
                       />
                       Access to AI based portal with real time scoring, 5000+
                       practice questions, including sectional and full mock
@@ -578,7 +582,7 @@ const Testimonials = () => {
                     src={PinkQuote}
                     alt="PinkQuote"
                     // className="sm:mt-[-1em] mt-[-2em] sm:w-[3.230em] w-8"
-                    className="mt-[-2em] sm:mt-[-1em] w-[3.23vw]"
+                    className="mt-[-2em] sm:mt-[-1em] w-[8.33333vw] lg:w-[3.23vw]"
                   />
                   <p className="lg:text-[1.5873015873em] md:text-[1.323em] sm:text-[3.4375em] xs:text-[4.1666666667em] text-[4.8em] leading-[1.333333] text-lg text-white">
                     Language King is perfect for new or struggling students,

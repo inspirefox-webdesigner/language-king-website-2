@@ -74,7 +74,7 @@ const HomeHeader = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex justify-end items-center ">
               {/* <ul className="flex 2xl:gap-[77px] xl:gap-[62px] gap-[32px]"> */}
-                <ul className="flex lg:gap-[77px] xl:gap-[62px] gap-[32px]">
+                <ul className="flex lg:gap-[77px] xl:gap-[4.1005291005vw] gap-[32px]">
                 <li className="text-center inline-flex items-center">
                   {/* <a
                     href="#courses"
@@ -82,7 +82,7 @@ const HomeHeader = () => {
                   > */}
                     <a
                     href="#courses"
-                    className="text-white inline-flex items-center justify-center font-bold lg:text-[1.3227513228em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
+                    className="text-white inline-flex items-center justify-center font-bold lg:text-[1.0582em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   >
                     Courses
                   </a>
@@ -94,7 +94,7 @@ const HomeHeader = () => {
                   > */}
                      <Link
                     to="/testimonials"
-                    className="text-white inline-flex items-center justify-center font-bold lg:text-[1.3227513228em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
+                    className="text-white inline-flex items-center justify-center font-bold lg:text-[1.0582em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   >
                     Testimonials
                   </Link>
@@ -102,7 +102,7 @@ const HomeHeader = () => {
                 <li className="text-center inline-flex items-center">
                   <Link
                     to="/contact"
-                    className={`text-[1.0582010582em] px-[1em] py-[0.5em] text-base w-auto text-center focus:outline-none relative inline-flex items-center justify-center font-bold transition-all duration-300 z-10  min-w-[150px] ${isSticky
+                    className={`text-[1.0582010582em] lg:text-[1.0582em] px-[1em] py-[0.5em] text-base w-auto text-center focus:outline-none relative inline-flex items-center justify-center font-bold transition-all duration-300 z-10  min-w-[150px] ${isSticky
                       ? "primary-btn bg-gradient-primary text-black border-none "
                       : "text-white border border-white/25 hover:border-white bg-black"
                       } `}

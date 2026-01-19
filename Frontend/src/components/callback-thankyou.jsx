@@ -14,7 +14,7 @@ const CallbackForm = () => {
         className="mx-auto sm:w-[3.8vw] w-[13.8888888889vw] mb-2 h-auto zoom-pulse"
       />
       {/* <h2 className="font-bold 2xl:text-[2.778em] sm:text-[2.6455026455vw] mt-[0.9920634921vw] text-[7.8125em] text-center leading-[1.11] inline-block text-gradient-OrangeRed"> */}
-        <h2 className="font-bold lg:text-[2.778em] sm:text-[2.6455026455vw] mt-[0.9920634921vw] text-[7.8125em] text-center leading-[1.11] inline-block text-gradient-OrangeRed">
+      <h2 className="font-bold lg:text-[2.778em] sm:text-[2.6455026455vw] mt-[0.9920634921vw] text-[7.8125em] text-center leading-[1.11] inline-block text-gradient-OrangeRed">
         Thank You!
       </h2>
       <h3 className="font-medium sm:text-[1.455026455vw] text-[4.1666666667vw] text-white">
@@ -81,14 +81,15 @@ const CallbackForm = () => {
               <li>
                 <a
                   href="tel:+61488876999"
-                  className="flex items-start xs:gap-[0.7936507937vw]  gap-[0.7142857143em] text-white font-medium md:text-[1.0416666667vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]">
+                  className="flex items-start xs:gap-[0.7936507937vw]  gap-[0.7142857143em] text-white font-medium md:text-[1.0416666667vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]"
+                >
                   <div className="w-[2.646em] flex items-center justify-center">
                     <img
                       src={CalenderIcon}
                       className="lg:w-[1.7857142857vw] w-[1.545em]"
                     />
                   </div>
-                  <span>
+                  <span className="md:text-[1.19048vw] text-[4vw]">
                     10 A.M - 7 P.M <br />
                     <span className="italic text-[#abaaa6] font-normal block xs:text-[0.9259259259vw] text-[3.3333333vw]">
                       (Mon - Sun | Melbourne Time)

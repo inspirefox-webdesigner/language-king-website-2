@@ -981,7 +981,7 @@ const PhoneInput = ({
       </div>
 
       {/* Dial code */}
-      <span className="flex items-center h-auto text-[#626161] bg-white xs:py-[0.666666667em] py-[5vw] sm:pl-[1.3333333333em] pl-4 sm:pr-[0.3333333333em] pr-1  sm:text-[1.25vw] text-[4.2vw]">
+      <span className="flex items-center h-auto text-[#626161] bg-white xs:py-[0.666666667em] py-[5vw] sm:pl-[1.3333333333em] pl-4 sm:pr-[0.3333333333em] pr-1  sm:text-[1.19048em] text-[4.16667em]">
         {selectedCountry.dialCode}
       </span>
 
@@ -1001,7 +1001,7 @@ const PhoneInput = ({
       {dropdownOpen && (
         <ul
           ref={dropdownRef}
-          className="absolute z-10 top-[100%] w-full bg-white border border-gray-300 shadow-lg max-h-[15.873015873vw] overflow-y-scroll country-wrapper"
+          className="absolute z-10 top-[100%] w-full bg-white border-1 border-[#949AA5] shadow-lg md:max-h-[15.873015873vw] max-h-60 overflow-y-scroll country-wrapper"
         >
           {countryList.map((country) => (
             <li
