@@ -87,7 +87,7 @@ const Contact = () => {
                   Get in touch with Us
                 </h2>
                 <p className="relative text-[#B7B7B7] md:text-[1.1904761905em] sm:text-[2.5em] xs:text-[3.3333333333em] leading-[1.556] text-[3.8888888889em] max-w-[33.3333333333em] sm:my-[0.6666666667em] mt-[-5.5px] xs:pb-0 pb-[0.7vw] xs:ps-0 ps-[0.2777777778vw]">
-                  Contact Us on xxxxxxxxx/ xxxxxxxxx
+                  Contact Us on <span className="md:text-[0.8em] lg:text-[0.8em] text-[0.8125em]"> +61 488 877 999</span>
                 </p>
                 {/* Mobile Form */}
                 <div className="md:hidden block pt-3">

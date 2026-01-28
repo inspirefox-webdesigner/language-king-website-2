@@ -234,13 +234,13 @@ const FreeEBook = () => {
       {/* <section className="banner-wrapper 2xl:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]"> */}
       <section className="banner-wrapper lg:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]">
         <div className="sm:bg-transparent bg-gradient-FadetoBlack h-full w-full absolute top-0 z-10 lg:hidden block"></div>
-         <div className="lg:w-[66%] w-full lg:h-[75%] sm:h-full h-[50%] top-0 right-0 bottom-0 absolute">
-        <ImageWithToggle
-          src={getImageUrl(bannerData?.banner_bg_image, BannerBg)}
-          alt="BannerBg"
-          className="absolute w-full h-full top-0 left-0 right-0 bottom-0 object-cover"
-        />
-        <div className="course-banner-gradient absolute w-full h-full top-0 left-0 right-0 bottom-0"></div>
+        <div className="lg:w-[66%] w-full lg:h-[75%] sm:h-full h-[50%] top-0 right-0 bottom-0 absolute">
+          <ImageWithToggle
+            src={getImageUrl(bannerData?.banner_bg_image, BannerBg)}
+            alt="BannerBg"
+            className="absolute w-full h-full top-0 left-0 right-0 bottom-0 object-cover"
+          />
+          <div className="course-banner-gradient absolute w-full h-full top-0 left-0 right-0 bottom-0"></div>
         </div>
         <div className="custom-container mx-auto py-0 px-4 sm:px-[2.1164021164em] w-full z-10 relative">
           <div className="flex lg:gap-x-[6.6137566138em] sm:gap-x-[13.671875em] gap-x-[140px] sm:flex-nowrap flex-wrap">
@@ -280,7 +280,7 @@ const FreeEBook = () => {
                           __html:
                             bannerData?.main_heading?.replace(
                               "Free E-book",
-                              '<span class="text-[#F1CD5A] block">Free E-book</span>'
+                              '<span class="text-[#F1CD5A] block">Free E-book</span>',
                             ) ||
                             'PTE Reading Blanks <span class="text-[#F1CD5A] block">Free E-book</span>',
                         }}
@@ -859,7 +859,7 @@ const FreeEBook = () => {
                       name="name"
                       id=""
                       placeholder="Full Name"
-                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
+                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.0582em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
                     />
                   </div>
                   <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
@@ -875,7 +875,7 @@ const FreeEBook = () => {
                       name="email"
                       id=""
                       placeholder="Email Address"
-                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
+                      className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.0582em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
                     />
                   </div>
                   <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
@@ -908,7 +908,7 @@ const FreeEBook = () => {
                         name="ccn"
                         id=""
                         placeholder="Card Number "
-                        className="placeholder:text-[#707070] outline-none w-[54%] px-[1.3333333333em] sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
+                        className="placeholder:text-[#707070] outline-none w-[54%] px-[1.3333333333em] sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] leading-[1.723] lg:text-[1.0582em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
                       />
                       <div className="flex gap-0 w-[46%] justify-end">
                         {/* Expiry Date */}
@@ -924,7 +924,7 @@ const FreeEBook = () => {
                           name="expiry_date"
                           placeholder="MM / YY"
                           required
-                          class="placeholder:text-[#707070] outline-none sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em] max-w-[4.2em]"
+                          class="placeholder:text-[#707070] outline-none sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] leading-[1.723] lg:text-[1.0582em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em] max-w-[4.2em]"
                         />
 
                         {/* CVC */}
@@ -962,8 +962,8 @@ const FreeEBook = () => {
                     {selectedBox === "ebook"
                       ? `Buy Now - ${bookBoxData?.ebook_price || "$0.99"}`
                       : addPredictionFile
-                      ? "Buy Now - $119"
-                      : `Buy Now - ${bookBoxData?.aiportal_price || "$119"}`}
+                        ? "Buy Now - $119"
+                        : `Buy Now - ${bookBoxData?.aiportal_price || "$119"}`}
                   </Link>
                 </form>
               </div>

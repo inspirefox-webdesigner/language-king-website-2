@@ -10,6 +10,7 @@ const ImageWithToggle = ({ src, width = 600, height = 400, alt = '', ...props })
       height={height}
       alt={alt}
       {...props}
+      // className='sm:rounded-[1.571px] lg:rounded-[0.1039021164vw]'
     />
   );
 };

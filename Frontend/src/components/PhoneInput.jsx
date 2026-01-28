@@ -895,7 +895,7 @@ const PhoneInput = ({
   onBlur,
 }) => {
   const countryList = allCountries.filter((c) =>
-    preferredCountries.includes(c.code)
+    preferredCountries.includes(c.code),
   );
   const [selectedCountry, setSelectedCountry] = useState(countryList[0]);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -952,7 +952,7 @@ const PhoneInput = ({
       <div
         className={`flex items-center md:px-[1.058em] md:py-[1.058em] sm:p-[2.8125em] xs:p-[3.75em] p-[5em] pe-[3.90625vw] cursor-pointer md:w-[6.349em] md:basis-[6.349em] basis-[22.9166666667vw] shrink-0 grow-0 justify-between border-r ${flagwrapper}`}
         onClick={() => {
-          if (dropdownOpen) {
+           if (dropdownOpen) {
             dropdownManager.closeDropdown(dropdownId);
           } else {
             dropdownManager.openDropdown(dropdownId);
@@ -1001,7 +1001,7 @@ const PhoneInput = ({
       {dropdownOpen && (
         <ul
           ref={dropdownRef}
-          className="absolute z-10 top-[100%] w-full bg-white border-1 border-[#949AA5] shadow-lg md:max-h-[15.873015873vw] max-h-60 overflow-y-scroll country-wrapper"
+          className="absolute z-10 top-[100%] w-full bg-white border-1 border-[#949AA5] shadow-lg md:max-h-[15.873015873vw] max-h-48 overflow-y-scroll country-wrapper"
         >
           {countryList.map((country) => (
             <li

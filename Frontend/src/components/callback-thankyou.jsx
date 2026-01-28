@@ -62,7 +62,7 @@ const CallbackForm = () => {
               <li>
                 <a
                   href="tel:+61488876999"
-                  className="flex items-center xs:gap-[0.7936507937vw] gap-[0.7142857143em]  text-white font-medium md:text-[1.1904761905vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[4vw]"
+                  className="flex items-center xs:gap-[0.7936507937vw] gap-[0.7142857143em]  text-white font-medium lg:text-[1.19048vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[4vw]"
                 >
                   {/* <img
                     src={PhoneICon}
@@ -81,12 +81,12 @@ const CallbackForm = () => {
               <li>
                 <a
                   href="tel:+61488876999"
-                  className="flex items-start xs:gap-[0.7936507937vw]  gap-[0.7142857143em] text-white font-medium md:text-[1.0416666667vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]"
+                  className="flex items-start xs:gap-[0.7936507937vw]  gap-[0.7142857143em] text-white font-medium md:text-[1.0416666667vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em] lg:ml-1.5"
                 >
                   <div className="w-[2.646em] flex items-center justify-center">
                     <img
                       src={CalenderIcon}
-                      className="lg:w-[1.7857142857vw] w-[1.545em]"
+                      className="lg:w-[1.7857142857vw] w-[1.545em]" 
                     />
                   </div>
                   <span className="md:text-[1.19048vw] text-[4vw]">

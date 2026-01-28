@@ -163,19 +163,23 @@ const MainHeader = () => {
               </li>
             </ul>
 
-            <div className="flex flex-col justify-center items-center py-[70px] gap-1">
-              <a
-                href="mailto:info@languageking.com.au"
-                className="text-[#9D9B9B] font-medium text-base"
-              >
-                info@languageking.com.au
-              </a>
+            <img
+              src={LogoMenu}
+              alt="Logo"
+              className="max-w-[130px] mx-auto pt-[70px]"
+            />
+
+            <div className="flex flex-col justify-center items-center gap-1 pt-[20px]">
+              {/* <a
+                            href="mailto:info@languageking.com.au"
+                            className="text-[#9D9B9B] font-medium text-base"
+                          >
+                            info@languageking.com.au
+                          </a> */}
               <span className="text-white font-medium text-[12px] [text-shadow:0_0_16px_rgba(255,255,255,0.77)]">
                 Copyright @ 2025 Language King
               </span>
             </div>
-
-            <img src={LogoMenu} alt="Logo" className="max-w-[130px] mx-auto" />
           </nav>
         )}
       </div>

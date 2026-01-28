@@ -142,7 +142,7 @@ const CallbackPopupThankyou = () => {
               <li>
                 <a
                   href="tel:+61488876999"
-                  className="flex items-start xs:gap-[1.058em] gap-[0.7142857143em]  text-white font-medium md:text-[1.0416666667vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]"
+                  className="flex items-start xs:gap-[1.058em] gap-[0.7142857143em]  text-white font-medium md:text-[1.04167vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]"
                 >
                   {/* <img src={PhoneICon} className="lg:w-[2.3148148148vw] w-[1.545em]" /> */}
                   <div className="w-[2.646em] flex items-start justify-center">
@@ -158,7 +158,7 @@ const CallbackPopupThankyou = () => {
               <li>
                 <a
                   href="tel:+61488876999"
-                  className="flex items-start xs:gap-[1.058em]  gap-[0.7142857143em] text-white font-medium md:text-[1.0416666667vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]"
+                  className="flex items-start xs:gap-[1.058em]  gap-[0.7142857143em] text-white font-medium md:text-[1.04167vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[3.8888888889em]"
                 >
                   <div className="w-[2.646em] flex items-center justify-center">
                     <img
@@ -166,7 +166,7 @@ const CallbackPopupThankyou = () => {
                       className="xs:w-[1.4947089947vw] w-[1.545em] items-start"
                     />
                   </div>
-                  <span className="lg:text-[1.19048vw] text-[4vw]">
+                  <span>
                     10 A.M - 7 P.M <br />
                     <span className="italic text-[#abaaa6] font-normal block xs:text-[0.9259259259vw] text-[3.3333333vw]">
                       (Mon - Sun | Melbourne Time)

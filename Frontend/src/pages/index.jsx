@@ -266,7 +266,7 @@ const Home = () => {
             <ImageWithToggle
               src={HomeBanner}
               alt="HomeBanner"
-              className=" w-full h-full top-0 left-0 right-0 bottom-0 object-cover"
+              className="w-full h-full top-0 left-0 right-0 bottom-0 object-cover"
             />
             <div className="course-banner-gradient absolute w-full h-full top-0 left-0 right-0 bottom-0"></div>
           </div>
@@ -431,16 +431,16 @@ const Home = () => {
         {showPopup && <CallbackForm onClose={closePopup} />}
 
         <section className="pb-[32px]">
-          <div className="custom-container mx-auto py-0 px-4 sm:px-[32px]">
-            <div className="bg-[#252525] px-4 sm:px-8 ">
-              <div className="sm:py-10 py-7">
-                <h2 className="sm:text-2xl text-[21px] leading-normal font-bold text-white text-left mb-4">
+          <div className="custom-container mx-auto py-0 px-4 sm:px-[2.1164em]">
+            <div className="bg-[#252525] px-4 sm:px-[2.1164em] ">
+              <div className="sm:py-[2.6455em] pt-[7.77778em] pb-[12.2222em]">
+                <h2 className="lg:text-[1.5873em] md:text-[1.5873em] text-[5.83333em] leading-normal font-bold text-white text-left mb-4">
                   Try these FREE video lessons
                 </h2>
 
                 <div className="relative">
                   <div
-                    className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 sm:gap-[28px] gap-[52px]"
+                    className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 sm:gap-[28px] gap-[14.4444444vw]"
                     ref={videoContainerRef}
                   >
                     {displayedVideos.length > 0 ? (
@@ -482,10 +482,10 @@ const Home = () => {
                             </div>
                           </div>
                           {/* <h3 className="text-white font-bold 2xl:text-[24px] text-[22px] sm:leading-[1.3] leading-[28px]"> */}
-                          <h3 className="text-white font-bold lg:text-[24px] text-[22px] sm:leading-[1.3] leading-[28px]">
+                          <h3 className="text-white font-bold lg:text-[1.45503em] md:text-[1.45503em] text-[5.55556em] sm:leading-[1.3] leading-[1.3]">
                             {item.title}
                           </h3>
-                          <span className="text-white/60 sm:mt-[6px] mt-[4px] block text-base font-semibold">
+                          <span className="text-white/60 sm:mt-[6px] mt-[4px] block text-[4.44444em] font-semibold lg:text-[1.0582em] md:text-[1.0582em]">
                             {item.description || "PTE MasterClass"}
                           </span>
                         </div>

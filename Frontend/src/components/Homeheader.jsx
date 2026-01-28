@@ -34,10 +34,11 @@ const HomeHeader = () => {
 
   return (
     <header
-      className={`text-white xl:py-[2.116em] py-[32px] z-50  ${isSticky
-        ? "lg:sticky lg:top-0 lg:bg-black lg:shadow-md active-header"
-        : "bg-transparent relative"
-        }`}
+      className={`text-white xl:py-[2.116em] py-[32px] z-50  ${
+        isSticky
+          ? "lg:sticky lg:top-0 lg:bg-black lg:shadow-md active-header"
+          : "bg-transparent relative"
+      }`}
     >
       <div className="custom-container mx-auto py-0 px-4 sm:px-[2.116em]">
         <div className="flex items-center justify-between relative">
@@ -74,13 +75,13 @@ const HomeHeader = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex justify-end items-center ">
               {/* <ul className="flex 2xl:gap-[77px] xl:gap-[62px] gap-[32px]"> */}
-                <ul className="flex lg:gap-[77px] xl:gap-[4.1005291005vw] gap-[32px]">
+              <ul className="flex lg:gap-[77px] xl:gap-[4.1005291005vw] gap-[32px]">
                 <li className="text-center inline-flex items-center">
                   {/* <a
                     href="#courses"
                     className="text-white inline-flex items-center justify-center font-bold 2xl:text-[1.3227513228em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   > */}
-                    <a
+                  <a
                     href="#courses"
                     className="text-white inline-flex items-center justify-center font-bold lg:text-[1.0582em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   >
@@ -92,7 +93,7 @@ const HomeHeader = () => {
                     to="/testimonials"
                     className="text-white inline-flex items-center justify-center font-bold 2xl:text-[1.3227513228em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   > */}
-                     <Link
+                  <Link
                     to="/testimonials"
                     className="text-white inline-flex items-center justify-center font-bold lg:text-[1.0582em] sm:text-[1.0582010582em] border-b-2 border-transparent hover:border-white transition-all duration-300"
                   >
@@ -102,10 +103,11 @@ const HomeHeader = () => {
                 <li className="text-center inline-flex items-center">
                   <Link
                     to="/contact"
-                    className={`text-[1.0582010582em] lg:text-[1.0582em] px-[1em] py-[0.5em] text-base w-auto text-center focus:outline-none relative inline-flex items-center justify-center font-bold transition-all duration-300 z-10  min-w-[150px] ${isSticky
-                      ? "primary-btn bg-gradient-primary text-black border-none "
-                      : "text-white border border-white/25 hover:border-white bg-black"
-                      } `}
+                    className={`text-[1.0582010582em] lg:text-[1.0582em] px-[1em] py-[0.5em] text-base w-auto text-center focus:outline-none relative inline-flex items-center justify-center font-bold transition-all duration-300 z-10  min-w-[150px] ${
+                      isSticky
+                        ? "primary-btn bg-gradient-primary text-black border-none "
+                        : "text-white border border-white/25 hover:border-white bg-black"
+                    } `}
                   >
                     Get-a Callback
                   </Link>
@@ -162,19 +164,19 @@ const HomeHeader = () => {
               </li>
             </ul>
 
-            <div className="flex flex-col justify-center items-center py-[70px] gap-1">
-              <a
+            <img src={LogoMenu} alt="Logo" className="max-w-[130px] mx-auto pt-[70px]" />
+
+            <div className="flex flex-col justify-center items-center gap-1 pt-[20px]">
+              {/* <a
                 href="mailto:info@languageking.com.au"
                 className="text-[#9D9B9B] font-medium text-base"
               >
                 info@languageking.com.au
-              </a>
+              </a> */}
               <span className="text-white font-medium text-[12px] [text-shadow:0_0_16px_rgba(255,255,255,0.77)]">
                 Copyright @ 2025 Language King
               </span>
             </div>
-
-            <img src={LogoMenu} alt="Logo" className="max-w-[130px] mx-auto" />
           </nav>
         )}
       </div>

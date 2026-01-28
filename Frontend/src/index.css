@@ -504,7 +504,7 @@ header {
 }
 
 .gradient-border img {
-  border-radius: 0.4363888889vw;
+  border-radius: 0.1039021164vw;
 }
 
 .support-grid>.grid-block:first-of-type>.inner {
@@ -620,6 +620,9 @@ header {
   /* border thickness */
   border-radius: 1.0475vw;
   }
+  .gradient-border img {
+  border-radius: 1.571px;
+}
 }
 
 @media (max-width: 480px) {
@@ -630,6 +633,10 @@ header {
     left: -21%;
     transform: scale(1.2);
   }
+
+  .gradient-border img {
+  border-radius: 1.571px;
+}
 
 
   /* header.active-header .desktop-logo,
@@ -685,6 +692,10 @@ header {
     height: auto !important;
     top: -30px !important;
   }
+
+  .gradient-border img {
+  border-radius: 1.571px;
+}
 }
 
 .swiper-pagination {
