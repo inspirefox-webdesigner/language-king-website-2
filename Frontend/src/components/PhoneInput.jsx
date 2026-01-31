@@ -919,8 +919,8 @@ const PhoneInput = ({
         dropdownManager.closeDropdown(dropdownId);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [dropdownId]);
 
   const handleSelect = (country) => {
@@ -944,6 +944,7 @@ const PhoneInput = ({
 
   return (
     <div
+      ref={dropdownRef}
       className={`relative w-full flex bg-white border ${wrapperClassName} ${
         errors[name] ? "border-red-500" : "border-[#949AA5]"
       }`}
@@ -952,7 +953,7 @@ const PhoneInput = ({
       <div
         className={`flex items-center md:px-[1.058em] md:py-[1.058em] sm:p-[2.8125em] xs:p-[3.75em] p-[5em] pe-[3.90625vw] cursor-pointer md:w-[6.349em] md:basis-[6.349em] basis-[22.9166666667vw] shrink-0 grow-0 justify-between border-r ${flagwrapper}`}
         onClick={() => {
-           if (dropdownOpen) {
+          if (dropdownOpen) {
             dropdownManager.closeDropdown(dropdownId);
           } else {
             dropdownManager.openDropdown(dropdownId);
@@ -999,10 +1000,7 @@ const PhoneInput = ({
 
       {/* Dropdown */}
       {dropdownOpen && (
-        <ul
-          ref={dropdownRef}
-          className="absolute z-10 top-[100%] w-full bg-white border-1 border-[#949AA5] shadow-lg md:max-h-[15.873015873vw] max-h-48 overflow-y-scroll country-wrapper"
-        >
+        <ul className="absolute z-10 top-[100%] w-full bg-white border-1 border-[#949AA5] shadow-lg md:max-h-[15.873015873vw] max-h-48 overflow-y-scroll country-wrapper">
           {countryList.map((country) => (
             <li
               key={country.code}

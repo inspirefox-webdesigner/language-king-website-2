@@ -722,16 +722,8 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="md:w-[50%] w-full">
-                  <div className="border-b-[1.5px] border-[#2A2A2A]">
-                    <h2 className="inline-block font-bold lg:text-[2.7777777778em] md:text-[3.515625em] sm:text-[4.6875em] xs:text-[5.625em] text-[7.2916666667em] text-gradient-OrangeRed  leading-[1.176] sm:pb-[0.4761904762em] pb-[3.125vw] ">
-                      Book a FREE Trial Class
-                    </h2>
-                  </div>
-                  <p className="font-normal text-white/75 lg:text-[1.455026455em] md:text-[1.953125em] sm:text-[18px2.34375em] xs:text-[2.5em] text-[4.1666666667em] sm:pt-[1.2727272727em] pt-[5.7291666667vw]">
-                    Please fill out the below form. Our team will be in touch
-                    with you shortly.
-                  </p>
-                  <div className="xs:pt-6 pt-[4.6875vw]">
+                  
+                  <div className="">
                     <BookFreeTrail />
                   </div>
                 </div>

@@ -144,7 +144,7 @@ const Testimonials = () => {
   const fetchNAATICCLResultsData = async () => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/frontend/naati-ccl-results`
+        `${API_BASE_URL}/frontend/naati-ccl-results`,
       );
       setNaatiCclResultsData(response.data);
     } catch (error) {
@@ -198,7 +198,7 @@ const Testimonials = () => {
           <div className="grid items-start lg:grid-cols-2 xl:gap-[7.9365079365em] gap-[5.9523809524em]">
             <div>
               {/* <div className="2xl:max-w-[39.0211640212em] xl:max-w-[34.7222222222em] lg:max-w-[34.96875em]"> */}
-              <div className="lg:max-w-[39.0211640212em] xl:max-w-[34.7222222222em] md:max-w-[34.96875em]">
+              <div className="lg:max-w-[39.0211640212em] xl:max-w-[33.722222em] md:max-w-[34.96875em]">
                 {/* <h1 className="font-inter font-bold lg:text-[3.6375661376em] md:text-[4.1015625em] sm:text-[6.5625em] xs:text-[8.75em] text-[10em] xs:leading-[normal] leading-[1.147] inline-block 2xl:mt-2 mt-0 text-white"> */}
                 <h1 className="font-inter font-bold lg:text-[3.6375661376em] md:text-[4.1015625em] sm:text-[6.5625em] xs:text-[8.75em] text-[10em] xs:leading-[normal] leading-[1.147] inline-block lg:mt-2 mt-0 text-white">
                   {testimonialVideo.heading}
@@ -216,7 +216,7 @@ const Testimonials = () => {
                 </div>
                 <hr className="border-y-[#252525] my-[2.6455026455em] lg:block hidden" />
               </div>
-              <div className="relative xs:ps-[1.6666666667em] ps-[1.8em] text-[#B7B7B7] lg:text-[1.1904761905em] sm:text-base xs:text-sm text-[4.1666666667em] lg:max-w-[33.3333333333em] xs:leading-[1.56] leading-[1.4] ">
+              <div className="relative xs:ps-[1.6666666667em] ps-[1.8em] text-[#B7B7B7] lg:text-[1.1904761905em] sm:text-base xs:text-sm text-[4.1666666667em] lg:max-w-[32.333333em] xs:leading-[1.56] leading-[1.4] ">
                 <img
                   src={QuoteIcon}
                   alt="QuoteIcon"
@@ -525,7 +525,11 @@ const Testimonials = () => {
                   Get in touch with Us
                 </h2>
                 <p className="relative text-[#B7B7B7] md:text-[1.1904761905em] sm:text-[2.5em] xs:text-[3.3333333333em] leading-[1.556] text-[3.8888888889em] max-w-[33.3333333333em] sm:my-[0.6666666667em] mt-[-5.5px] xs:pb-0 pb-[0.7vw] xs:ps-0 ps-[0.2777777778vw]">
-                  Contact Us on <span className="md:text-[0.8em] lg:text-[0.8em] text-[0.8125em]"> +61 488 877 999</span>
+                  Contact Us on{" "}
+                  <span className="md:text-[0.8em] lg:text-[0.8em] text-[0.8125em]">
+                    {" "}
+                    +61 488 877 999
+                  </span>
                 </p>
                 {/* Mobile Form */}
                 <div className="md:hidden block pt-3">

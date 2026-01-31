@@ -62,7 +62,7 @@ const CallbackForm = () => {
               <li>
                 <a
                   href="tel:+61488876999"
-                  className="flex items-center xs:gap-[0.7936507937vw] gap-[0.7142857143em]  text-white font-medium lg:text-[1.19048vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[4vw]"
+                  className="flex items-start lg:items-center xs:gap-[0.7936507937vw] gap-[0.7142857143em]  text-white font-medium lg:text-[1.19048vw] sm:text-[2.5em] xs:text-[2.9166666667em] text-[4vw]"
                 >
                   {/* <img
                     src={PhoneICon}
