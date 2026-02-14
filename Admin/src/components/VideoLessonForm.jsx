@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Toast from "./Toast";
 import API_BASE_URL from "../config/api"
+import { FILE_BASE_URL } from "../config/api";
 
 const VideoLessonForm = ({ lessonId, onBack }) => {
   const [formData, setFormData] = useState({
@@ -198,7 +199,7 @@ const VideoLessonForm = ({ lessonId, onBack }) => {
                 {formData.thumbnail_img && (
                   <div className="flex items-center gap-2">
                     <img
-                      src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.thumbnail_img}`}
+                      src={`${FILE_BASE_URL}/uploads/${formData.thumbnail_img}`}
                       alt="Thumbnail"
                       className="w-24 h-16 object-cover rounded border"
                     />

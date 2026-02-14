@@ -18,6 +18,10 @@ import TestimonialVideoForm from "./components/TestimonialVideoForm";
 import DynamicEbookPages from "./components/DynamicEbookPages";
 import DynamicEbookForm from "./components/DynamicEbookForm";
 import HomeTestimonial from "./components/HomeTestimonial";
+import PricingFAQs from "./components/PricingFAQs";
+import TrustedSection from "./components/TrustedSection";
+import PricingCourses from "./components/PricingCourses";
+import CoursePopup from "./components/CoursePopup";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -58,7 +62,7 @@ function App() {
             setActiveMenu(
               currentView.studentType === "pte"
                 ? "pteStudents"
-                : "naatiCclStudents"
+                : "naatiCclStudents",
             );
           }}
         />
@@ -203,6 +207,14 @@ function App() {
             }
           />
         );
+      case "pricingFaqs":
+        return <PricingFAQs />;
+      case "trustedSection":
+        return <TrustedSection />;
+      case "pricingCourses":
+        return <PricingCourses />;
+      case "coursePopup":
+        return <CoursePopup />;
       case "settings":
         return <Settings />;
       default:
@@ -229,15 +241,6 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
 
 // new code
 // import {

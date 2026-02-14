@@ -22,6 +22,7 @@ import GetInTouch from "../components/Get-in-touch";
 import ImageWithToggle from "../components/ImageWithToggle";
 import Eclipse from "../assets/icons/ellipse.svg";
 import API_BASE_URL from "../config/api";
+import { FILE_BASE_URL } from "../config/api";
 
 // Testimonials slides Data array
 const slidesData = [
@@ -165,14 +166,10 @@ const Testimonials = () => {
 
       setTestimonialVideo({
         video_url: videoRes.data?.video_url
-          ? `${API_BASE_URL.replace("/api", "")}/uploads/${
-              videoRes.data.video_url
-            }`
+          ? `${FILE_BASE_URL}/uploads/${videoRes.data.video_url}`
           : TestVideo,
         video_placeholder_img: videoRes.data?.video_placeholder_img
-          ? `${API_BASE_URL.replace("/api", "")}/uploads/${
-              videoRes.data.video_placeholder_img
-            }`
+          ? `${FILE_BASE_URL}/uploads/${videoRes.data.video_placeholder_img}`
           : TestPlaceholder,
         heading: heroRes.data?.heading || "Why Students Love Learning With Us",
         description:
@@ -181,9 +178,7 @@ const Testimonials = () => {
         student_name: heroRes.data?.student_name || "NATALIA",
         student_tag: heroRes.data?.student_tag || "PTE & NAATI CCL",
         student_avatar: heroRes.data?.student_avatar
-          ? `${API_BASE_URL.replace("/api", "")}/uploads/${
-              heroRes.data.student_avatar
-            }`
+          ? `${FILE_BASE_URL}/uploads/${heroRes.data.student_avatar}`
           : Mainavatar,
       });
     } catch (error) {
@@ -526,7 +521,7 @@ const Testimonials = () => {
                 </h2>
                 <p className="relative text-[#B7B7B7] md:text-[1.1904761905em] sm:text-[2.5em] xs:text-[3.3333333333em] leading-[1.556] text-[3.8888888889em] max-w-[33.3333333333em] sm:my-[0.6666666667em] mt-[-5.5px] xs:pb-0 pb-[0.7vw] xs:ps-0 ps-[0.2777777778vw]">
                   Contact Us on{" "}
-                  <span className="md:text-[0.8em] lg:text-[0.8em] text-[0.8125em]">
+                  <span className="md:text-[0.8em] lg:text-[1.1574074074vw] text-[3.75vw]">
                     {" "}
                     +61 488 877 999
                   </span>

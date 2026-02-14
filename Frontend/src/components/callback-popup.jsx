@@ -307,7 +307,7 @@ const CallbackForm = ({ onClose }) => {
             <div className="">
               <div className="flex justify-between items-center border-b-[0.1041666667vw] border-[#2A2A2A] xs:pb-[1.1904761905em] pb-[14px] xs:mb-6 mb-[4.6875vw]">
                 {/* <h2 className="text-white 2xl:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold"> */}
-                <h2 className="text-white lg:text-[1.9841269841em] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
+                <h2 className="text-white lg:text-[1.95106vw] md:text-[1.9510582011vw] sm:text-[4.375em] xs:text-[5.8333333333em] text-[7.7777777778em] font-bold">
                   Get-a-Callback
                 </h2>
                 <button

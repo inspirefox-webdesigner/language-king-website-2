@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Toast from "./Toast";
 import API_BASE_URL from "../config/api"
+import { FILE_BASE_URL } from "../config/api";
 
 const FreeEbookBanner = () => {
   const [formData, setFormData] = useState({
@@ -192,7 +193,7 @@ const FreeEbookBanner = () => {
               />
               {formData.banner_bg_image && (
                 <img
-                  src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.banner_bg_image}`}
+                  src={`${FILE_BASE_URL}/uploads/${formData.banner_bg_image}`}
                   alt="Banner"
                   className="mt-2 h-20 object-cover rounded"
                 />
@@ -211,7 +212,7 @@ const FreeEbookBanner = () => {
               />
               {formData.new_tips_image && (
                 <img
-                  src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.new_tips_image}`}
+                  src={`${FILE_BASE_URL}/uploads/${formData.new_tips_image}`}
                   alt="Tips"
                   className="mt-2 h-20 object-cover rounded"
                 />
@@ -250,7 +251,7 @@ const FreeEbookBanner = () => {
                 />
                 {formData.expert_avatar && (
                   <img
-                    src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.expert_avatar}`}
+                    src={`${FILE_BASE_URL}/uploads/${formData.expert_avatar}`}
                     alt="Avatar"
                     className="mt-2 h-16 w-16 object-cover rounded-full"
                   />
@@ -515,7 +516,7 @@ const FreeEbookBanner = () => {
                   />
                   {formData[`book_${num}_image`] && (
                     <img
-                      src={`${API_BASE_URL.replace('/api','')}/uploads/${
+                      src={`${FILE_BASE_URL}/uploads/${
                         formData[`book_${num}_image`]
                       }`}
                       alt={`Book ${num}`}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Toast from "./Toast";
 import API_BASE_URL from "../config/api";
+import { FILE_BASE_URL } from "../config/api";
 
 const HomeTestimonialForm = ({ testimonialId, onBack }) => {
   const [formData, setFormData] = useState({
@@ -246,7 +247,7 @@ const HomeTestimonialForm = ({ testimonialId, onBack }) => {
                 {formData.thumbnail && (
                   <div className="flex items-center gap-2">
                     <img
-                      src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.thumbnail}`}
+                      src={`${FILE_BASE_URL}/uploads/${formData.thumbnail}`}
                       alt="Thumbnail"
                       className="w-24 h-16 object-cover rounded border"
                     />
@@ -276,7 +277,7 @@ const HomeTestimonialForm = ({ testimonialId, onBack }) => {
                 {formData.avatar && (
                   <div className="flex items-center gap-2">
                     <img
-                      src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.avatar}`}
+                      src={`${FILE_BASE_URL}/uploads/${formData.avatar}`}
                       alt="Avatar"
                       className="w-16 h-16 object-cover rounded-full border"
                     />

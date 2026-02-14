@@ -16,11 +16,12 @@ import Plus from "../assets/icons/plus.svg";
 import { Link } from "react-router-dom";
 import ImageWithToggle from "../components/ImageWithToggle";
 import API_BASE_URL from "../config/api";
+import { FILE_BASE_URL } from "../config/api";
 
 // Helper function to get image URL
 const getImageUrl = (imageName, fallback) => {
   if (imageName) {
-    return `${API_BASE_URL.replace("/api", "")}/uploads/${imageName}`;
+    return `${FILE_BASE_URL}/uploads/${imageName}`;
   }
   return fallback;
 };
@@ -173,11 +174,14 @@ const DynamicEbookPage = () => {
       {/* <section className="banner-wrapper 2xl:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]"> */}
       <section className="banner-wrapper lg:pt-[5.291005291em] sm:pt-[4.6296296296em] pt-[24vw] sm:pb-[3.9682539683em] pb-[40px] relative flex flex-column justify-center items-center lg:mt-0 mt-0 min-h-[90vh] border-b border-[#707070]">
         <div className="sm:bg-transparent bg-gradient-FadetoBlack h-full w-full absolute top-0 z-10 lg:hidden block"></div>
-        <ImageWithToggle
-          src={getImageUrl(pageData.banner_bg_image, BannerBg)}
-          alt="BannerBg"
-          className="absolute w-full h-full top-0 left-0 right-0 bottom-0 object-cover"
-        />
+        <div className="lg:w-[66%] w-full lg:h-[75%] sm:h-full h-[50%] top-0 right-0 bottom-0 absolute">
+          <ImageWithToggle
+            src={getImageUrl(pageData.banner_bg_image, BannerBg)}
+            alt="BannerBg"
+            className="absolute w-full h-full top-0 left-0 right-0 bottom-0 object-cover"
+          />
+          <div className="course-banner-gradient absolute w-full h-full top-0 left-0 right-0 bottom-0"></div>
+        </div>
         <div className="custom-container mx-auto py-0 px-4 sm:px-[2.1164021164em] w-full z-10 relative">
           <div className="flex lg:gap-x-[6.6137566138em] sm:gap-x-[13.671875em] gap-x-[140px] sm:flex-nowrap flex-wrap">
             <div className="sm:w-[20%] w-full flex flex-col justify-between">
@@ -216,7 +220,7 @@ const DynamicEbookPage = () => {
                           __html:
                             pageData.main_heading?.replace(
                               "Free E-book",
-                              '<span class="text-[#F1CD5A] block">Free E-book</span>'
+                              '<span class="text-[#F1CD5A] block">Free E-book</span>',
                             ) ||
                             '<span class="text-[#F1CD5A] block">Free E-book</span>',
                         }}
@@ -249,7 +253,7 @@ const DynamicEbookPage = () => {
                   </div>
                 </div>
                 <div className="lg:max-w-[70%] max-w-full flex lg:flex-nowrap flex-wrap items-center sm:justify-start justify-center lg:gap-[2.6455026455em] sm:gap-7 gap-4 sm:order-0 -order-1 ">
-                  <div className="relative rounded-lg sm:w-auto w-full ">
+                  <div className="relative rounded-lg sm:w-auto w-full">
                     <a
                       href="#"
                       className="align-middle xs:inline-flex hidden items-center justify-center text-center primary-btn primary-btn-rounded bg-gradient-primary text-black sm:px-3 px-[0.6em] xs:py-[0.6em] py-[5vw] font-normal sm:text-[1.3227513228em] xs:text-[2.5em] text-[4.444444444444em] xs:mt-0 mt-[3vw] leading-[1.4] relative z-10 sm:min-w-[12.1em] sm:w-auto w-full rounded-lg "
@@ -450,19 +454,19 @@ const DynamicEbookPage = () => {
                       </div>
                       {/* <div className="flex 2xl:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px] items-center"> */}
                       <div className="flex lg:gap-[2.9761904762em] sm:gap-[2.1164021164em] gap-[32px] items-center">
-                         <button
-                                                  onClick={() =>
-                                                    setAddPredictionFile(!addPredictionFile)
-                                                  }
-                                                  className="flex items-center gap-[0.6666666667em] bg-[#45595A] rounded-[0.5555555556em] sm:px-4 px-[0.8888888889em] sm:py-2 py-[0.4444444444em] text-white font-semibold text-[1.1904761905em] leading-[1.5555555] cursor-pointer"
-                                                >
-                                                  {addPredictionFile ? "Remove" : "Add"}
-                                                  <img
-                                                    src={addPredictionFile ? Minus : Plus}
-                                                    alt="icon"
-                                                    className="h-[1.1111111111em]"
-                                                  />
-                                                </button>
+                        <button
+                          onClick={() =>
+                            setAddPredictionFile(!addPredictionFile)
+                          }
+                          className="flex items-center gap-[0.6666666667em] bg-[#45595A] rounded-[0.5555555556em] sm:px-4 px-[0.8888888889em] sm:py-2 py-[0.4444444444em] text-white font-semibold text-[1.1904761905em] leading-[1.5555555] cursor-pointer"
+                        >
+                          {addPredictionFile ? "Remove" : "Add"}
+                          <img
+                            src={addPredictionFile ? Minus : Plus}
+                            alt="icon"
+                            className="h-[1.1111111111em]"
+                          />
+                        </button>
                         {/* <h4 className="text-[#00FEFC] 2xl:text-[2.7777777778em] xl:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px]  font-bold "> */}
                         <h4
                           className={`lg:text-[2.7777777778em] md:text-[2.380952381em] sm:text-[1.9841269841em] text-[30px] font-bold ${
@@ -480,34 +484,39 @@ const DynamicEbookPage = () => {
               </div>
             </div>
             <div className="right-card-wrapper">
-              <div className="bg-[#1B1B1B] xl:p-[2.7777777778em] sm:p-[2.1164021164em] px-4 sm:py-[1.5873015873em] py-6 rounded-[0.6613756614em]">
+              <div className="bg-[#1B1B1B]  sm:p-[2.1164021164em] px-4 sm:py-[1.5873015873em] py-6 rounded-[0.6613756614em]">
                 <div className="sm:block hidden">
                   {selectedBox === "ebook" ? (
                     // E-Book Only Details
                     <div>
                       <div className="flex justify-between gap-[1.0582010582em]">
-                        <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.6] text-lg">
+                        <h4 className="font-semibold text-white xl:text-[1.3888888889vw] sm:text-[1.1904761905em] leading-[1.6] text-lg">
                           {pageData.ebook_title || "E-Book Only"}
                         </h4>
-                      </div>
-                      <div className="flex justify-between gap-4">
-                        <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.6] text-lg">
-                          {pageData.ebook_subtitle || "Get 7-days Free Trial"}
-                        </h4>
                         <div className="">
-                          <span className="text-[#F0AB0F] font-bold xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg">
+                          <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-lg">
                             {pageData.ebook_price || "$0.99"}
                           </span>
                         </div>
                       </div>
-                      <hr className="border-[#3D3D3D] my-[1.9841269841em]" />
+                      <div className="flex justify-between gap-[1.0582010582em]">
+                        <h4 className="font-semibold text-white xl:text-[1.38889vw] sm:text-[1.1904761905em] leading-[1.6] text-lg">
+                          GST (10%)
+                        </h4>
+                        <div className="">
+                          <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-lg">
+                            $0.09
+                          </span>
+                        </div>
+                      </div>
+                      <hr className="border-[#3D3D3D] my-[1.5625vw]" />
                       <div className="max-w-[26.455026455em]">
                         <div className="flex justify-between gap-[1.0582010582em] items-center">
-                          <div className="w-auto flex-auto">
-                            <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
+                          <div className="">
+                            <h4 className="font-medium text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
                               Your total:{" "}
                             </h4>
-                            <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8em]">
+                            <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8645833333vw]">
                               $150
                             </span>
                           </div>
@@ -518,7 +527,7 @@ const DynamicEbookPage = () => {
                         <h4 className="text-[#B0B0B0] font-bold xl:text-[4.7619047619em] text-[3.9682539683em] leading-[1.1]">
                           $119
                         </h4>
-                        <span className="text-[#B0B0B0] font-bold text-[1.0582010582em] sm:text-base">
+                        <span className="text-[#B0B0B0] font-bold text-[0.8597883598vw] text-base">
                           (GST Included)
                         </span>
                       </div>
@@ -527,17 +536,38 @@ const DynamicEbookPage = () => {
                     // AI Portal Details
                     <div>
                       {/* AI Portal Header */}
-                      <div className="flex justify-between">
-                        <h4 className="font-semibold text-white text-lg">
+                      <div className="flex justify-between gap-[1.0582010582em]">
+                        <h4 className="font-semibold text-white xl:text-[1.3888888889vw] sm:text-[1.1904761905em] leading-[1.6] text-lg">
                           {pageData.aiportal_title || "6 Month AI Portal"}
                         </h4>
 
                         <div>
-                          <span className="text-[#B0B0B0] line-through font-bold me-4">
+                          <span className="text-[#B0B0B0] line-through font-bold me-4 xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg">
                             {pageData.aiportal_original_price || "$129"}
                           </span>
-                          <span className="text-[#F0AB0F] font-bold xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg">
+                          <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-lg">
                             {pageData.aiportal_price || "$99"}
+                          </span>
+                        </div>
+                      </div>
+                      {addPredictionFile && (
+                        <div className="flex justify-between">
+                          <h4 className="font-semibold text-white xl:text-[1.3888888889vw]">
+                            {pageData.prediction_file_title ||
+                              "Prediction File"}
+                          </h4>
+                          <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-l">
+                            {pageData.prediction_file_price || "$9"}
+                          </span>
+                        </div>
+                      )}
+                      <div className="flex justify-between gap-[1.0582010582em]">
+                        <h4 className="font-semibold text-white  sm:text-[1.1904761905em] leading-[1.6] xl:text-[1.3888888889vw]">
+                          GST (10%)
+                        </h4>
+                        <div className="">
+                          <span className="text-[#F0AB0F] font-bold xl:text-[1.2896825397vw] sm:text-[1.1904761905em] leading-[1.4] text-lg">
+                            $9
                           </span>
                         </div>
                       </div>
@@ -545,15 +575,15 @@ const DynamicEbookPage = () => {
                       {/* (A) AI TOTAL WITHOUT Prediction File */}
                       {!addPredictionFile && (
                         <>
-                          <hr className="border-[#3D3D3D] my-6" />
+                          <hr className="border-[#3D3D3D] my-[1.5625vw]" />
 
                           <div className="max-w-[26.455026455em]">
                             <div className="flex justify-between items-center">
-                              <div className="flex-auto">
-                                <h4 className="font-semibold text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
+                              <div className="">
+                                <h4 className="font-medium text-white xl:text-[1.3227513228em] sm:text-[1.1904761905em] leading-[1.4] text-lg inline">
                                   Your total:
                                 </h4>
-                                <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8em]">
+                                <span className="text-[#B0B0B0] line-through font-bold xl:text-[1.3227513228em] text-[1.1904761905em] ps-[0.8645833333vw]">
                                   $152
                                 </span>
                               </div>
@@ -563,11 +593,11 @@ const DynamicEbookPage = () => {
                               </span>
                             </div>
 
-                            <h4 className="text-[#B0B0B0] font-bold text-[3.8em] leading-[1.1]">
+                            <h4 className="text-[#B0B0B0] font-bold xl:text-[4.7619047619em] text-[3.9682539683em] leading-[1.1]">
                               $119
                             </h4>
 
-                            <span className="text-[#B0B0B0] font-bold text-base">
+                            <span className="text-[#B0B0B0] font-bold text-base text-[0.8597883598vw]">
                               (GST Included)
                             </span>
                           </div>
@@ -577,18 +607,7 @@ const DynamicEbookPage = () => {
                       {/* AI TOTAL WITH Prediction File Added*/}
                       {addPredictionFile && (
                         <>
-                          {/* Prediction File item */}
-                          <div className="flex justify-between mb-4">
-                            <h4 className="font-semibold text-white text-lg">
-                              {pageData.prediction_file_title ||
-                                "Prediction File 2"}
-                            </h4>
-                            <span className="text-[#F0AB0F] font-bold">
-                              {pageData.prediction_file_price || "$9"}
-                            </span>
-                          </div>
-
-                          <hr className="border-[#3D3D3D] my-6" />
+                          <hr className="border-[#3D3D3D] my-[1.5625vw]" />
 
                           <div className="max-w-[26.455026455em]">
                             <div className="flex justify-between items-center">
@@ -607,11 +626,11 @@ const DynamicEbookPage = () => {
                               </span>
                             </div>
 
-                            <h4 className="text-[#B0B0B0] font-bold text-[3.8em] leading-[1.1]">
+                            <h4 className="text-[#B0B0B0] font-bold text-[4.7619vw] leading-[1.1]">
                               $128
                             </h4>
 
-                            <span className="text-[#B0B0B0] font-bold text-base">
+                            <span className="text-[#B0B0B0] font-bold text-base text-[0.8597883598vw]">
                               (GST Included)
                             </span>
                           </div>
@@ -763,7 +782,7 @@ const DynamicEbookPage = () => {
                       className="rounded-[3px] placeholder:text-[#707070] bg-white sm:py-[0.8888888889em] xs:py-[0.9375em] py-[5vw] px-[1.3333333333em] leading-[1.723] lg:text-[1.1904761905em] sm:text-[1.0582010582em] xs:text-[2.34375em] text-[4.2em]"
                     />
                   </div>
-                  <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">                   
+                  <div className="flex flex-col sm:mb-[1.0582010582em] mb-3">
                     <div className="rounded-[3px] flex items-center justify-between bg-white">
                       <input
                         type="tel"
@@ -808,8 +827,8 @@ const DynamicEbookPage = () => {
                     {selectedBox === "ebook"
                       ? `Buy Now - ${pageData.ebook_price || "$0.99"}`
                       : addPredictionFile
-                      ? "Buy Now - $119"
-                      : `Buy Now - ${pageData.aiportal_price || "$119"}`}
+                        ? "Buy Now - $119"
+                        : `Buy Now - ${pageData.aiportal_price || "$119"}`}
                   </Link>
                 </form>
               </div>

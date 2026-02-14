@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import API_BASE_URL from "../config/api"
+import { FILE_BASE_URL } from "../config/api";
 
 const NAATICCLStudents = ({ onAddNew, onEdit }) => {
   const [students, setStudents] = useState([]);
@@ -214,7 +215,7 @@ const NAATICCLStudents = ({ onAddNew, onEdit }) => {
                       <div className="flex items-center gap-3">
                         {student.image ? (
                           <img
-                            src={`${API_BASE_URL.replace('/api','')}/uploads/${student.image}`}
+                            src={`${FILE_BASE_URL}/uploads/${student.image}`}
                             alt={student.name}
                             className="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
                           />
@@ -251,7 +252,7 @@ const NAATICCLStudents = ({ onAddNew, onEdit }) => {
                     <td className="py-4 px-6">
                       {student.flag ? (
                         <img
-                          src={`${API_BASE_URL.replace('/api','')}/uploads/${student.flag}`}
+                          src={`${FILE_BASE_URL}/uploads/${student.flag}`}
                           alt="Flag"
                           className="w-8 h-6 object-cover rounded border border-gray-200 shadow-sm"
                         />
@@ -265,7 +266,7 @@ const NAATICCLStudents = ({ onAddNew, onEdit }) => {
                       {student.image ? (
                         <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
                           <img
-                            src={`${API_BASE_URL.replace('/api','')}/uploads/${student.image}`}
+                            src={`${FILE_BASE_URL}/uploads/${student.image}`}
                             alt="Profile"
                             className="w-full h-full object-cover"
                           />

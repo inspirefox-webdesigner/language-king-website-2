@@ -19,11 +19,12 @@ import useFreeEbookBanner from "../hooks/useFreeEbookBanner";
 import useFAQs from "../hooks/useFAQs";
 import useBookBox from "../hooks/useBookBox";
 import API_BASE_URL from "../config/api";
+import { FILE_BASE_URL } from "../config/api";
 
 // Helper function to get image URL
 const getImageUrl = (imageName, fallback) => {
   if (imageName) {
-    return `${API_BASE_URL.replace("/api", "")}/uploads/${imageName}`;
+    return `${FILE_BASE_URL}/uploads/${imageName}`;
   }
   return fallback;
 };

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Toast from "./Toast";
 import API_BASE_URL from "../config/api"
+import { FILE_BASE_URL } from "../config/api";
 
 const TestimonialVideoForm = ({ onBack }) => {
   const [formData, setFormData] = useState({
@@ -190,7 +191,7 @@ const TestimonialVideoForm = ({ onBack }) => {
             {formData.student_avatar && (
               <div className="flex items-center gap-2">
                 <img
-                  src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.student_avatar}`}
+                  src={`${FILE_BASE_URL}/uploads/${formData.student_avatar}`}
                   alt="Student avatar"
                   className="w-12 h-12 object-cover rounded-full border"
                 />
@@ -231,7 +232,7 @@ const TestimonialVideoForm = ({ onBack }) => {
             {formData.video_placeholder_img && (
               <div className="flex items-center gap-2">
                 <img
-                  src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.video_placeholder_img}`}
+                  src={`${FILE_BASE_URL}/uploads/${formData.video_placeholder_img}`}
                   alt="Video thumbnail"
                   className="w-16 h-12 object-cover rounded border"
                 />

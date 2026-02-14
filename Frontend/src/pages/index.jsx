@@ -41,6 +41,7 @@ import Video4 from "../assets/videos/placeholder-video.mp4";
 import ImageWithToggle from "../components/ImageWithToggle";
 import axios from "axios";
 import API_BASE_URL from "../config/api";
+import { FILE_BASE_URL } from "../config/api";
 
 const testimonials = [
   {
@@ -145,7 +146,7 @@ const courses = [
     btnClass: "bg-gradient-GreenBtn",
     btn1Text: "Take the Course",
     btn2Text: "View Details",
-    btn1Link: null, // if you want to use openPopup instead, pass null
+    btn1Link: "/transparent-pricing", // if you want to use openPopup instead, pass null
     btn2Link: "/naaticcl",
   },
   {
@@ -161,7 +162,7 @@ const courses = [
     btnClass: "bg-gradient-secondary",
     btn1Text: "Take the Course",
     btn2Text: "View Details",
-    btn1Link: null,
+    btn1Link: "/transparent-pricing",
     btn2Link: "/pte-masterclass",
   },
   {
@@ -451,7 +452,7 @@ const Home = () => {
                               className="w-full aspect-16/9 cursor-pointer relative"
                               onClick={() => {
                                 const videoSrc = item.video_url
-                                  ? `${API_BASE_URL.replace("/api", "")}/uploads/${item.video_url}`
+                                  ? `${FILE_BASE_URL}/uploads/${item.video_url}`
                                   : item.videoSrc || video;
                                 setActiveVideo(videoSrc);
                                 setIsModalOpen(true);
@@ -460,7 +461,7 @@ const Home = () => {
                               <ImageWithToggle
                                 src={
                                   item.thumbnail_img
-                                    ? `${API_BASE_URL.replace("/api", "")}/uploads/${item.thumbnail_img}`
+                                    ? `${FILE_BASE_URL}/uploads/${item.thumbnail_img}`
                                     : item.thumbnail || VideoImg1
                                 }
                                 alt={item.title}
@@ -631,13 +632,13 @@ const Home = () => {
                       ? homeTestimonials.map((item) => ({
                           ...item,
                           reviewImg: item.video_url
-                            ? `${API_BASE_URL.replace("/api", "")}/uploads/${item.video_url}`
+                            ? `${FILE_BASE_URL}/uploads/${item.video_url}`
                             : null,
                           thumbnail: item.thumbnail
-                            ? `${API_BASE_URL.replace("/api", "")}/uploads/${item.thumbnail}`
+                            ? `${FILE_BASE_URL}/uploads/${item.thumbnail}`
                             : null,
                           avatar: item.avatar
-                            ? `${API_BASE_URL.replace("/api", "")}/uploads/${item.avatar}`
+                            ? `${FILE_BASE_URL}/uploads/${item.avatar}`
                             : null,
                           sourceIcon: Google,
                           starIcon: Star,

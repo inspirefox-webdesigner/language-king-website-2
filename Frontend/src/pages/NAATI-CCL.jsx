@@ -76,12 +76,34 @@ import InstaIconLight from "../assets/icons/instagram-icon-light.svg";
 import TiktokIconLight from "../assets/icons/tiktok-icon-light.svg";
 import ImageWithToggle from "../components/ImageWithToggle";
 import API_BASE_URL from "../config/api";
+import { FILE_BASE_URL } from "../config/api";
 
 const NAATICCL = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   const openPopup = () => setShowPopup(true);
   const closePopup = () => setShowPopup(false);
+
+  // Open callback popup when the "Check out some other courses" section enters view
+  useEffect(() => {
+    let triggered = false;
+    const el = document.getElementById("courses");
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !triggered) {
+            setShowPopup(true);
+            triggered = true;
+          }
+        });
+      },
+      { threshold: 0.25 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const courseData = [
     {
@@ -330,7 +352,7 @@ const NAATICCL = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/frontend/naati-ccl-students`
+          `${API_BASE_URL}/frontend/naati-ccl-students`,
         );
         if (response.data && response.data.length > 0) {
           setStudents(
@@ -338,13 +360,13 @@ const NAATICCL = () => {
               name: student.name,
               country: student.country,
               flag: student.flag
-                ? `${API_BASE_URL.replace("/api", "")}${student.flag}`
+                ? `${FILE_BASE_URL}${student.flag}`
                 : Malaysia1,
               image: student.image
-                ? `${API_BASE_URL.replace("/api", "")}${student.image}`
+                ? `${FILE_BASE_URL}${student.image}`
                 : Malaysia,
               gradient: student.gradient,
-            }))
+            })),
           );
         }
       } catch (error) {
@@ -588,7 +610,7 @@ const NAATICCL = () => {
       <div className="bg-gradient-to-b from-black/20 to-transparent relative h-full">
         <section className="course-banner lg:pt-[17.8571428571em] sm:pt-[26.3671875em] pt-[450px] sm:pb-[6.6137566138em] pb-[60px] mt-[-150px] relative flex flex-column justify-center items-center">
           {/* <div className="2xl:w-[66%] w-full 2xl:h-[75%] sm:h-full h-[50%] top-0 right-0 bottom-0 absolute"> */}
-            <div className="lg:w-[66%] w-full lg:h-[75%] sm:h-full h-[50%] top-0 right-0 bottom-0 absolute">
+          <div className="lg:w-[66%] w-full lg:h-[75%] sm:h-full h-[50%] top-0 right-0 bottom-0 absolute">
             <ImageWithToggle
               src={PTEBanner}
               alt="HomeBanner"
@@ -600,13 +622,13 @@ const NAATICCL = () => {
             <div className="grid lg:grid-cols-2 items-end">
               <div className="">
                 {/* <div className="flex flex-col 2xl:gap-[1.0582010582em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]"> */}
-                  <div className="flex flex-col lg:gap-[.793651em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]">
+                <div className="flex flex-col lg:gap-[.793651em] sm:gap-[0.7936507937em] xs:gap-[2.5em] gap-[4.8vw]">
                   {/* <h2 className="text-[#52D34E] font-bold 2xl:text-[1.8229166667em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]"> */}
-                    <h2 className="text-[#52D34E] font-bold lg:text-[1.5873em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]">
+                  <h2 className="text-[#52D34E] font-bold lg:text-[1.5873em] md:text-[1.5873015873em] sm:text-[3.1290743155em] xs:text-[3.75em] text-[6.6666666667em] xs:mb-0 mb-[-1.5625vw]">
                     NAATI CCL Fast Course
                   </h2>
                   {/* <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] 2xl:mt-2 mt-0 text-white"> */}
-                    <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] mt-0 text-white">
+                  <h1 className="font-inter font-bold md:text-[4.0211640212em] sm:text-[6.258148631em] xs:text-[7.5em] text-[10em] leading-[1.11] mt-0 text-white">
                     Exam in 7 days? <br />
                     we've got you covered!
                   </h1>
@@ -710,7 +732,9 @@ const NAATICCL = () => {
                 </span>
                 <span className="font-bold lg:text-[1.3227513228em] md:text-[2.0860495437em] sm:text-[2.5em] xs:text-[3.3333333333em] text-[5em] text-white/60 text-center sm:hidden inline w-[320px]">
                   Now teaching{" "}
-                  <div className="text-white inline-block">5,000+ students!</div>
+                  <div className="text-white inline-block">
+                    5,000+ students!
+                  </div>
                 </span>
               </div>
               <hr className="border-[#252525] w-full absolute left-0 right-0 z-[-1]" />
@@ -722,7 +746,7 @@ const NAATICCL = () => {
           <div className="custom-container mx-auto py-0 px-4 sm:px-[2.1164021164em] w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-[2.1080368906em] sm:gap-y-[3.8208168643em] gap-[18em]">
               {/* <h2 className="text-[#52D34E] font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block 2xl:max-w-[350px] lg:max-w-[300px] xs:mb-0 mb-[1vw]"> */}
-                <h2 className="text-[#52D34E] font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block lg:max-w-[350px] md:max-w-[300px] xs:mb-0 mb-[1vw]">
+              <h2 className="text-[#52D34E] font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block lg:max-w-[350px] md:max-w-[300px] xs:mb-0 mb-[1vw]">
                 This course covers all 20 tasks with easy to understand video
                 lessons and more.
               </h2>
@@ -759,7 +783,7 @@ const NAATICCL = () => {
                       </svg>
                     </div>
                     {/* <span className="font-bold 2xl:text-[1.5873015873em] lg:text-[1.3227513228em] md:text-[1.953125em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5.8em] text-white leading-[1.6]"> */}
-                      <span className="font-bold lg:text-[1.3227513228em] md:text-[1.953125em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5.8em] text-white leading-[1.6]">
+                    <span className="font-bold lg:text-[1.3227513228em] md:text-[1.953125em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5.8em] text-white leading-[1.6]">
                       {course.title}
                     </span>
                   </div>
@@ -822,7 +846,7 @@ const NAATICCL = () => {
                               : "text-white/60 group-hover:text-white"
                           }`}
                         > */}
-                          <span
+                        <span
                           className={`font-medium lg:text-[1.19048em] sm:leading-[1.55] md:text-[1.1904761905em] sm:text-[1.5625em] text-[4.2em] cursor-pointer transition-all duration-300 ease-in-out ${
                             activeTab === tab
                               ? "text-white"
@@ -832,12 +856,12 @@ const NAATICCL = () => {
                           {tab === "tab1"
                             ? "Major Mistakes"
                             : tab === "tab2"
-                            ? "Minor Mistakes"
-                            : tab === "tab3"
-                            ? "How to avoid them"
-                            : tab === "tab4"
-                            ? "Repeat Policy Pro Tip!"
-                            : "and much more!"}
+                              ? "Minor Mistakes"
+                              : tab === "tab3"
+                                ? "How to avoid them"
+                                : tab === "tab4"
+                                  ? "Repeat Policy Pro Tip!"
+                                  : "and much more!"}
                         </span>
                       </button>
                     </li>
@@ -853,7 +877,7 @@ const NAATICCL = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-[2.1164021164em] xs:gap-y-[3.835978836em] gap-[18vw]">
               <div>
                 {/* <h2 className="text-[#52D34E] font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block 2xl:max-w-[410px] lg:max-w-[300px] xs:mb-[1em] mb-[16vw]"> */}
-                  <h2 className="text-[#52D34E] font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block lg:max-w-[410px] md:max-w-[300px] xs:mb-[1em] mb-[16vw]">
+                <h2 className="text-[#52D34E] font-bold lg:text-[1.9841269841em] md:text-[2.9296875em] sm:text-[3.9113428944em] xs:text-[4.0625em] text-[7em] xs:leading-[1.2] leading-[1.33] inline-block lg:max-w-[410px] md:max-w-[300px] xs:mb-[1em] mb-[16vw]">
                   Having an instructor like AB bring you the real experience
                   needed to get desired score.
                 </h2>
@@ -928,7 +952,7 @@ const NAATICCL = () => {
                 >
                   <div className="flex items-center gap-1">
                     {/* <span className="font-semibold 2xl:text-[1.5873015873em] lg:text-[1.3227513228em] md:text-[1.953125em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5.8em] text-white leading-[1.6]"> */}
-                      <span className="font-semibold  lg:text-[1.3227513228em] md:text-[1.953125em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5.8em] text-white leading-[1.6]">
+                    <span className="font-semibold  lg:text-[1.3227513228em] md:text-[1.953125em] sm:text-[2.6041666667em] xs:text-[3.125em] text-[5.8em] text-white leading-[1.6]">
                       {course.title}
                     </span>
                   </div>
@@ -952,7 +976,7 @@ const NAATICCL = () => {
               + AB has worked with most diverse students in the world like:
             </h3>
             {/* <div className="grid grid-cols-4 md:grid-cols-8 xl:grid-cols-16 gap-x-[5.5555555556vw] sm:gap-x-[1.455026455em] 2xl:gap-x-[2.1164021164em]  sm:gap-y-[2.9761904762em] gap-y-[12.5vw]"> */}
-              <div className="grid grid-cols-4 md:grid-cols-8 xl:grid-cols-16 gap-x-[5.5555555556vw] sm:gap-x-[1.455026455em] lg:gap-x-[2.1164021164em]  sm:gap-y-[2.9761904762em] gap-y-[12.5vw]">
+            <div className="grid grid-cols-4 md:grid-cols-8 xl:grid-cols-16 gap-x-[5.5555555556vw] sm:gap-x-[1.455026455em] lg:gap-x-[2.1164021164em]  sm:gap-y-[2.9761904762em] gap-y-[12.5vw]">
               {students.map((student, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <div
@@ -973,7 +997,7 @@ const NAATICCL = () => {
 
                   <div className="flex flex-col items-center md:mt-[0.7936507937em] mt-3 text-center">
                     {/* <p className="2xl:text-[1.1904761905em] md:text-[1.0582010582em] sm:text-[2.5em] xs:text-[3.3333333333em] text-[5.5555em] leading-[1.3] text-white mb-0"> */}
-                      <p className="lg:text-[1.1904761905em] md:text-[1.0582010582em] sm:text-[2.5em] xs:text-[3.3333333333em] text-[5.5555em] leading-[1.3] text-white mb-0">
+                    <p className="lg:text-[1.1904761905em] md:text-[1.0582010582em] sm:text-[2.5em] xs:text-[3.3333333333em] text-[5.5555em] leading-[1.3] text-white mb-0">
                       {student.name}
                     </p>
                     <span className="md:text-[0.9259259259em] sm:text-[1.8252933507em] xs:text-[2.1875em] text-[3.8888888889em] md:mt-[0.2142857143em] mt-[3px] font-light text-[#FFED00]">
@@ -1083,7 +1107,7 @@ const NAATICCL = () => {
         <section className="custom-container sm:px-[2.1164021164em] px-4">
           <div className="sm:pb-[5.291005291em] xs:pb-[16.6666666667em] pb-[22.2222222222em] border-y-2 border-[#252525]">
             {/* <div className="mx-auto 2xl:px-[8.9285714286em] md:px-[6.6137566138em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid"> */}
-              <div className="mx-auto lg:px-[6.61376em] md:px-[6.61376em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid">
+            <div className="mx-auto lg:px-[6.61376em] md:px-[6.61376em] sm:px-[3.3068783069em] px-4 w-full bg-[#FFDD74] support-grid">
               <div className="sm:pt-[3.4391534392em] pt-[7.7777777778vw]">
                 <h2 className="text-black lg:text-[3.1746031746em] md:text-[3.1746031746em] sm:text-[5.625em] xs:text-[7.5em] text-[7.7777777778em] sm:font-bold font-extrabold xs:leading-normal  leading-[1.2]">
                   Support{" "}

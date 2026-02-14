@@ -7,7 +7,7 @@ import CalenderIcon from "../assets/icons/calender-icon.svg";
 
 const CallbackForm = () => {
   return (
-    <div className="text-center">
+    <div className="text-center pt-6">
       <img
         src={checkmark}
         alt="checkmark"

@@ -4,6 +4,7 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [testimonialsOpen, setTestimonialsOpen] = useState(false);
   const [freeEbookOpen, setFreeEbookOpen] = useState(false);
+  const [pricingPageOpen, setPricingPageOpen] = useState(false);
 
   const menuItems = [
     { id: "formDetails", name: "Form Details" },
@@ -26,6 +27,13 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
     { id: "dynamicEbookPages", name: "Dynamic Pages" },
   ];
 
+  const pricingPageSubItems = [
+    { id: "pricingFaqs", name: "FAQs" },
+    { id: "trustedSection", name: "Trusted Section" },
+    { id: "pricingCourses", name: "Courses" },
+    { id: "coursePopup", name: "Course Popup" },
+  ];
+
   // Auto-open submenus if one of their items is active
   useEffect(() => {
     if (testimonialsSubItems.some(item => activeMenu === item.id)) {
@@ -33,6 +41,9 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
     }
     if (freeEbookSubItems.some(item => activeMenu === item.id)) {
       setFreeEbookOpen(true);
+    }
+    if (pricingPageSubItems.some(item => activeMenu === item.id)) {
+      setPricingPageOpen(true);
     }
   }, [activeMenu]);
 
@@ -150,6 +161,52 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
             {freeEbookOpen && (
               <div className="bg-gray-900">
                 {freeEbookSubItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveMenu(item.id);
+                      setIsOpen(false);
+                    }}
+                    className={`w-full flex items-center px-12 py-2 text-left hover:bg-gray-700 transition-colors text-sm ${
+                      activeMenu === item.id
+                        ? "bg-gray-700 text-blue-400"
+                        : ""
+                    }`}
+                  >
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          {/* Pricing Page Menu with Submenu */}
+          <div>
+            <button
+              onClick={() => setPricingPageOpen(!pricingPageOpen)}
+              className={`w-full flex items-center justify-between px-6 py-3 text-left hover:bg-gray-700 transition-colors ${
+                pricingPageSubItems.some(item => activeMenu === item.id)
+                  ? "bg-gray-700 border-r-4 border-blue-500"
+                  : ""
+              }`}
+            >
+              <span>Pricing Page</span>
+              <svg
+                className={`w-4 h-4 transition-transform ${
+                  pricingPageOpen ? "rotate-180" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {/* Submenu Items */}
+            {pricingPageOpen && (
+              <div className="bg-gray-900">
+                {pricingPageSubItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => {

@@ -14,6 +14,11 @@ import testimonialVideoRoutes from "./routes/testimonialVideoRoutes.js";
 import dynamicEbookRoutes from "./routes/dynamicEbookRoutes.js";
 import homeTestimonialRoutes from "./routes/homeTestimonialRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import pricingFaqsRoutes from "./routes/pricingFaqsRoutes.js";
+import trustedSectionRoutes from "./routes/trustedSectionRoutes.js";
+import pricingTabsRoutes from "./routes/pricingTabsRoutes.js";
+import pricingCardsRoutes from "./routes/pricingCardsRoutes.js";
+import pricingPopupsRoutes from "./routes/pricingPopupsRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import mysql from "mysql2/promise";
@@ -94,6 +99,11 @@ app.use("/api", testimonialVideoRoutes);
 app.use("/api/dynamic-ebook", dynamicEbookRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api", homeTestimonialRoutes);
+app.use("/api/pricing-faqs", pricingFaqsRoutes);
+app.use("/api/trusted-section", trustedSectionRoutes);
+app.use("/api/pricing-tabs", pricingTabsRoutes);
+app.use("/api/pricing-cards", pricingCardsRoutes);
+app.use("/api/pricing-popups", pricingPopupsRoutes);
 
 // Email transporter setup
 const transporter = nodemailer.createTransport({

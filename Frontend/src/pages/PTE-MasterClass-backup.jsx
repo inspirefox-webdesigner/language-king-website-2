@@ -78,6 +78,7 @@ import InstaIconLight from "../assets/icons/instagram-icon-light.svg";
 import TiktokIconLight from "../assets/icons/tiktok-icon-light.svg";
 import ImageWithToggle from "../components/ImageWithToggle";
 import API_BASE_URL from "../config/api";
+import { FILE_BASE_URL } from "../config/api";
 
 const PTEMasterClass = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -340,10 +341,10 @@ const PTEMasterClass = () => {
               name: student.name,
               country: student.country,
               flag: student.flag
-                ? `${API_BASE_URL.replace('/api','')}${student.flag}`
+                ? `${FILE_BASE_URL}${student.flag}`
                 : Malaysia1,
               image: student.image
-                ? `${API_BASE_URL.replace('/api','')}${student.image}`
+                ? `${FILE_BASE_URL}${student.image}`
                 : Malaysia,
               gradient: student.gradient,
             }))

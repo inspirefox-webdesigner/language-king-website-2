@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import HomeTestimonialForm from "./HomeTestimonialForm";
 import API_BASE_URL from "../config/api";
+import { FILE_BASE_URL } from "../config/api";
 
 const HomeTestimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -258,7 +259,7 @@ const HomeTestimonial = () => {
                       {testimonial.thumbnail ? (
                         <div className="w-20 h-14 rounded overflow-hidden border border-gray-200">
                           <img
-                            src={`${API_BASE_URL.replace('/api','')}/uploads/${testimonial.thumbnail}`}
+                            src={`${FILE_BASE_URL}/uploads/${testimonial.thumbnail}`}
                             alt="Thumbnail"
                             className="w-full h-full object-cover"
                           />

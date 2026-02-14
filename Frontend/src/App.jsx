@@ -20,6 +20,7 @@ import FreeEBooksubmit from "./pages/e-book-submit";
 import PrivacyPolicy from "./pages/privacy-policy";
 import TermsOfUse from './pages/Terms-of-Use';
 import Faq from "./pages/faq";
+import Transparent_Pricing from "./pages/Transparent_Pricing";
 
 function App() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/Terms-of-Use" element={<TermsOfUse />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/transparent-pricing" element={<Transparent_Pricing />} />
         </Routes>
       </main>
       <Footer />

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Toast from "./Toast";
 import API_BASE_URL from "../config/api"
+import { FILE_BASE_URL } from "../config/api";
 
 const NAATICCLResultsForm = ({ entryId, onBack }) => {
   const [formData, setFormData] = useState({
@@ -204,7 +205,7 @@ const NAATICCLResultsForm = ({ entryId, onBack }) => {
                   {formData.video_placeholder_img && (
                     <div className="flex items-center gap-2">
                       <img
-                        src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.video_placeholder_img}`}
+                        src={`${FILE_BASE_URL}/uploads/${formData.video_placeholder_img}`}
                         alt="Video placeholder"
                         className="w-16 h-12 object-cover rounded border"
                       />
@@ -228,7 +229,7 @@ const NAATICCLResultsForm = ({ entryId, onBack }) => {
                   {formData.student_img && (
                     <div className="flex items-center gap-2">
                       <img
-                        src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.student_img}`}
+                        src={`${FILE_BASE_URL}/uploads/${formData.student_img}`}
                         alt="Student"
                         className="w-12 h-12 object-cover rounded-full border"
                       />
@@ -252,7 +253,7 @@ const NAATICCLResultsForm = ({ entryId, onBack }) => {
                   {formData.flag_img && (
                     <div className="flex items-center gap-2">
                       <img
-                        src={`${API_BASE_URL.replace('/api','')}/uploads/${formData.flag_img}`}
+                        src={`${FILE_BASE_URL}/uploads/${formData.flag_img}`}
                         alt="Flag"
                         className="w-8 h-6 object-cover rounded border"
                       />
