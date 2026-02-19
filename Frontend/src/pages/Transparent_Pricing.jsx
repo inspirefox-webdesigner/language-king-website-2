@@ -752,28 +752,35 @@ function Transparent_Pricing() {
     : {};
 
   return (
-    <div className="bg-[#000000] from-black/20 to-transparent relative h-full">
+    <div className="relative h-full">
       <section className="flex items-center justify-center px-4 pt-[5.78125vw]">
         <div className="text-center w-full lg:max-w-[41.5104166667vw] max-w-[90vw]">
-          <h1 className="text-[#FFFFFF] font-medium lg:text-[2.9166666667em] md:text-[2.9166666667em] text-[8.8888888889em] mb-[0.4625em]">
+          <h1 className="text-[#FFFFFF] font-medium lg:text-[3.0208333333vw] md:text-[2.9166666667em] text-[8.8888888889em] mb-[0.4625em] tracking-[1.1px] leading-[1.1724] hidden sm:block">
             Simple, Transparent Pricing
           </h1>
 
+          {/*Mobile Text*/}
+          <h1 className="text-[#FFFFFF] block sm:hidden text-[8.8888888889em] mb-[0.4625em] tracking-[1.1px] leading-[1.21875] font-[600]">
+            Simple,
+            <br />
+            Transparent Pricing
+          </h1>
+
           {/* Desktop / Tablet text */}
-          <p className="hidden sm:block text-[#FFFFFF] lg:text-[1.3541666667vw] md:text-[1.3541666667vw] text-[3.8888888889vw] mb-[1.5625em]">
+          <p className="hidden sm:block text-[#FFFFFF] lg:text-[1.3802083333vw] md:text-[1.3541666667vw] text-[3.8888888889vw] mb-[1.5625em] tracking-[0.2px] leading-[1.4615]">
             Choose the perfect plan to achieve your target score
             <br />
             Please check additional information for course details
           </p>
 
           {/* Mobile text */}
-          <p className="block sm:hidden text-[#FFFFFF] text-[3.8888888889em] mb-[2.1875em] ">
+          <p className="block sm:hidden text-[#FFFFFF] text-[3.9583333333vw] mb-[7.8125vw] font-[350] leading-[1.28571]">
             Choose the right plan for your target score.
             <br />
             See course details.
           </p>
 
-          <div className="flex justify-center gap-2 bg-[#212121] rounded-[0.625em] p-1 w-full lg:max-w-[34.0416666667em] md:max-w-[34.0416666667em] mx-auto">
+          <div className="flex justify-center gap-[1.8229166667vw] bg-[#212121] rounded-[0.4166666667vw] p-1 w-full lg:max-w-[34.0416666667em] md:max-w-[34.0416666667em] mx-auto">
             {tabs.map((tab) => (
               <button
                 key={tab}
@@ -788,11 +795,11 @@ function Transparent_Pricing() {
                   setCoupon("");
                   setSelectedCourse1(null);
                 }}
-                className={`flex-1 py-2 rounded-[0.625em] text-[3.8888888889em] lg:text-[1.3541666667em] md:text-[1.3541666667em] font-semibold transition-all duration-300
+                className={`flex-1 py-2 rounded-[0.625vw] text-[3.8888888889em] lg:text-[1.3541666667em] md:text-[1.3541666667em] font-[400] transition-all duration-300
               ${
                 activeTab === tab
-                  ? "bg-[#484B54] text-[#FFFFFF]"
-                  : "text-gray-400 hover:text-white"
+                  ? "bg-[#40434C] text-[#FFFFFF] font-[500] leading-[1.1923]"
+                  : "text-[#98999F] hover:text-white"
               }`}
               >
                 {tab}
@@ -804,15 +811,20 @@ function Transparent_Pricing() {
 
       {/* course section start*/}
 
-      <section className="w-full lg:px-4 py-16">
+      <section className="w-full lg:px-4 py-[5.78125vw]">
         <div className="mx-auto lg:max-w-[79.3229166667em] max-w-[95em]">
-          <h2 className="text-[#EDE4CD] text-[5.5555555556em] lg:text-[1.875em] md:text-[1.875em] mb-4 lg:ml-16 md:ml-16">
+          <h2 className="text-[#EDE4CD] text-[5.5555555556em] lg:text-[1.875em] md:text-[1.875em] mb-4 lg:ml-14 md:ml-12 font-[600]">
             Select a course:
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 md:grid-cols-12 gap-8 items-stretch">
             <div className="lg:col-span-6 md:col-span-6">
-              <div className="bg-black rounded-xl lg:p-4 lg:h-[38.9895833333em] md:h-[40.9895833333em] h-[107.7777777778em] overflow-y-auto space-y-4">
+              <div
+                className="rounded-[1.0416666667vw]  lg:h-[36.9375em] md:h-[40.9895833333em] h-[107.7777777778em] overflow-y-scroll space-y-4 [&::-webkit-scrollbar]:w-[2px]
+[&::-webkit-scrollbar-track]:bg-[#929292]
+[&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
+[&::-webkit-scrollbar-thumb]:rounded-full"
+              >
                 {(coursesByTab[activeTab] || []).map((course) => (
                   <div
                     key={course.id}
@@ -821,7 +833,7 @@ function Transparent_Pricing() {
                       setDiscountApplied(false);
                       setCoupon("");
                     }}
-                    className={`lg:w-[30.625em] md:w-[30.625em] w-[91.9444444444em] mx-auto cursor-pointer rounded-xl p-4 border transition-all
+                    className={`lg:w-[30.625em] md:w-[30.625em] w-[91.9444444444em] mx-auto cursor-pointer rounded-[1.0416666667vw] p-4 lg:pr-[1.455026455vw] lg:pl-[1.1243386243vw] lg:pt-[1.3227513228vw] lg:pb-[1.455026455vw] lg:border-[0.1666666667vw] border-[0.5555555556vw] transition-all
         ${
           selectedCourse && selectedCourse.id === course.id
             ? "border-white bg-[#16181D]"
@@ -829,12 +841,12 @@ function Transparent_Pricing() {
         }`}
                   >
                     <div className="flex justify-between items-center mb-4">
-                      <h3 className="text-[#9D9B9B] lg:text-[1.3541666667em] md:text-[1.3541666667em] text-[4.4444444444em] font-medium">
+                      <h3 className="text-[#9D9B9B] lg:text-[1.3541666667em] md:text-[1.3541666667em] text-[4.5572916667vw] font-[550] leading-[1.1875]">
                         {course.title}
                       </h3>
 
                       <span
-                        className="text-[2.7777777778em] lg:text-[0.9375em] md:text-[0.9375em] text-[#838383] underline"
+                        className="text-[2.7777777778em] lg:text-[0.9375em] md:text-[0.9375em] text-[#838383] underline-offset-[2px] underline"
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedCourse1(course.title);
@@ -845,12 +857,12 @@ function Transparent_Pricing() {
                     </div>
 
                     <div className="flex items-center justify-between mb-6">
-                      <p className="text-white lg:text-[1.6666666667em] md:text-[1.6666666667em] text-[5.5555555556em] font-bold">
+                      <p className="text-white lg:text-[1.6666666667em] md:text-[1.6666666667em] text-[5.5555555556em] font-[550]">
                         ${Math.floor(course.price)}
                       </p>
 
                       {course.badge && (
-                        <div className="bg-[#E7E7E7] text-black lg:text-[0.8854166667em] md:text-[0.8854166667em] text-[3.0555555556em] px-4 py-2 rounded-full tracking-[0.2em]">
+                        <div className="bg-[#FFFFFF] text-black lg:text-[0.8854166667em] md:text-[0.8854166667em] text-[3.0555555556em] px-[0.8597883598vw] py-2 rounded-full tracking-[0.2em]">
                           {course.badge}
                         </div>
                       )}
@@ -860,10 +872,10 @@ function Transparent_Pricing() {
                       {course.points.map((point, i) => (
                         <li
                           key={i}
-                          className="flex items-center gap-5 text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em]"
+                          className="flex items-start gap-5 text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em]"
                         >
                           <svg
-                            className="flex-shrink-0 lg:w-[1.09375em] lg:h-[1.09375em] md:w-[1.09375em] md:h-[1.09375em] w-3 h-3"
+                            className="flex-shrink-0 lg:w-[1.25vw] lg:h-[1.25vw] md:w-[1.09375em] md:h-[1.09375em] w-3 h-3 mt-1"
                             viewBox="0 0 24 24"
                             fill="none"
                           >
@@ -873,7 +885,9 @@ function Transparent_Pricing() {
                             />
                           </svg>
 
-                          <span className="leading-relaxed">{point}</span>
+                          <span className="leading-relaxed opacity-[0.75]">
+                            {point}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -885,19 +899,21 @@ function Transparent_Pricing() {
             {selectedCourse1 && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
                 <div className="w-[90%] max-w-[90.5555555556em] lg:max-w-[26.1458333333em] md:max-w-[26.1458333333em] bg-[#16181D] rounded-2xl relative flex flex-col lg:h-[32.6041666667em] md:h-[32.6041666667em] h-[117.5em] py-5">
-                  <div className="p-5 border-white/10">
-                    <button
-                      onClick={() => setSelectedCourse1(null)}
-                      className="absolute top-4 right-4 text-white text-xl"
-                    >
-                      ✕
-                    </button>
+                  <div className="px-4 border-white/10">
+                    <div className="flex justify-between items-center">
+                      <button
+                        onClick={() => setSelectedCourse1(null)}
+                        className="absolute right-4 text-white text-xl"
+                      >
+                        ✕
+                      </button>
 
-                    <h3 className="text-[#9C9B99] lg:text-[1.3541666667em] md:text-[1.3541666667em] text-[5em] mb-2">
-                      Additional Information
-                    </h3>
+                      <h3 className="text-[#9C9B99] lg:text-[1.3541666667em] md:text-[1.3541666667em] text-[5em] mb-2">
+                        Additional Information
+                      </h3>
+                    </div>
 
-                    <h2 className="text-[#FBFFDB] lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em]">
+                    <h2 className="text-[#FBFFDB] lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] leading-normal font-[500] pricepop-heading">
                       {currentCourseDetail.heading || selectedCourse1}
                     </h2>
                   </div>
@@ -983,7 +999,7 @@ function Transparent_Pricing() {
             )}
 
             <div className="lg:col-span-6 md:col-span-6 flex justify-center items-center">
-              <div className="bg-[#212121] rounded-xl p-6 lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] lg:h-[38.9895833333em] md:h-[40.9895833333em] h-[130.4444444444em] flex flex-col">
+              <div className="bg-[#212121] rounded-xl p-5 lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] lg:h-[36.9375em] md:h-[40.9895833333em] h-[119.4444444444em] flex flex-col">
                 <h2 className="text-white lg:text-[1.3541666667vw] md:text-[1.3541666667vw] text-[3.8888888889em] mb-4 font-medium">
                   Order Summary
                 </h2>
@@ -991,8 +1007,8 @@ function Transparent_Pricing() {
                 <hr className="border-[#838383] mb-4" />
 
                 <div className="flex justify-between items-center mb-4">
-                  <div className="bg-black px-4 py-2 rounded-[0.625vw]">
-                    <h3 className="text-[#EDE4CD] font-semibold lg:text-[1.4583333333em] md:text-[1.4583333333vw] text-[4.4444444444em]">
+                  <div className="bg-black px-[0.625vw] py-[0.4166666667vw] rounded-[0.625vw]">
+                    <h3 className="text-[#EDE4CD] font-[550] lg:text-[1.4583333333em] md:text-[1.4583333333vw] text-[4.4444444444em] leading-[1.14286]">
                       {selectedCourse?.title || "Select a course"}
                     </h3>
                   </div>
@@ -1010,6 +1026,7 @@ function Transparent_Pricing() {
                     value={coupon}
                     onChange={(e) => setCoupon(e.target.value)}
                     className="flex-1 bg-[#111] border border-[#838383] rounded-md lg:px-3 lg:py-3 px-2 py-2 text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.1666666667em] outline-none w-[53.0555555556em] lg:w-[20em]"
+                    placeholder="Enter Coupon Code"
                   />
                   <button
                     onClick={() => {
@@ -1026,9 +1043,9 @@ function Transparent_Pricing() {
                 </div>
 
                 {discountApplied && (
-                  <div className="flex items-center gap-2 mb-2 lg:mb-0">
+                  <div className="flex items-center gap-2 mt-2">
                     <svg
-                      className="w-[4.1666666667em] h-[4.1666666667em] lg:w-[1.25em] md:w-[1.25em]"
+                      className="w-[4.1666666667em] lg:w-[1.25em] md:w-[1.25em]"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -1049,7 +1066,7 @@ function Transparent_Pricing() {
                   </div>
                 )}
 
-                <hr className="border-white/10 mb-2" />
+                <hr className="border-[#838383] mb-[1.455026455vw] mt-[1.1979166667vw]" />
 
                 <div className="flex justify-between text-white mb-4">
                   <span className="lg:text-[1.5625em] md:text-[1.5625em] text-[4.7222222222em] font-semibold">
@@ -1060,8 +1077,8 @@ function Transparent_Pricing() {
                   </span>
                 </div>
 
-                <div className="flex items-start gap-2 lg:text-[1.0416666667em] md:text-[1.0416666667em] text-[3.0555555556em] text-[#98999F] mb-4">
-                  <input type="checkbox" className="mt-1" />
+                <div className="flex items-start gap-2 lg:text-[1.0416666667em] md:text-[1.0416666667em] text-[3.0555555556em] text-[#98999F]">
+                  <input type="checkbox" className="mt-1 h-[1.1458333333em] w-[1.1458333333em]" />
                   <span>
                     Disclaimer: There will be no refund for this course, as all
                     our products are online. Please make up your mind before
@@ -1070,7 +1087,7 @@ function Transparent_Pricing() {
                 </div>
 
                 <div className="mt-auto flex items-center justify-center">
-                  <button className="lg:w-[20.4479166667em] md:w-[20.4479166667em] w-[70.2222222222em] bg-[#4BAF4F] text-white py-3 lg:text-[1.3020833333vw] md:text-[1.3020833333vw] text-[4.4444444444em] rounded-lg font-medium mb-3 ">
+                  <button className="lg:w-[22.4479166667vw] md:w-[20.4479166667em] w-[70.2222222222em] bg-[#4BAF4F] text-white py-[1.2566137566vw] lg:text-[1.3020833333vw] md:text-[1.3020833333vw] text-[4.4444444444em] rounded-lg font-medium mt-[1.0416666667vw] mb-[1.0416666667vw] ">
                     Buy Now – A${Math.floor(discountedPrice)}
                   </button>
                 </div>
@@ -1101,18 +1118,18 @@ function Transparent_Pricing() {
       {/* course section End*/}
 
       {/*whatsapp div*/}
-      <div className="w-full bg-black py-10 px-6 flex justify-center items-center">
-        <div className="flex items-center gap-4 px-2 lg:px-4 md:px-4 py-4 border-1 border-[#00BF63] rounded-xl">
+      <div className="w-full py-10 px-6 flex justify-center items-center">
+        <div className="flex items-center gap-4 px-2 lg:px-[2.2486772487vw] md:px-4 py-[0.5291005291vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
           <div className=" rounded-full flex items-center justify-center">
             <img
               src={WP}
               alt=""
-              className="lg:w-[3.3333333333em] lg:h-[3.3333333333em] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
+              className="lg:w-[4.3650793651vw] lg:h-[4.3650793651vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
             />
           </div>
 
           <div className="text-start">
-            <p className="text-white lg:text-[1.1979166667em] md:text-[1.1979166667em] text-[3.3333333333em] mb-1">
+            <p className="text-white lg:text-[1.1979166667em] md:text-[1.1979166667em] text-[3.3333333333em] mb-[0.5291005291vw]">
               Confused? Talk to an expert
             </p>
             <div className="flex items-center gap-2">
@@ -1128,7 +1145,7 @@ function Transparent_Pricing() {
                 />
               </svg>
 
-              <p className="text-[#00C26E] lg:text-[1.1979166667em] md:text-[1.1979166667em] text-[3.3333333333em]">
+              <p className="text-[#00C26E] leading-[1.21] lg:text-[1.1979166667em] md:text-[1.1979166667em] text-[3.3333333333em]">
                 +61 426 7896 123 / +61 426 444 555
               </p>
             </div>
@@ -1140,31 +1157,33 @@ function Transparent_Pricing() {
 
       <div className="w-full bg-[#050505] text-white py-[7.2916666667em] px-6 mt-3">
         <div className=" mx-auto text-center">
-          <h2 className="text-[6.1111111111em] md:text-[2.2395833333em] lg:text-[2.2395833333em] font-medium mb-6">
+          <h2 className="text-[6.1111111111em] md:text-[2.380952381vw] lg:text-[2.380952381vw] font-[400] mb-[1.9841269841vw] tracking-[0.2px]">
             {trustedSection.heading}
           </h2>
 
-          <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-6 mb-10">
-            <div className="flex -space-x-3">
-              {trustedSection.avatar_images.map((avatar, index) => (
-                <img
-                  key={index}
-                  src={avatar}
-                  className="lg:w-[2.7083333333em] lg:h-[2.7083333333em] md:w-[2.7083333333em] md:h-[2.7083333333em] w-[9.4444444444em] h-[9.4444444444em] rounded-full border-2 border-white object-cover"
-                  alt={`Avatar ${index + 1}`}
-                />
-              ))}
+          <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-[3.1746031746vw] mb-10">
+            <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-[1.1458333333vw]">
+              <div className="flex -space-x-3">
+                {trustedSection.avatar_images.map((avatar, index) => (
+                  <img
+                    key={index}
+                    src={avatar}
+                    className="lg:w-[2.7083333333em] lg:h-[2.7083333333em] md:w-[2.7083333333em] md:h-[2.7083333333em] w-[9.4444444444em] h-[9.4444444444em] rounded-full border-[0.1785714286vw] border-white object-cover"
+                    alt={`Avatar ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              <p className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886]">
+                {trustedSection.avatar_text}
+              </p>
             </div>
 
-            <p className="text-[3.8888888889em] md:text-[1.1458333333em] lg:text-[1.1458333333em] text-[#737886]">
-              {trustedSection.avatar_text}
-            </p>
-
-            <div className="flex items-center gap-2">
-              <div className="flex text-[#FFDB15] text-[4.1666666667em] md:text-[1.40625em] lg:text-[1.40625em]">
+            <div className="flex items-center gap-[1.1458333333vw]">
+              <div className="flex text-[#FFDB15] text-[4.1666666667em] md:text-[1.5211640212vw] lg:text-[1.5211640212vw]">
                 ★★★★★
               </div>
-              <span className="text-[3.8888888889em] md:text-[1.1458333333em] lg:text-[1.1458333333em] text-[#737886]">
+              <span className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886]">
                 {trustedSection.star_text}
               </span>
             </div>
@@ -1178,7 +1197,7 @@ function Transparent_Pricing() {
             </div>
           </div>
 
-          <p className="text-[5.5555555556em] md:text-[1.9791666667em] lg:text-[1.9791666667em] italic mb-3">
+          <p className="text-[5.5555555556em] md:text-[1.9791666667em] lg:text-[2.0502645503vw] tracking-[0.6px] mb-3">
             " {trustedSection.bottom_heading} "
           </p>
 
@@ -1195,7 +1214,7 @@ function Transparent_Pricing() {
       <div className=" relative z-10 sm:mb-[0] mb-[-13.8888888889vw]">
         <div className="custom-container mx-auto md:py-[6.6137566138em] sm:py-[4.6296296296em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative">
           {/* <h2 className="font-inter font-normal md:text-[4.0211640212em] sm:text-[6.258148631em] text-[11em] leading-[1.11] 2xl:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-white text-center sm:mb-[0.6578947368em] mb-[7.8125vw] xs:tracking-normal tracking-[2.2px]"> */}
-          <h2 className="font-inter font-normal md:text-[2.8125em] sm:text-[6.258148631em] text-[11em] leading-[1.11] lg:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-[#FBFFDB] text-center sm:mb-[0.6578947368em] mb-[7.8125vw] xs:tracking-normal tracking-[2.2px]">
+          <h2 className="font-inter font-normal md:text-[3.0423280423vw] sm:text-[6.258148631em] text-[11em] leading-[1.11] lg:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-[#FBFFDB] text-center sm:mb-[0.6578947368em] mb-[7.8125vw] md:mb-[3.3068783069vw] xs:tracking-normal tracking-[2.2px]">
             Frequenty Asked Questions
           </h2>
           <div className="md:max-w-[59.2592592593em] mx-auto sm:p-[1.5873015873em]">
@@ -1212,7 +1231,7 @@ function Transparent_Pricing() {
                   onClick={() => toggleFAQ(index)}
                   className="flex justify-between items-center w-full text-left gap-[1.0582010582em]"
                 >
-                  <span className="md:text-[1.3541666667em] sm:text-[2.6041666667em] xs:text-[2.8125em] text-[4.4444444em] xs:font-bold font-semibold sm:leading-[1.273] leading-[1.55555555] text-white w-[calc(100%-28px)] sm:w-[calc(100%-35px)]">
+                  <span className="md:text-[1.3888888889vw] sm:text-[2.6041666667em] xs:text-[2.8125em] text-[4.4444444em] xs:font-bold md:font-[550] sm:leading-[1.273] leading-[1.55555555] text-[#757575] w-[calc(100%-28px)] sm:w-[calc(100%-35px)]">
                     {faq.question}
                   </span>
                   <span className="w-[28px] sm:w-[2.3148148148em] basis-[28px] sm:basis-[2.3148148148em] flex items-center justify-center">
@@ -1221,7 +1240,7 @@ function Transparent_Pricing() {
                 </button>
 
                 {openIndex === index && faq.answer && (
-                  <div className="xs:mt-[0.8888888889em] mt-[4.6875vw] xs:mb-0 mb-[1.5625vw] md:text-[1.1904761905em] sm:text-[2.0833333333em] xs:text-[2.1875em] text-[3.8888888889em] leading-[1.556] font-medium  text-white/50">
+                  <div className="xs:mt-[0.8888888889em] mt-[4.6875vw] xs:mb-0 mb-[1.5625vw] md:text-[1.1904761905em] md:mb-[0.6613756614vw] sm:text-[2.0833333333em] xs:text-[2.1875em] text-[3.8888888889em] leading-[1.556] font-medium  text-white/50">
                     {faq.answer}
                   </div>
                 )}
