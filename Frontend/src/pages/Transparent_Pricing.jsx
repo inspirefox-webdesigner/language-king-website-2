@@ -184,9 +184,35 @@ function Transparent_Pricing() {
   const [selectedCourse, setSelectedCourse] = useState(
     STATIC_COURSES_BY_TAB.PTE[0],
   );
-  const [discountApplied, setDiscountApplied] = useState(false);
-  const [invalidCoupon, setInvalidCoupon] = useState(false);
+  const [setDiscountApplied] = useState(false);
+  // const [invalidCoupon, setInvalidCoupon] = useState(false);
   const [coupon, setCoupon] = useState("");
+  const [status, setStatus] = useState("idle");
+  // idle | typing | invalid | expired | valid
+
+  const VALID_CODE = "Dis150Ja2602";
+
+  const handleChange = (e) => {
+    setCoupon(e.target.value);
+    setStatus("typing");
+  };
+
+  const handleApply = () => {
+    const value = coupon.trim();
+
+    if (!value) return;
+
+    if (value === VALID_CODE) {
+      setStatus("valid");
+      return;
+    }
+
+    if (VALID_CODE.toLowerCase().startsWith(value.toLowerCase().slice(0, 5))) {
+      setStatus("expired");
+    } else {
+      setStatus("invalid");
+    }
+  };
 
   const [isChecked, setIsChecked] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -201,7 +227,7 @@ function Transparent_Pricing() {
   };
 
   const discountedPrice =
-    discountApplied && coupon === "Dis150Ja2602" && selectedCourse
+    status === "valid" && selectedCourse
       ? selectedCourse.price - 50
       : selectedCourse?.price || 0;
 
@@ -393,7 +419,7 @@ function Transparent_Pricing() {
         "1-to-1 Feedback",
         `AI Portal with 5000+ exam questions 
      <br/>
-     <span style="color:#838383; font-size:13px; font-weight:300;">( 5 Full + 20 Sectional Test can be taken once )</span>`,
+     <span style="color:#838383; font-size:[0.8597883598vw]; font-weight:385; font-style:italic">( 5 Full + 20 Sectional Test can be taken once )</span>`,
         "5 Full + 20 Sectional Test (once)",
         "Prediction File & Course documents",
       ],
@@ -448,7 +474,7 @@ function Transparent_Pricing() {
       examfee:
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
       footer:
-        'For all the other class related queries please check our <a href="/faq" class="text-[#FFFFFF] underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="/faq" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     "Unlimited PTE Coaching": {
       heading: "Unlimited PTE Coaching",
@@ -509,7 +535,7 @@ function Transparent_Pricing() {
       contact:
         '<a href="" class="text-[#FFDB15] underline">Contact us</a> to Customize this course as per your needs.',
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     /* PTE POPUP START HERE*/
 
@@ -542,7 +568,7 @@ function Transparent_Pricing() {
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
 
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     "NAATI CCL Intensive": {
       heading: "NAATI CCL Intensive",
@@ -572,7 +598,7 @@ function Transparent_Pricing() {
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
 
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     "NAATI CCL 1-to-1": {
       heading: "NAATI CCL 1-to-1",
@@ -602,7 +628,7 @@ function Transparent_Pricing() {
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
 
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     "1-to-1 NAATI Coaching": {
       heading: "1-to-1 NAATI Coaching",
@@ -632,7 +658,7 @@ function Transparent_Pricing() {
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
 
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     /* NAATI CCL POPUP END HERE*/
 
@@ -665,7 +691,7 @@ function Transparent_Pricing() {
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
 
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     "PTE + NAATI Combo Pro": {
       heading: "PTE + NAATI Combo Pro",
@@ -695,7 +721,7 @@ function Transparent_Pricing() {
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
 
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     "PTE + NAATI Combo Intensive": {
       heading: "PTE + NAATI Combo Intensive",
@@ -725,7 +751,7 @@ function Transparent_Pricing() {
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
 
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     "PTE + NAATI Combo 1-to-1": {
       heading: "PTE + NAATI Combo 1-to-1",
@@ -755,7 +781,7 @@ function Transparent_Pricing() {
         "No, you'll have to pay the exam fee seprately to book the test on the official person PTE , IELTS or NAATI Website.",
 
       footer:
-        'For all the other class related queries please check our <a href="" class="text-white underline">FAQ Section</a>.',
+        'For all the other class related queries please check our <a href="" class="text-[#FFDB15] underline">FAQ Section</a>.',
     },
     /* COMBO POPUP END HERE*/
   };
@@ -782,7 +808,7 @@ function Transparent_Pricing() {
           </h1>
 
           {/* Desktop / Tablet text */}
-          <p className="hidden sm:block text-[#FFFFFF] lg:text-[1.3802083333vw] md:text-[1.3541666667vw] text-[3.8888888889vw] mb-[1.5625em] tracking-[0.2px] leading-[1.4615]">
+          <p className="hidden sm:block text-[#FFFFFF] lg:text-[1.3802083333vw] md:text-[1.3541666667vw] text-[3.8888888889vw] mb-[1.5625em] tracking-[0.2px] leading-[1.4615] lg:font-[350]">
             Choose the perfect plan to achieve your target score
             <br />
             See details for course information
@@ -832,14 +858,14 @@ function Transparent_Pricing() {
                 when second tab selected -> show left divider (matches screenshots)
             */}
             <div
-              className={`absolute inset-y-2 left-[33.3333%] w-[3px] bg-white/20 rounded transition-opacity duration-300 ${
+              className={`absolute inset-y-3 left-[33.3333%] w-[0.15625vw] h-[1.3015873016vw] bg-[#40434C] rounded transition-opacity duration-300 ${
                 activeTab === tabs[2] ? "opacity-100" : "opacity-0"
               }`}
             />
 
             {/* Right divider (between tab2 & tab3) → only when 1st selected */}
             <div
-              className={`absolute inset-y-2 left-[66.6667%] w-[3px] bg-white/20 rounded transition-opacity duration-300 ${
+              className={`absolute inset-y-3 left-[66.6667%] w-[0.15625vw] h-[1.3015873016vw] bg-[#40434C] rounded transition-opacity duration-300 ${
                 activeTab === tabs[0] ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -858,11 +884,10 @@ function Transparent_Pricing() {
           <div className="grid grid-cols-1 lg:grid-cols-12 md:grid-cols-12 gap-8 lg:gap-[7.3412698413vw] items-stretch">
             <div className="lg:col-span-6 md:col-span-6">
               <div
-                className="rounded-[1.0416666667vw]  lg:h-[36.9375em] md:h-[40.9895833333em] h-[107.7777777778em] overflow-y-scroll space-y-4 [&::-webkit-scrollbar]:w-[2px]
+                className="rounded-[1.0416666667vw]  lg:h-[36.9475em] md:h-[40.9895833333em] h-[107.7777777778em] overflow-y-scroll space-y-4 [&::-webkit-scrollbar]:w-[2px]
 [&::-webkit-scrollbar-track]:bg-[#929292]
 [&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
-[&::-webkit-scrollbar-thumb]:rounded-full [scrollbar-width:thin]
-  [scrollbar-color:#FFFFFF_#929292]"
+[&::-webkit-scrollbar-thumb]:rounded-full"
               >
                 {(coursesByTab[activeTab] || []).map((course) => (
                   <div
@@ -897,7 +922,7 @@ function Transparent_Pricing() {
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between mb-[3.6458333333vw] lg:mb-4">
+                    <div className="flex items-center justify-between mb-[3.6458333333vw] lg:mb-[1.5873015873vw]">
                       <p className="text-white lg:text-[1.6666666667em] md:text-[1.6666666667em] text-[5.5555555556em] font-[550] lg:leading-[1]">
                         ${Math.floor(course.price)}
                       </p>
@@ -909,14 +934,14 @@ function Transparent_Pricing() {
                       )}
                     </div>
 
-                    <ul className="space-y-5">
+                    <ul className="space-y-5]">
                       {course.points.map((point, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-5 text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em]"
+                          className="flex items-start gap-5 text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw]"
                         >
                           <svg
-                            className="flex-shrink-0 lg:w-[1.25vw] lg:h-[1.25vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
+                            className="flex-shrink-0 lg:w-[1.1904761905vw] lg:h-[1.1904761905vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
                             viewBox="0 0 24 24"
                             fill="none"
                           >
@@ -926,7 +951,7 @@ function Transparent_Pricing() {
                             />
                           </svg>
 
-                          <span className="leading-[1.45] lg:leading-relaxed opacity-[0.75] text-[3.4vw] lg:text-[1.09375em] font-[350] [margin-block-end:3.90625vw] md:[margin-block-end:0] lg:[margin-block-end:0]">
+                          <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350] [margin-block-end:3.90625vw] md:[margin-block-end:0] lg:[margin-block-end:0]">
                             {point}
                           </span>
                         </li>
@@ -939,8 +964,8 @@ function Transparent_Pricing() {
 
             {selectedCourse1 && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.65)] backdrop-blur-[12.5px]">
-                <div className="w-[90%] max-w-[90.5555555556em] lg:max-w-[26.1458333333em] md:max-w-[26.1458333333em] bg-[#16181D] rounded-2xl relative flex flex-col lg:h-[32.6041666667em] md:h-[32.6041666667em] h-[117.5em] py-5">
-                  <div className="px-4 border-white/10">
+                <div className="w-[90%] max-w-[90.5555555556em] lg:max-w-[26.1458333333em] md:max-w-[26.1458333333em] bg-[#16181D] rounded-2xl relative flex flex-col lg:h-[36.7708333333vw] md:h-[36.7708333333vw] h-[117.5em] py-5 lg:py-[1.3227513228vw] lg:pl-[1.7195767196vw]">
+                  <div className="px-4 lg:px-[0] border-white/10">
                     <div className="flex justify-between items-center">
                       <button
                         onClick={() => setSelectedCourse1(null)}
@@ -961,7 +986,7 @@ function Transparent_Pricing() {
                         </svg>
                       </button>
 
-                      <h3 className="text-[#9C9B99] lg:text-[1.3756613757vw] md:text-[1.3541666667em] text-[5em] mb-2 lg:tracking-[0.2px] lg:leading-[1.1923] lg:mb-[0.9920634921vw]">
+                      <h3 className="text-[#9C9B99] lg:text-[1.3756613757vw] md:text-[1.3541666667em] text-[5em] mb-2 lg:tracking-[0.2px] lg:leading-[1.1923] lg:mb-[0.9920634921vw] font-[550]">
                         Additional Information
                       </h3>
                     </div>
@@ -975,14 +1000,13 @@ function Transparent_Pricing() {
                     className="flex-1 overflow-y-scroll [&::-webkit-scrollbar]:w-[2px]
 [&::-webkit-scrollbar-track]:bg-[#929292]
 [&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
-[&::-webkit-scrollbar-thumb]:rounded-full p-5 lg:p-[16px] mr-2 [scrollbar-width:thin]
-  [scrollbar-color:#FFFFFF_#929292]"
+[&::-webkit-scrollbar-thumb]:rounded-full p-5 lg:p-[0] mr-2"
                   >
-                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-4">
+                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-4 lg:mb-[0.5291005291vw]">
                       What’s Included:
                     </p>
 
-                    <ul className="space-y-[0.6613756614vw] text-[#838383] lg:text-[1.1044973545vw] md:text-[1.09375em] text-[3.8888888889em] mb-4 list-disc pl-5 ">
+                    <ul className="space-y-[0.6613756614vw] text-[#838383] lg:text-[1.1044973545vw] md:text-[1.09375em] text-[3.8888888889em] mb-4 list-disc pl-5 lg:pl-[1.5873015873vw] lg:marker:text-[15px]">
                       {(currentCourseDetail.content || []).map((item, i) => (
                         <li
                           key={i}
@@ -992,24 +1016,24 @@ function Transparent_Pricing() {
                       ))}
                     </ul>
 
-                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1">
+                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Validity
                     </p>
-                    <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px]">
                       <li>{currentCourseDetail.validity}</li>
                     </ul>
 
-                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1">
+                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Who this course for?
                     </p>
-                    <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px]">
                       <li>{currentCourseDetail.whothis}</li>
                     </ul>
 
-                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1">
+                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       How Will i Access This Course?
                     </p>
-                    <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px]">
                       <li
                         dangerouslySetInnerHTML={{
                           __html: currentCourseDetail.howwill || "",
@@ -1017,28 +1041,28 @@ function Transparent_Pricing() {
                       />
                     </ul>
 
-                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1">
+                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Number of devices?
                     </p>
-                    <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 space-y-2">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 space-y-2 lg:marker:text-[15px]">
                       {(currentCourseDetail.numberof || []).map((item, i) => (
                         <li key={i}>{item}</li>
                       ))}
                     </ul>
 
-                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1">
+                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Class Timing and Live Classes?
                     </p>
-                    <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 space-y-2">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 space-y-2 lg:marker:text-[15px]">
                       {(currentCourseDetail.class || []).map((item, i) => (
                         <li key={i}>{item}</li>
                       ))}
                     </ul>
 
-                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1">
+                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Is Exam fee coverd?
                     </p>
-                    <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px]">
                       <li>{currentCourseDetail.examfee}</li>
                     </ul>
 
@@ -1060,10 +1084,10 @@ function Transparent_Pricing() {
             )}
 
             <div className="lg:col-span-6 md:col-span-6 flex justify-center items-center">
-              <div className="bg-[#212121] rounded-xl lg:rounded-[0.6613756614vw] p-5 lg:px-[2.0502645503vw] lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] lg:h-[36.9375em] md:h-[40.9895833333em] h-[119.4444444444em] flex flex-col">
-                <div className="flex items-center gap-3">
+              <div className="bg-[#212121] rounded-xl lg:rounded-[1.3227513228vw] p-5 lg:px-[2.0502645503vw] lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] lg:h-[36.9475em] md:h-[40.9895833333em] h-[119.4444444444em] flex flex-col">
+                <div className="flex items-center gap-3 lg:gap-[0.9259259259vw]">
                   <svg
-                    className="mb-4 lg:h-[1.48125em] lg:w-[1.48125em] w-[3.8888888889em] h-[3.8888888889em]"
+                    className="mb-4 lg:h-[1.2896825397vw] lg:w-[1.2896825397vw] w-[3.8888888889em] h-[3.8888888889em]"
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -1082,7 +1106,7 @@ function Transparent_Pricing() {
                 <hr className="border-[#838383] mb-4 lg:mb-[1.3227513228vw]" />
 
                 <div className="flex justify-between items-center mb-4">
-                  <div className="bg-black lg:px-[0.625vw] lg:py-[0.4166666667vw] px-[1.8229166667vw] py-[1.5625vw] rounded-[2.0833333333vw] lg:rounded-[0.625vw]">
+                  <div className="bg-black lg:px-[0.7275132275vw] lg:py-[0.4431216931vw] px-[1.8229166667vw] py-[1.5625vw] rounded-[2.0833333333vw] lg:rounded-[0.6613756614vw]">
                     <h3 className="text-[#EDE4CD] font-[550] lg:text-[1.4814814815vw] md:text-[1.4583333333vw] text-[4.4444444444em] leading-[1.14286] lg:tracking-[0.2px]">
                       {selectedCourse?.title || "Select a course"}
                     </h3>
@@ -1096,30 +1120,37 @@ function Transparent_Pricing() {
                   Discount Code / Coupon code ?
                 </label>
 
-                <div className="flex gap-3 mb-3 lg:mb-0">
+                <div className="flex gap-3 mb-3 lg:mb-[0.5291005291vw]">
                   <input
                     value={coupon}
-                    onChange={(e) => setCoupon(e.target.value)}
-                    className="flex-1 border border-[#838383] rounded-md lg:px-[0.9259259259vw] lg:py-3 px-2 py-2 text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.1666666667em] outline-none w-[53.0555555556em] lg:w-[20em]"
+                    onChange={handleChange}
+                    className={`flex-1 border rounded-md lg:px-[0.9259259259vw] lg:py-[0.9259259259vw] px-2 py-2 text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.1666666667em] outline-none w-[53.0555555556em] lg:w-[20em]
+    ${
+      status === "idle"
+        ? "border-[#838383]"
+        : status === "typing"
+          ? "border-[#00BCD4]"
+          : status === "invalid"
+            ? "border-[#ff0303] bg-[#1B1D1B]"
+            : status === "expired"
+              ? "border-[#ff0303] bg-[#1B1D1B]"
+              : status === "valid"
+                ? "border-[#00BF63] bg-[#1B1D1B]"
+                : ""
+    }`}
                     placeholder="Enter Coupon Code"
                   />
+
                   <button
-                    onClick={() => {
-                      if (coupon === "Dis150Ja2602") {
-                        setDiscountApplied(true);
-                      } else if (coupon.trim()) {
-                        setDiscountApplied(false);
-                        setInvalidCoupon(true);
-                      }
-                    }}
+                    onClick={handleApply}
                     className="px-4 bg-[#484B54] text-white rounded-[0.5208333333vw] lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[3.3333333333em]"
                   >
                     Apply Code
                   </button>
                 </div>
 
-                {discountApplied && (
-                  <div className="flex items-center gap-2 mt-2">
+                {status === "valid" && (
+                  <div className="flex items-center gap-2 mt-2 lg:mt-[0.1322751323vw]">
                     <svg
                       className="w-[4.1666666667em] lg:w-[1.25em] md:w-[1.25em]"
                       viewBox="0 0 24 24"
@@ -1135,17 +1166,16 @@ function Transparent_Pricing() {
                         fill="white"
                       />
                     </svg>
-
-                    <p className="text-[#FFDB15] lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em]">
+                    <p className="text-[#FFDB15] lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:mt-[0.1322751323vw]">
                       Discount applied! You saved $50 on this course
                     </p>
                   </div>
                 )}
 
-                {invalidCoupon && (
-                  <div className="flex items-center gap-2 mt-2">
+                {status === "invalid" && (
+                  <div className="flex items-center gap-2 lg:gap-[0.5952380952vw] mt-2 lg:mt-[0.1322751323vw]">
                     <svg
-                      className="w-[4.1666666667em] lg:w-[1.25em] md:w-[1.25em]"
+                      className="w-[4.1666666667em] lg:w-[1.0582010582vw] md:w-[1.25em]"
                       viewBox="0 0 20 18"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -1159,29 +1189,51 @@ function Transparent_Pricing() {
                         fill="black"
                       />
                     </svg>
+                    <p className="text-[#FFDB15] lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em]">
+                      Coupon not found. Enter valid discount code.
+                    </p>
+                  </div>
+                )}
 
+                {status === "expired" && (
+                  <div className="flex items-center gap-2 lg:gap-[0.5952380952vw] mt-2 lg:mt-[0.1322751323vw]">
+                    <svg
+                      className="w-[4.1666666667em] lg:w-[1.0582010582vw] md:w-[1.25em]"
+                      viewBox="0 0 20 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M18.8025 14.586L10.9786 0.846487C10.6753 0.322937 10.1175 0 9.51564 0C8.90891 0 8.35111 0.322937 8.04774 0.846487L0.223854 14.586C-0.074618 15.1095 -0.074618 15.7554 0.223854 16.279C0.52722 16.8074 1.08991 17.1304 1.69175 17.1304H17.3346C17.9414 17.1304 18.4992 16.8074 18.8025 16.279C19.1059 15.7554 19.1059 15.1095 18.8025 14.586Z"
+                        fill="#FFDB15"
+                      />
+                      <path
+                        d="M9.51532 12.3254C8.82052 12.3254 8.25293 12.8881 8.25293 13.5829C8.25293 14.2777 8.82052 14.8453 9.51532 14.8453C10.2052 14.8453 10.7728 14.2777 10.7728 13.5829C10.7728 12.8881 10.2052 12.3254 9.51532 12.3254ZM10.352 11.4838L10.7728 4.76086H8.25293L8.67373 11.4838H10.352Z"
+                        fill="black"
+                      />
+                    </svg>
                     <p className="text-[#FFDB15] lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em]">
                       Oops! The code seems to be expired.
                     </p>
                   </div>
                 )}
 
-                <hr className="border-[#838383] mb-[1.455026455vw] mt-[1.1979166667vw]" />
+                <hr className="border-[#838383] mb-[1.455026455vw] mt-[0.7936507937vw] lg:mt-[0.7936507937vw]" />
 
                 <div className="flex justify-between text-white mb-4">
                   <span className="lg:text-[1.5625em] md:text-[1.5625em] text-[4.7222222222em] font-semibold lg:tracking-[0.5px]">
                     Grand Total
                   </span>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 lg:gap-[1.3227513228vw]">
                     {/* Show original price with strike when coupon applied */}
-                    {discountApplied && (
-                      <span className="lg:text-[1.2em] md:text-[1.2em] text-[3.8em] text-[#98999F] line-through">
+                    {status === "valid" && (
+                      <span className="lg:text-[1.2566137566vw] md:text-[1.2em] text-[3.8em] text-[#98999F] line-through font-[600] lg:tracking-[0.5px]">
                         A${Math.floor(selectedCourse?.price || 0)}
                       </span>
                     )}
 
                     {/* Final discounted price */}
-                    <span className="lg:text-[1.25em] md:text-[1.5625em] text-[4.7222222222em] font-semibold">
+                    <span className="lg:text-[1.5625vw] md:text-[1.5625em] text-[4.7222222222em] font-semibold lg:tracking-[0.5px]">
                       A${Math.floor(discountedPrice)}
                     </span>
                   </div>
@@ -1215,7 +1267,12 @@ function Transparent_Pricing() {
                 <div className="lg:mt-[0.5291005291vw] mt-auto flex items-center justify-center">
                   <button
                     onClick={handleBuyNow}
-                    className="lg:w-[22.4479166667vw] md:w-[20.4479166667em] w-[70.2222222222em] bg-[#4BAF4F] text-white py-[3.2566137566vw] lg:py-[1.1243386243vw] lg:text-[1.3020833333vw] md:text-[1.3020833333vw] text-[4.4444444444em] rounded-lg font-medium mt-[1.0416666667vw] mb-[1.0416666667vw]"
+                    className={`lg:w-[22.4479166667vw] md:w-[20.4479166667em] w-[70.2222222222em] bg-[#4BAF4F] text-white py-[3.2566137566vw] lg:py-[1.1243386243vw] lg:text-[1.3020833333vw] md:text-[1.3020833333vw] text-[4.4444444444em] rounded-lg font-medium mt-[1.0416666667vw] mb-[1.0416666667vw] cursor-pointer
+  ${
+    status === "valid"
+      ? "shadow-[0_0_18px_0_rgba(178,255,0,0.40)] hover:shadow-[0_0_18px_0_rgba(178,255,0,0.60)]"
+      : "hover:shadow-[0_0_18px_0_rgba(178,255,0,0.60)]"
+  }`}
                   >
                     Buy Now – A${Math.floor(discountedPrice)}
                   </button>
@@ -1248,17 +1305,17 @@ function Transparent_Pricing() {
 
       {/*whatsapp div*/}
       <div className="w-full py-10 px-6 flex justify-center items-center">
-        <div className="flex items-center gap-4 px-3 lg:pl-[1.0582010582vw] lg:pr-[2.2486772487vw] py-2 border-[0.1322751323vw] border-[#00BF63] rounded-xl">
+        <div className="flex items-center gap-4 lg:gap-[0.9259259259vw] px-3 lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-2 lg:py-[0.5952380952vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
           <div className=" rounded-full flex items-center justify-center">
             <img
               src={WP}
               alt=""
-              className="lg:w-[4.3650793651vw] lg:h-[4.3650793651vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
+              className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
             />
           </div>
 
           <div className="text-start">
-            <p className="text-white lg:text-[1.1979166667em] md:text-[1.1979166667em] text-[3.3333333333em] mb-[0.5291005291vw] lg:leading-[1.21] lg:mb-[0.5291005291vw] leading-[2.21]">
+            <p className="text-white lg:text-[1.1772486772vw] md:text-[1.1979166667em] text-[3.3333333333em] mb-[0.5291005291vw] lg:leading-[1.21] lg:mb-[0.4497354497vw] leading-[2.21] lg:tracking-[0.3px]">
               Confused? Talk to an expert
             </p>
             <div className="flex items-center gap-2">
@@ -1327,9 +1384,9 @@ function Transparent_Pricing() {
           </div>
 
           <p className="text-[5.5555555556em] md:text-[1.9791666667em] lg:text-[2.0502645503vw] tracking-[0.6px] mb-3">
-            <span className="text-[#757575]">"</span>{" "}
+            <span className="text-[#757575]">“</span>{" "}
             {trustedSection.bottom_heading}{" "}
-            <span className="text-[#757575]">"</span>
+            <span className="text-[#757575]">”</span>
           </p>
 
           <p className="text-[4.1666666667em] md:text-[1.3541666667em] lg:text-[1.3541666667em] text-[#737886]">
@@ -1371,7 +1428,7 @@ function Transparent_Pricing() {
                 </button>
 
                 {openIndex === index && faq.answer && (
-                  <div className="xs:mt-[0.8888888889em] mt-[4.6875vw] xs:mb-0 mb-[1.5625vw] md:text-[1.1904761905em] md:mb-[0.6613756614vw] sm:text-[2.0833333333em] xs:text-[2.1875em] text-[3.8888888889em] leading-[1.556] font-medium  text-white/50">
+                  <div className="xs:mt-[0.8888888889em] mt-[4.6875vw] xs:mb-0 mb-[1.5625vw] md:text-[1.1574074074vw] md:mb-[0.6613756614vw] sm:text-[2.0833333333em] xs:text-[2.1875em] text-[3.8888888889em] leading-[1.556] font-medium  text-white/50 lg:max-w-[50.5952380952vw]">
                     {faq.answer}
                   </div>
                 )}
