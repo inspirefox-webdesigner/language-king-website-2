@@ -984,9 +984,30 @@ function Transparent_Pricing() {
 
                     <ul className="space-y-5]">
                       {course.points.map((point, i) => (
+                        // <li
+                        //   key={i}
+                        //   className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw]"
+                        // >
+                        //   {" "}
+                        //   <svg
+                        //     className="flex-shrink-0 lg:w-[1.1904761905vw] lg:h-[1.1904761905vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
+                        //     viewBox="0 0 24 24"
+                        //     fill="none"
+                        //   >
+                        //     {" "}
+                        //     <path
+                        //       d="M7.87967 20.8238L0 12.9385L1.70341 11.2351L7.87967 17.417L22.2966 3.00006L24 4.70347L7.87967 20.8238Z"
+                        //       fill="#EF94CA"
+                        //     />{" "}
+                        //   </svg>{" "}
+                        //   <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350] [margin-block-end:3.90625vw]  md:[margin-block-end:0] lg:[margin-block-end:0] ">
+                        //     {" "}
+                        //     {point}{" "}
+                        //   </span>{" "}
+                        // </li>
                         <li
                           key={i}
-                          className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw] last:lg:[margin-block-end:0]"
+                          className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw] last:lg:[margin-block-end:0] [margin-block-end:3.90625vw] last:[margin-block-end:0]"
                         >
                           <svg
                             className="flex-shrink-0 lg:w-[1.1904761905vw] lg:h-[1.1904761905vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
@@ -999,7 +1020,7 @@ function Transparent_Pricing() {
                             />
                           </svg>
 
-                          <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350] [margin-block-end:3.90625vw] md:[margin-block-end:0] lg:[margin-block-end:0] last:[margin-block-end:0]">
+                          <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350]">
                             {point}
                           </span>
                         </li>
@@ -1134,17 +1155,17 @@ function Transparent_Pricing() {
 
             {/*whatsapp div mobile view*/}
             <div className="w-full flex justify-center items-center lg:hidden">
-              <div className="flex items-center gap-4 lg:gap-[0.9259259259vw] px-3 lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-2 lg:py-[0.5952380952vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
+              <div className="flex items-center gap-[2.6041666667vw] lg:gap-[0.9259259259vw] px-[2.8645833333vw] lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-[1.5625vw] lg:py-[0.5952380952vw] border-[0.3944444444vw] border-[#00BF63] rounded-[2.6041666667vw] w-[87.2395833333vw]">
                 <div className=" rounded-full flex items-center justify-center">
                   <img
                     src={WP}
                     alt=""
-                    className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
+                    className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[12.2395833333vw] h[9.7222222222em]"
                   />
                 </div>
 
                 <div className="text-start">
-                  <p className="text-white lg:text-[1.1772486772vw] md:text-[1.1979166667em] text-[3.3333333333em] mb-[0.5291005291vw] lg:leading-[1.21] lg:mb-[0.4497354497vw] leading-[2.21] lg:tracking-[0.3px]">
+                  <p className="text-white lg:text-[1.1772486772vw] md:text-[1.1979166667em] text-[3.515625vw] mb-[1.3020833333vw] lg:leading-[1.21] lg:mb-[0.4497354497vw] leading-[1.25] lg:tracking-[0.3px]">
                     Confused? Talk to an expert
                   </p>
                   <div className="flex items-center gap-2">
