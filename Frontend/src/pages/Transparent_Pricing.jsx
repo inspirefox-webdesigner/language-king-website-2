@@ -197,6 +197,23 @@ function Transparent_Pricing() {
     setStatus("typing");
   };
 
+  // const handleApply = () => {
+  //   const value = coupon.trim();
+
+  //   if (!value) return;
+
+  //   if (value === VALID_CODE) {
+  //     setStatus("valid");
+  //     return;
+  //   }
+
+  //   if (VALID_CODE.toLowerCase().startsWith(value.toLowerCase().slice(0, 5))) {
+  //     setStatus("expired");
+  //   } else {
+  //     setStatus("invalid");
+  //   }
+  // };
+
   const handleApply = () => {
     const value = coupon.trim();
 
@@ -204,6 +221,15 @@ function Transparent_Pricing() {
 
     if (value === VALID_CODE) {
       setStatus("valid");
+      // trigger price zoom then success sweep sequence (transient)
+      setPriceZoom(true);
+      setShowSuccessAnim(false);
+      setTimeout(() => {
+        setPriceZoom(false);
+        setShowSuccessAnim(true);
+        setTimeout(() => setShowSuccessAnim(false), 950);
+      }, 450);
+
       return;
     }
 
@@ -216,6 +242,9 @@ function Transparent_Pricing() {
 
   const [isChecked, setIsChecked] = useState(false);
   const [showError, setShowError] = useState(false);
+  // transient animation triggers (not persisted on reload)
+  const [showSuccessAnim, setShowSuccessAnim] = useState(false);
+  const [priceZoom, setPriceZoom] = useState(false);
 
   const handleBuyNow = () => {
     if (!isChecked) {
@@ -419,7 +448,7 @@ function Transparent_Pricing() {
         "1-to-1 Feedback",
         `AI Portal with 5000+ exam questions 
      <br/>
-     <span style="color:#838383; font-size:[0.8597883598vw]; font-weight:385; font-style:italic">( 5 Full + 20 Sectional Test can be taken once )</span>`,
+     <span style="color:#838383; font-size:0.8597883598vw; font-weight:385; font-style:italic">( 5 Full + 20 Sectional Test can be taken once )</span>`,
         "5 Full + 20 Sectional Test (once)",
         "Prediction File & Course documents",
       ],
@@ -795,13 +824,13 @@ function Transparent_Pricing() {
   return (
     <div className="relative h-full bg-[rgb(17,17,17)]">
       <section className="flex items-center justify-center px-4 pt-[22.9166666667vw] lg:pt-[5.78125vw]">
-        <div className="text-center w-full lg:max-w-[41.5104166667vw] max-w-[90vw]">
+        <div className="text-center w-full lg:max-w-[41.5104166667vw]">
           <h1 className="text-[#FFFFFF] font-medium lg:text-[3.0208333333vw] md:text-[2.9166666667em] text-[8.8888888889em] mb-[0.4625em] tracking-[1.1px] leading-[1.1724] hidden sm:block">
             Simple, Transparent Pricing
           </h1>
 
           {/*Mobile Text*/}
-          <h1 className="text-[#FFFFFF] block sm:hidden text-[8.8888888889em] mb-[0.4625em] tracking-[1.1px] leading-[1.21875] font-[600]">
+          <h1 className="text-[#FFFFFF] block sm:hidden text-[8.8888888889em] mb-[5.7291666667vw] tracking-[1.1px] leading-[1.21875] font-[600]">
             Simple,
             <br />
             Transparent Pricing
@@ -815,14 +844,14 @@ function Transparent_Pricing() {
           </p>
 
           {/* Mobile text */}
-          <p className="block sm:hidden text-[#FFFFFF] text-[3.9583333333vw] mb-[7.8125vw] font-[350] leading-[1.28571]">
+          <p className="block sm:hidden text-[#FFFFFF] text-[3.9583333333vw] mb-[6.5104166667vw] font-[350] leading-[1.28571]">
             Choose the right plan for your target score.
             <br />
             See course details.
           </p>
 
           <div className="relative mx-auto">
-            <div className="flex justify-center gap-[1.5625vw] lg:gap-[1.8229166667vw] bg-[#212121] rounded-[2.0333333333vw] lg:rounded-[0.6613756614vw] p-[0.9114583333vw] lg:p-[0.2314814815vw] w-[100%] lg:max-w-[36.0416666667vw] md:max-w-[34.0416666667em] mx-auto">
+            <div className="flex justify-center gap-[1.5625vw] lg:gap-[1.8229166667vw] bg-[#212121] rounded-[2.0333333333vw] lg:rounded-[0.6613756614vw] p-[0.78125vw] lg:p-[0.2314814815vw] w-[100%] lg:max-w-[36.0416666667vw] md:max-w-[34.0416666667em] mx-auto">
               {tabs.map((tab) => (
                 <button
                   key={tab}
@@ -858,16 +887,24 @@ function Transparent_Pricing() {
                 when second tab selected -> show left divider (matches screenshots)
             */}
             <div
-              className={`absolute inset-y-3 left-[33.3333%] w-[0.15625vw] h-[1.3015873016vw] bg-[#40434C] rounded transition-opacity duration-300 ${
+              className={`absolute lg:inset-y-3 inset-y-2 lg:left-[33.3333%] left-[30.5%] w-[0.4722222222vw] h-[5vw] lg:w-[0.15625vw] lg:h-[1.3015873016vw] bg-[#40434C] rounded transition-opacity duration-300 ${
                 activeTab === tabs[2] ? "opacity-100" : "opacity-0"
               }`}
+              style={{
+                transform: "translateZ(0)",
+                willChange: "transform",
+              }}
             />
 
             {/* Right divider (between tab2 & tab3) → only when 1st selected */}
             <div
-              className={`absolute inset-y-3 left-[66.6667%] w-[0.15625vw] h-[1.3015873016vw] bg-[#40434C] rounded transition-opacity duration-300 ${
+              className={`absolute lg:inset-y-3 inset-y-2 left-[68.5%] w-[0.4722222222vw] h-[5vw] lg:left-[66.6667%] lg:w-[0.15625vw] lg:h-[1.3015873016vw] bg-[#40434C] rounded transition-opacity duration-300 ${
                 activeTab === tabs[0] ? "opacity-100" : "opacity-0"
               }`}
+              style={{
+                transform: "translateZ(0)",
+                willChange: "transform",
+              }}
             />
           </div>
         </div>
@@ -875,10 +912,21 @@ function Transparent_Pricing() {
 
       {/* course section start*/}
 
-      <section className="w-full lg:px-4 py-[5.78125vw]">
-        <div className="mx-auto lg:max-w-[81.6137566138vw] max-w-[95em]">
-          <h2 className="text-[#EDE4CD] text-[5.5555555556em] lg:text-[1.917989418vw] md:text-[1.875em] mb-4 lg:ml-[3.3068783069vw] md:ml-12 font-[500] lg:tracking-[0.65px] lg:mb-[1.5873015873vw]">
+      <section className="w-full lg:px-4 lg:py-[5.78125vw] pt-[18.3333333333vw]">
+        <div className="lg:mx-auto mx-[1.1458333333vw] lg:max-w-[81.6137566138vw] max-w-[96vw]">
+          {/* <h2 className="text-[#EDE4CD] text-[5.5555555556em] lg:text-[1.917989418vw] md:text-[1.875em] mb-4 lg:ml-[3.3068783069vw] md:ml-12 font-[500] lg:tracking-[0.65px] lg:mb-[1.5873015873vw]">
             Select a course:
+          </h2> */}
+
+          <h2>
+            <span className="hidden sm:block text-[#EDE4CD] text-[5.5555555556em] lg:text-[1.917989418vw] md:text-[1.875em] mb-4 lg:ml-[3.3068783069vw] md:ml-12 font-[500] lg:tracking-[0.65px] lg:mb-[1.5873015873vw]">
+              Select a course:
+            </span>
+
+            {/* // for mobile text */}
+            <span className="block sm:hidden text-[#EDE4CD] text-[5.5555555556em] lg:text-[1.917989418vw] md:text-[1.875em] mb-[3.6458333333vw] ml-[1.5625vw] md:ml-12 lg:tracking-[0.65px] lg:mb-[1.5873015873vw] font-[600]">
+              Select a course
+            </span>
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 md:grid-cols-12 gap-8 lg:gap-[7.3412698413vw] items-stretch">
@@ -897,7 +945,7 @@ function Transparent_Pricing() {
                       setDiscountApplied(false);
                       setCoupon("");
                     }}
-                    className={`lg:w-[30.625em] md:w-[30.625em] w-[91.9444444444em] mx-auto cursor-pointer rounded-[1.0416666667vw] pt-[3.6458333333vw] pr-[4.6875vw] pl-[3.6458333333vw] pb-[4.9479166667vw] lg:pr-[1.455026455vw] lg:pl-[1.1243386243vw] lg:pt-[1.3227513228vw] lg:pb-[1.455026455vw] lg:border-[0.1666666667vw] border-[0.5555555556vw] transition-all lg:[margin-block-end:1.2566137566vw] [margin-block-end:5vw]
+                    className={`lg:w-[30.625em] md:w-[30.625em] w-[91.9444444444em] mx-auto cursor-pointer rounded-[1.0416666667vw] pt-[3.6458333333vw] pr-[4.6875vw] pl-[3.6458333333vw] pb-[4.9479166667vw] lg:pr-[1.455026455vw] lg:pl-[1.1243386243vw] lg:pt-[1.3227513228vw] lg:pb-[1.455026455vw] lg:border-[0.1666666667vw] border-[0.5555555556vw] transition-all lg:[margin-block-end:1.2566137566vw]
 
 
         ${
@@ -923,7 +971,7 @@ function Transparent_Pricing() {
                     </div>
 
                     <div className="flex items-center justify-between mb-[3.6458333333vw] lg:mb-[1.5873015873vw]">
-                      <p className="text-white lg:text-[1.6666666667em] md:text-[1.6666666667em] text-[5.5555555556em] font-[550] lg:leading-[1]">
+                      <p className="text-white lg:text-[1.6666666667em] md:text-[1.6666666667em] text-[5.5555555556em] lg:font-[550] font-[500] lg:leading-[1]">
                         ${Math.floor(course.price)}
                       </p>
 
@@ -938,7 +986,7 @@ function Transparent_Pricing() {
                       {course.points.map((point, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-5 text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw]"
+                          className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw]"
                         >
                           <svg
                             className="flex-shrink-0 lg:w-[1.1904761905vw] lg:h-[1.1904761905vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
@@ -991,22 +1039,23 @@ function Transparent_Pricing() {
                       </h3>
                     </div>
 
-                    <h2 className="text-[#FBFFDB] lg:text-[1.1574074074vw] md:text-[1.1458333333em] text-[4.4444444444em] leading-normal lg:leading-[1.22] lg:mb-[1.1243386243vw] font-[500] pricepop-heading lg:tracking-[0.1px]">
+                    <h2 className="text-[#FBFFDB] lg:text-[1.1574074074vw] md:text-[1.1458333333em] text-[4.4444444444em] leading-normal lg:leading-[1.22] lg:mb-[1.1243386243vw] font-[500] pricepop-heading lg:tracking-[0.1px] mb-[1.0582010582vw]">
                       {currentCourseDetail.heading || selectedCourse1}
                     </h2>
                   </div>
 
                   <div
-                    className="flex-1 overflow-y-scroll [&::-webkit-scrollbar]:w-[2px]
-[&::-webkit-scrollbar-track]:bg-[#929292]
-[&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
-[&::-webkit-scrollbar-thumb]:rounded-full p-5 lg:p-[0] mr-2"
+                    className="flex-1 overflow-y-scroll p-3 lg:p-[0] lg:mr-[0.6613756614vw] mr-2
+  [&::-webkit-scrollbar]:w-[2px]
+  [&::-webkit-scrollbar-track]:bg-[#929292]
+  [&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
+  [&::-webkit-scrollbar-thumb]:rounded-full"
                   >
                     <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-4 lg:mb-[0.5291005291vw]">
                       What’s Included:
                     </p>
 
-                    <ul className="space-y-[0.6613756614vw] text-[#838383] lg:text-[1.1044973545vw] md:text-[1.09375em] text-[3.8888888889em] mb-4 list-disc pl-5 lg:pl-[1.5873015873vw] lg:marker:text-[15px]">
+                    <ul className="space-y-[0.6613756614vw] text-[#838383] lg:text-[1.1044973545vw] md:text-[1.09375em] text-[3.8888888889em] mb-4 list-disc pl-5 lg:pl-[1.5873015873vw] lg:marker:text-[15px] lg:max-w-[21.0416666667vw]">
                       {(currentCourseDetail.content || []).map((item, i) => (
                         <li
                           key={i}
@@ -1016,24 +1065,24 @@ function Transparent_Pricing() {
                       ))}
                     </ul>
 
-                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
+                    <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.455026455vw]">
                       Validity
                     </p>
-                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px]">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px] lg:max-w-[21.0416666667vw]">
                       <li>{currentCourseDetail.validity}</li>
                     </ul>
 
                     <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Who this course for?
                     </p>
-                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px]">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px] lg:max-w-[21.0416666667vw]">
                       <li>{currentCourseDetail.whothis}</li>
                     </ul>
 
                     <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       How Will i Access This Course?
                     </p>
-                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px]">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px] lg:max-w-[21.0416666667vw]">
                       <li
                         dangerouslySetInnerHTML={{
                           __html: currentCourseDetail.howwill || "",
@@ -1044,7 +1093,7 @@ function Transparent_Pricing() {
                     <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Number of devices?
                     </p>
-                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 space-y-2 lg:marker:text-[15px]">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 space-y-2 lg:marker:text-[15px] lg:max-w-[21.0416666667vw]">
                       {(currentCourseDetail.numberof || []).map((item, i) => (
                         <li key={i}>{item}</li>
                       ))}
@@ -1053,7 +1102,7 @@ function Transparent_Pricing() {
                     <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Class Timing and Live Classes?
                     </p>
-                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 space-y-2 lg:marker:text-[15px]">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 space-y-2 lg:marker:text-[15px] lg:max-w-[21.0416666667vw]">
                       {(currentCourseDetail.class || []).map((item, i) => (
                         <li key={i}>{item}</li>
                       ))}
@@ -1062,7 +1111,7 @@ function Transparent_Pricing() {
                     <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-1 lg:mb-[0.5291005291vw] lg:mt-[1.3227513228vw]">
                       Is Exam fee coverd?
                     </p>
-                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px]">
+                    <ul className="list-disc pl-5 lg:pl-[1.5873015873vw] text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4 lg:marker:text-[15px] lg:max-w-[21.0416666667vw]">
                       <li>{currentCourseDetail.examfee}</li>
                     </ul>
 
@@ -1073,7 +1122,7 @@ function Transparent_Pricing() {
                       }}
                     />
                     <p
-                      className="text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em]"
+                      className="text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-[0.529101vw] mt-[1.455026455vw]"
                       dangerouslySetInnerHTML={{
                         __html: currentCourseDetail.footer || "",
                       }}
@@ -1083,8 +1132,47 @@ function Transparent_Pricing() {
               </div>
             )}
 
+            {/*whatsapp div mobile view*/}
+            <div className="w-full flex justify-center items-center lg:hidden">
+              <div className="flex items-center gap-4 lg:gap-[0.9259259259vw] px-3 lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-2 lg:py-[0.5952380952vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
+                <div className=" rounded-full flex items-center justify-center">
+                  <img
+                    src={WP}
+                    alt=""
+                    className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
+                  />
+                </div>
+
+                <div className="text-start">
+                  <p className="text-white lg:text-[1.1772486772vw] md:text-[1.1979166667em] text-[3.3333333333em] mb-[0.5291005291vw] lg:leading-[1.21] lg:mb-[0.4497354497vw] leading-[2.21] lg:tracking-[0.3px]">
+                    Confused? Talk to an expert
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <svg
+                      className="lg:w-[1.1979166667em] md:w-[1.1979166667em] w-[3.3333333333em] h-[3.3333333333em] lg:h-[1.1979166667em] md:h-[1.1979166667em]"
+                      viewBox="0 0 23 23"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M21.8557 16.8713L19.5812 14.5967C18.3222 13.3429 16.286 13.3429 15.027 14.5967C14.5607 15.0631 14.2705 15.6434 14.1514 16.2444C10.395 15.5397 6.74751 11.9077 6.51954 8.65391C7.1361 8.53992 7.72675 8.24977 8.20342 7.76792C9.45725 6.51407 9.45725 4.47268 8.20342 3.21882L5.92371 0.944274C4.66988 -0.314758 2.63368 -0.314758 1.37467 0.944274C-5.45408 7.76792 15.027 28.2544 21.8557 21.4256C23.1148 20.1665 23.1148 18.1303 21.8557 16.8713Z"
+                        fill="#00BF63"
+                      />
+                    </svg>
+
+                    <p className="text-[#00C26E] leading-[1.21] lg:text-[1.1979166667em] md:text-[1.1979166667em] text-[3.3333333333em]">
+                      +61 426 7896 123 / +61 426 444 555
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="lg:col-span-6 md:col-span-6 flex justify-center items-center">
-              <div className="bg-[#212121] rounded-xl lg:rounded-[1.3227513228vw] p-5 lg:px-[2.0502645503vw] lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] lg:h-[36.9475em] md:h-[40.9895833333em] h-[119.4444444444em] flex flex-col">
+              <div
+                className={`bg-[#212121] rounded-xl lg:rounded-[1.3227513228vw] p-5 lg:px-[2.0502645503vw] lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] lg:h-[36.9475em] md:h-[40.9895833333em] h-[119.4444444444em] flex flex-col `}
+                // ${showSuccessAnim ? "success-glow success-sweep" : ""}
+              >
                 <div className="flex items-center gap-3 lg:gap-[0.9259259259vw]">
                   <svg
                     className="mb-4 lg:h-[1.2896825397vw] lg:w-[1.2896825397vw] w-[3.8888888889em] h-[3.8888888889em]"
@@ -1120,37 +1208,41 @@ function Transparent_Pricing() {
                   Discount Code / Coupon code ?
                 </label>
 
-                <div className="flex gap-3 mb-3 lg:mb-[0.5291005291vw]">
+                <div className="flex gap-[2.6041666667vw] lg:gap-3 mb-[2.0833333333vw] lg:mb-[0.5291005291vw]">
                   <input
                     value={coupon}
                     onChange={handleChange}
-                    className={`flex-1 border rounded-md lg:px-[0.9259259259vw] lg:py-[0.9259259259vw] px-2 py-2 text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.1666666667em] outline-none w-[53.0555555556em] lg:w-[20em]
-    ${
-      status === "idle"
-        ? "border-[#838383]"
-        : status === "typing"
-          ? "border-[#00BCD4]"
-          : status === "invalid"
+                    onBlur={() => {
+                      if (status === "typing") {
+                        setStatus("idle");
+                      }
+                    }}
+                    className={`flex-1 border rounded-md lg:px-[0.9259259259vw] lg:py-[0.9259259259vw] px-2 py-[3.125vw] text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.1666666667em] outline-none w-[52.8645833333vw] lg:w-[20em]
+  ${
+    status === "idle"
+      ? "border-[#838383]"
+      : status === "typing"
+        ? "border-[#00BCD4]"
+        : status === "invalid"
+          ? "border-[#ff0303] bg-[#1B1D1B]"
+          : status === "expired"
             ? "border-[#ff0303] bg-[#1B1D1B]"
-            : status === "expired"
-              ? "border-[#ff0303] bg-[#1B1D1B]"
-              : status === "valid"
-                ? "border-[#00BF63] bg-[#1B1D1B]"
-                : ""
-    }`}
+            : status === "valid"
+              ? "border-[#00BF63] bg-[#1B1D1B]"
+              : ""
+  }`}
                     placeholder="Enter Coupon Code"
                   />
-
                   <button
                     onClick={handleApply}
-                    className="px-4 bg-[#484B54] text-white rounded-[0.5208333333vw] lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[3.3333333333em]"
+                    className="lg:px-4 px-[4.1666666667vw] bg-[#484B54] text-white rounded-[1.5625vw] lg:rounded-[0.5208333333vw] lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[3.3333333333em]"
                   >
                     Apply Code
                   </button>
                 </div>
 
                 {status === "valid" && (
-                  <div className="flex items-center gap-2 mt-2 lg:mt-[0.1322751323vw]">
+                  <div className="flex items-center gap-2 lg:mt-[0.1322751323vw]">
                     <svg
                       className="w-[4.1666666667em] lg:w-[1.25em] md:w-[1.25em]"
                       viewBox="0 0 24 24"
@@ -1173,7 +1265,7 @@ function Transparent_Pricing() {
                 )}
 
                 {status === "invalid" && (
-                  <div className="flex items-center gap-2 lg:gap-[0.5952380952vw] mt-2 lg:mt-[0.1322751323vw]">
+                  <div className="flex items-center gap-2 lg:gap-[0.5952380952vw] lg:mb-0 mb-[0.5208333333vw] lg:mt-[0.1322751323vw]">
                     <svg
                       className="w-[4.1666666667em] lg:w-[1.0582010582vw] md:w-[1.25em]"
                       viewBox="0 0 20 18"
@@ -1196,7 +1288,7 @@ function Transparent_Pricing() {
                 )}
 
                 {status === "expired" && (
-                  <div className="flex items-center gap-2 lg:gap-[0.5952380952vw] mt-2 lg:mt-[0.1322751323vw]">
+                  <div className="flex items-center gap-2 lg:gap-[0.5952380952vw] lg:mb-0 mb-[0.5208333333vw] lg:mt-[0.1322751323vw]">
                     <svg
                       className="w-[4.1666666667em] lg:w-[1.0582010582vw] md:w-[1.25em]"
                       viewBox="0 0 20 18"
@@ -1218,28 +1310,33 @@ function Transparent_Pricing() {
                   </div>
                 )}
 
-                <hr className="border-[#838383] mb-[1.455026455vw] mt-[0.7936507937vw] lg:mt-[0.7936507937vw]" />
+                <hr className="border-[#838383] mb-[3.6458333333vw] mt-[1.8229166667vw] lg:mt-[0.7936507937vw] lg:mb-[1.455026455vw]" />
 
                 <div className="flex justify-between text-white mb-4">
-                  <span className="lg:text-[1.5625em] md:text-[1.5625em] text-[4.7222222222em] font-semibold lg:tracking-[0.5px]">
+                  <span className="lg:text-[1.5625em] md:text-[1.5625em] text-[4.7222222222em] font-semibold lg:tracking-[0.5px] tracking-[0.2px]">
                     Grand Total
                   </span>
                   <div className="flex items-center gap-3 lg:gap-[1.3227513228vw]">
                     {/* Show original price with strike when coupon applied */}
                     {status === "valid" && (
-                      <span className="lg:text-[1.2566137566vw] md:text-[1.2em] text-[3.8em] text-[#98999F] line-through font-[600] lg:tracking-[0.5px]">
+                      <span className="lg:text-[1.2566137566vw] md:text-[1.2em] text-[3.6458333333vw] text-[#98999F] line-through font-[600] lg:tracking-[0.5px]">
                         A${Math.floor(selectedCourse?.price || 0)}
                       </span>
                     )}
 
                     {/* Final discounted price */}
-                    <span className="lg:text-[1.5625vw] md:text-[1.5625em] text-[4.7222222222em] font-semibold lg:tracking-[0.5px]">
+                    {/* <span className="lg:text-[1.5625vw] md:text-[1.5625em] text-[4.7222222222em] font-semibold lg:tracking-[0.5px]">
+                      A${Math.floor(discountedPrice)}
+                    </span> */}
+                    <span
+                      className={`lg:text-[1.5625vw] md:text-[1.5625em] text-[4.7222222222em] font-semibold lg:tracking-[0.5px] ${priceZoom ? "price-zoom" : ""}`}
+                    >
                       A${Math.floor(discountedPrice)}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2 lg:text-[1.0416666667em] md:text-[1.0416666667em] text-[3.0555555556em] text-[#98999F] relative">
+                <div className="flex items-start lg:gap-2 gap-[3.6458333333vw] lg:text-[1.0416666667em] md:text-[1.0416666667em] text-[3.0729166667vw] text-[#98999F] relative w-[81.1111111111vw] lg:w-[30.1111111111vw] lg:mb-0 mb-[5px]">
                   <input
                     type="checkbox"
                     className="h-[18px] w-[18px]"
@@ -1257,7 +1354,7 @@ function Transparent_Pricing() {
                   </span>
 
                   {showError && (
-                    <div className="absolute -bottom-[10px] -left-20 bg-white border border-gray-300 shadow-md rounded-md px-4 py-2 text-sm text-gray-700 flex items-center gap-2">
+                    <div className="absolute -bottom-2 left-30 -translate-x-1/2 sm:-bottom-[10px] sm:-left-20 sm:translate-x-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 sm:px-4 text-xs sm:text-sm text-gray-700 flex items-center gap-2 w-max max-w-[90vw] sm:max-w-none">
                       <span className="text-orange-500 font-bold">!</span>
                       Please tick this box if you want to proceed.
                     </div>
@@ -1267,7 +1364,7 @@ function Transparent_Pricing() {
                 <div className="lg:mt-[0.5291005291vw] mt-auto flex items-center justify-center">
                   <button
                     onClick={handleBuyNow}
-                    className={`lg:w-[22.4479166667vw] md:w-[20.4479166667em] w-[70.2222222222em] bg-[#4BAF4F] text-white py-[3.2566137566vw] lg:py-[1.1243386243vw] lg:text-[1.3020833333vw] md:text-[1.3020833333vw] text-[4.4444444444em] rounded-lg font-medium mt-[1.0416666667vw] mb-[1.0416666667vw] cursor-pointer
+                    className={`lg:w-[22.4479166667vw] md:w-[20.4479166667em] w-[80.2083333333vw] bg-[#4BAF4F] text-white py-[4.5572916667vw] lg:py-[1.1243386243vw] lg:text-[1.3020833333vw] md:text-[1.3020833333vw] text-[4.4444444444em] rounded-lg font-medium mt-[1.0416666667vw] lg:mb-[1.0416666667vw] mb-[3.3854166667vw] cursor-pointer
   ${
     status === "valid"
       ? "shadow-[0_0_18px_0_rgba(178,255,0,0.40)] hover:shadow-[0_0_18px_0_rgba(178,255,0,0.60)]"
@@ -1291,7 +1388,7 @@ function Transparent_Pricing() {
                     />
                   </svg>
 
-                  <p className="lg:text-[0.7291666667vw] md:text-[0.7291666667vw] text-[2.7777777778em] text-white">
+                  <p className="lg:text-[0.7291666667vw] md:text-[0.7291666667vw] text-[2.4739583333vw] text-white">
                     Secure payment • Instant access
                   </p>
                 </div>
@@ -1304,7 +1401,7 @@ function Transparent_Pricing() {
       {/* course section End*/}
 
       {/*whatsapp div*/}
-      <div className="w-full py-10 px-6 flex justify-center items-center">
+      <div className="w-full py-10 px-6 lg:flex justify-center items-center hidden">
         <div className="flex items-center gap-4 lg:gap-[0.9259259259vw] px-3 lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-2 lg:py-[0.5952380952vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
           <div className=" rounded-full flex items-center justify-center">
             <img

@@ -706,3 +706,104 @@ header {
   text-shadow: 0 2px 13px rgba(200, 200, 200, 0.75);
 }
 
+
+
+/*Discount popup animation*/
+@keyframes couponReveal {
+  0% { transform: scale(.85); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 rgba(0,191,99,0); }
+  50% { box-shadow: 0 0 30px rgba(0,191,99,.45); }
+  100% { box-shadow: 0 0 12px rgba(0,191,99,.25); }
+}
+
+@keyframes floatEmoji {
+  0% {
+    transform: translateY(10px) scale(.6);
+    opacity: 0;
+  }
+  30% { opacity: 1; }
+  100% {
+    transform: translateY(-28px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pricePop {
+  0% { transform: scale(.5); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.success-box {
+  position: relative;
+  animation: couponReveal .45s cubic-bezier(.22,1,.36,1);
+}
+
+.success-glow {
+  animation: glowPulse .9s ease-out;
+}
+
+.success-emoji span {
+  position: absolute;
+  font-size: 14px;
+  animation: floatEmoji 1.2s ease-out forwards;
+}
+
+.success-emoji span:nth-child(1){ left:10%; animation-delay:.05s; }
+.success-emoji span:nth-child(2){ left:25%; animation-delay:.15s; }
+.success-emoji span:nth-child(3){ right:25%; animation-delay:.25s; }
+.success-emoji span:nth-child(4){ right:10%; animation-delay:.35s; }
+
+.price-highlight {
+  background:#00BF63;
+  color:#001B0F;
+  padding:2px 8px;
+  margin:0 4px;
+  border-radius:6px;
+  font-weight:600;
+  animation: pricePop .45s ease-out;
+}
+
+/* middlw line top to bottom*/
+.success-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.success-sweep::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -40%;
+  width: 5%;
+  height: 300%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(0, 191, 99, 0.0) 20%,
+    rgba(0, 255, 140, 0.45) 50%,
+    rgba(0, 191, 99, 0.0) 80%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: successSweep 900ms ease-out forwards;
+}
+
+@keyframes successSweep {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
