@@ -986,7 +986,7 @@ function Transparent_Pricing() {
                       {course.points.map((point, i) => (
                         <li
                           key={i}
-                          className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw]"
+                          className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw] last:lg:[margin-block-end:0]"
                         >
                           <svg
                             className="flex-shrink-0 lg:w-[1.1904761905vw] lg:h-[1.1904761905vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
@@ -999,7 +999,7 @@ function Transparent_Pricing() {
                             />
                           </svg>
 
-                          <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350] [margin-block-end:3.90625vw] md:[margin-block-end:0] lg:[margin-block-end:0]">
+                          <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350] [margin-block-end:3.90625vw] md:[margin-block-end:0] lg:[margin-block-end:0] last:[margin-block-end:0]">
                             {point}
                           </span>
                         </li>
