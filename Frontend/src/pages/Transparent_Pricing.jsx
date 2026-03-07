@@ -273,7 +273,7 @@ function Transparent_Pricing() {
       try {
         // NOTE: using the provided mobile endpoint (falls back to static data on failure)
         const res = await fetch(
-          "https://apis.languageking.au/api/subscription-packages/mobile",
+          // "https://apis.languageking.au/api/subscription-packages/mobile",
         );
         if (!res.ok) {
           throw new Error(`Mobile pricing API returned ${res.status}`);
