@@ -807,3 +807,38 @@ header {
     opacity: 0;
   }
 }
+
+
+/* 🌍 All Browsers Scrollbar Styling */
+
+/* Chrome, Edge, Safari (WebKit Browsers) */
+/* ::-webkit-scrollbar {
+  width: 2px;  
+  height: 2px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #929292;  
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFFFFF; 
+  border-radius: 9999px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFFFFF; 
+} */
+
+/* Firefox (Gecko Browsers) */
+/* * {
+  scrollbar-width: thin;  
+  scrollbar-color: #FFFFFF #929292; 
+} */
+
+/* 🔧 Specific container ke liye (optional) */
+/* .custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #FFFFFF #929292; */
+/* } */
+  /* WebKit properties inhert honge */

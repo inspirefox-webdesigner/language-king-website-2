@@ -261,135 +261,72 @@ function Transparent_Pricing() {
       ? selectedCourse.price - 50
       : selectedCourse?.price || 0;
 
-  // Fetch dynamic tabs, cards, and popups from the single mobile API
-  // Mapping rules:
-  // - API `data.category` -> `tabs` (use `name`)
-  // - API `data.sublists[categoryId]` -> list of course cards for that tab
-  // - For each card: map `_id`->`id`, `title`->`title`, `price`->`price`, `badge`->`badge`, `description`->`points`
-  // - Map popup details (popupDetails) into `courseDetails[card.title]` with `heading`, `content` (HTML strings), `validity`, etc.
-  // If the API fails, we keep using the existing static data.
+  // Fetch dynamic tabs, cards, and popups
   useEffect(() => {
-    const fetchMobilePricing = async () => {
+    const fetchPricingData = async () => {
       try {
-        // NOTE: using the provided mobile endpoint (falls back to static data on failure)
-        const res = await fetch(
-          "https://apis.languageking.au/api/subscription-packages/mobile",
-        );
-        if (!res.ok) {
-          throw new Error(`Mobile pricing API returned ${res.status}`);
-        }
+        // Fetch tabs
+        const tabsRes = await fetch(`${API_BASE_URL}/pricing-tabs`);
+        if (tabsRes.ok) {
+          const tabsData = await tabsRes.json();
+          if (tabsData && tabsData.length > 0) {
+            const tabNames = tabsData.map((t) => t.tab_name);
+            setTabs(tabNames);
+            setActiveTab(tabNames[0]);
 
-        const json = await res.json();
-        if (!json || !json.success || !json.data) {
-          throw new Error("Mobile pricing API returned empty data");
-        }
+            // Fetch cards for all tabs
+            const cardsRes = await fetch(`${API_BASE_URL}/pricing-cards`);
+            if (cardsRes.ok) {
+              const cardsData = await cardsRes.json();
 
-        const { category = [], sublists = {} } = json.data;
-
-        // Build tab names
-        const tabNames = category.map((c) => c.name);
-        if (tabNames.length > 0) {
-          setTabs(tabNames);
-          setActiveTab(tabNames[0]);
-        }
-
-        // Build courses grouped by tab name
-        const grouped = {};
-        const detailsMap = {};
-
-        // category entries contain id (key for sublists) and name (display tab)
-        category.forEach((cat) => {
-          const key = cat.id; // e.g. 'combo'
-          const displayName = cat.name;
-          const list = sublists[key] || [];
-
-          grouped[displayName] = list.map((card) => {
-            // card.description is an array -> map to points used in left-side card
-            const points = Array.isArray(card.description)
-              ? card.description
-              : [];
-
-            // Prepare popup detail mapping for this card (keyed by title to match existing UI)
-            const popupContent = [];
-            if (Array.isArray(card.popupDetails)) {
-              // popupDetails is an array of sections; each section has `desc` array
-              card.popupDetails.forEach((section) => {
-                if (Array.isArray(section.desc)) {
-                  section.desc.forEach((d) => {
-                    // Build a small HTML snippet for each desc item
-                    const descText = d.descText || "";
-                    const descNotes = d.descNotes || "";
-                    const subList = Array.isArray(d.descSubList)
-                      ? `<ul>${d.descSubList.map((s) => `<li>${s}</li>`).join("")}</ul>`
-                      : "";
-
-                    const html = `
-                      <div class=\"popup-desc-item\">\n
-                        <strong>${descText}</strong>\n
-                        ${descNotes ? `<div class=\"popup-desc-notes\">${descNotes}</div>` : ""}\n
-                        ${subList}\n
-                      </div>`;
-
-                    popupContent.push(html);
-                  });
+              // Group cards by tab_name
+              const groupedCards = {};
+              cardsData.forEach((card) => {
+                if (!groupedCards[card.tab_name]) {
+                  groupedCards[card.tab_name] = [];
                 }
+                groupedCards[card.tab_name].push(card);
               });
+              setCoursesByTab(groupedCards);
+
+              // Set first course as selected
+              if (groupedCards[tabNames[0]] && groupedCards[tabNames[0]][0]) {
+                setSelectedCourse(groupedCards[tabNames[0]][0]);
+              }
+
+              // Fetch popups
+              const popupsRes = await fetch(`${API_BASE_URL}/pricing-popups`);
+              if (popupsRes.ok) {
+                const popupsData = await popupsRes.json();
+
+                // Map popups by card title
+                const popupsByTitle = {};
+                popupsData.forEach((popup) => {
+                  popupsByTitle[popup.card_title] = {
+                    heading: popup.heading,
+                    content: popup.content || [],
+                    validity: popup.validity,
+                    whothis: popup.who_this_for,
+                    howwill: popup.how_to_access,
+                    numberof: popup.number_of_devices || [],
+                    class: popup.class_timing || [],
+                    examfee: popup.exam_fee_covered,
+                    contact: popup.contact_info,
+                    footer: popup.footer_text,
+                  };
+                });
+                setCourseDetails(popupsByTitle);
+              }
             }
-
-            // Map card-level fields into the popup details shape used by the component
-            detailsMap[card.title] = {
-              heading: card.title,
-              content:
-                popupContent.length > 0
-                  ? popupContent
-                  : Array.isArray(card.description)
-                    ? card.description
-                    : [],
-              validity: card.validity || "",
-              whothis: card.createdBy || "",
-              howwill: "", // not provided by this API, keep empty
-              numberof: [],
-              class:
-                card.onlineClass || card.classRecording
-                  ? [
-                      card.onlineClass ? "Online classes available" : null,
-                      card.classRecording ? "Class recordings included" : null,
-                    ].filter(Boolean)
-                  : [],
-              examfee: "",
-              contact: "",
-              footer: "",
-            };
-
-            return {
-              id: card._id,
-              title: card.title,
-              price: card.price || 0,
-              badge: card.badge || null,
-              points,
-            };
-          });
-        });
-
-        // Only override coursesByTab/courseDetails if we built something useful
-        if (Object.keys(grouped).length > 0) {
-          setCoursesByTab(grouped);
-
-          // select first course for active tab
-          const firstTab = tabNames[0];
-          if (firstTab && grouped[firstTab] && grouped[firstTab][0]) {
-            setSelectedCourse(grouped[firstTab][0]);
           }
-
-          setCourseDetails((prev) => ({ ...prev, ...detailsMap }));
         }
-      } catch (err) {
-        // Keep static fallback on any error
-        console.error("Error fetching mobile pricing API:", err);
+      } catch (error) {
+        console.error("Error fetching pricing data:", error);
+        // Fallback to static data already set in useState
       }
     };
 
-    fetchMobilePricing();
+    fetchPricingData();
   }, []);
 
   useEffect(() => {
@@ -1125,10 +1062,10 @@ function Transparent_Pricing() {
 
                     <div
                       className="flex-1 overflow-y-scroll p-3 lg:p-[0] lg:mr-[0.6613756614vw] mr-2
-  [&::-webkit-scrollbar]:w-[2px]
-  [&::-webkit-scrollbar-track]:bg-[#929292]
-  [&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
-  [&::-webkit-scrollbar-thumb]:rounded-full"
+              [&::-webkit-scrollbar]:w-[2px]
+              [&::-webkit-scrollbar-track]:bg-[#929292]
+              [&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
+              [&::-webkit-scrollbar-thumb]:rounded-full"
                     >
                       <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-4 lg:mb-[0.5291005291vw]">
                         What’s Included:
