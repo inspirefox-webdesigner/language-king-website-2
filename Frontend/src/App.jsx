@@ -21,6 +21,7 @@ import PrivacyPolicy from "./pages/privacy-policy";
 import TermsOfUse from './pages/Terms-of-Use';
 import Faq from "./pages/faq";
 import Transparent_Pricing from "./pages/Transparent_Pricing";
+import Transparent_Pricing2 from "./pages/Transparent_Pricing(MobileApi)";
 
 function App() {
   const location = useLocation();
@@ -49,6 +50,7 @@ function App() {
           <Route path="/Terms-of-Use" element={<TermsOfUse />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/transparent-pricing" element={<Transparent_Pricing />} />
+          <Route path="/transparent-pricing-mobile" element={<Transparent_Pricing2 />} />
         </Routes>
       </main>
       <Footer />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar4 from "../assets/avatar7.png";
 import Avatar2 from "../assets/avatar8.png";
 import Avatar9 from "../assets/avatar9.png";
@@ -9,8 +9,7 @@ import WP from "../assets/iconswp.svg";
 import API_BASE_URL from "../config/api";
 import { FILE_BASE_URL } from "../config/api";
 import { createPortal } from "react-dom";
-import { useNavigate } from "react-router-dom";
-// import Transparent_Pricing2 from "./Transparent_Pricing(MobileApi)";
+import RenderText from "../components/RenderText";
 
 // Static fallback data
 const STATIC_COURSES_BY_TAB = {
@@ -187,7 +186,6 @@ function Transparent_Pricing() {
   const [selectedCourse, setSelectedCourse] = useState(
     STATIC_COURSES_BY_TAB.PTE[0],
   );
-  const navigate = useNavigate();
   const [setDiscountApplied] = useState(false);
   // const [invalidCoupon, setInvalidCoupon] = useState(false);
   const [coupon, setCoupon] = useState("");
@@ -264,72 +262,207 @@ function Transparent_Pricing() {
       ? selectedCourse.price - 50
       : selectedCourse?.price || 0;
 
-  // Fetch dynamic tabs, cards, and popups
+  // Fetch dynamic tabs, cards, and popups from the single mobile API
+  // Mapping rules:
+  // - API `data.category` -> `tabs` (use `name`)
+  // - API `data.sublists[categoryId]` -> list of course cards for that tab
+  // - For each card: map `_id`->`id`, `title`->`title`, `price`->`price`, `badge`->`badge`, `description`->`points`
+  // - Map popup details (popupDetails) into `courseDetails[card.title]` with `heading`, `content` (HTML strings), `validity`, etc.
+  // If the API fails, we keep using the existing static data.
+  // useEffect(() => {
+  //   const fetchMobilePricing = async () => {
+  //     try {
+  //       // NOTE: using the provided mobile endpoint (falls back to static data on failure)
+  //       const res = await fetch(
+  //         "https://apis.languageking.au/api/subscription-packages/mobile",
+  //       );
+  //       if (!res.ok) {
+  //         throw new Error(`Mobile pricing API returned ${res.status}`);
+  //       }
+
+  //       const json = await res.json();
+  //       if (!json || !json.success || !json.data) {
+  //         throw new Error("Mobile pricing API returned empty data");
+  //       }
+
+  //       const { category = [], sublists = {} } = json.data;
+
+  //       // Build tab names
+  //       const tabNames = category.map((c) => c.name);
+  //       if (tabNames.length > 0) {
+  //         setTabs(tabNames);
+  //         setActiveTab(tabNames[0]);
+  //       }
+
+  //       // Build courses grouped by tab name
+  //       const grouped = {};
+  //       const detailsMap = {};
+
+  //       // category entries contain id (key for sublists) and name (display tab)
+  //       category.forEach((cat) => {
+  //         const key = cat.id; // e.g. 'combo'
+  //         const displayName = cat.name;
+  //         const list = sublists[key] || [];
+
+  //         grouped[displayName] = list.map((card) => {
+  //           // card.description is an array -> map to points used in left-side card
+  //           const points = Array.isArray(card.description)
+  //             ? card.description
+  //             : [];
+
+  //           // Prepare popup detail mapping for this card (keyed by title to match existing UI)
+  //           const popupContent = [];
+  //           if (Array.isArray(card.popupDetails)) {
+  //             // popupDetails is an array of sections; each section has `desc` array
+  //             card.popupDetails.forEach((section) => {
+  //               if (Array.isArray(section.desc)) {
+  //                 section.desc.forEach((d) => {
+  //                   // Build a small HTML snippet for each desc item
+  //                   const descText = d.descText || "";
+  //                   const descNotes = d.descNotes || "";
+  //                   const subList = Array.isArray(d.descSubList)
+  //                     ? `<ul>${d.descSubList.map((s) => `<li>${s}</li>`).join("")}</ul>`
+  //                     : "";
+
+  //                   const html = `
+  //                     <div class=\"popup-desc-item\">\n
+  //                       <strong>${descText}</strong>\n
+  //                       ${descNotes ? `<div class=\"popup-desc-notes\">${descNotes}</div>` : ""}\n
+  //                       ${subList}\n
+  //                     </div>`;
+
+  //                   popupContent.push(html);
+  //                 });
+  //               }
+  //             });
+  //           }
+
+  //           // Map card-level fields into the popup details shape used by the component
+  //           detailsMap[card.title] = {
+  //             heading: card.title,
+  //             content:
+  //               popupContent.length > 0
+  //                 ? popupContent
+  //                 : Array.isArray(card.description)
+  //                   ? card.description
+  //                   : [],
+  //             validity: card.validity || "",
+  //             whothis: card.createdBy || "",
+  //             howwill: "", // not provided by this API, keep empty
+  //             numberof: [],
+  //             class:
+  //               card.onlineClass || card.classRecording
+  //                 ? [
+  //                     card.onlineClass ? "Online classes available" : null,
+  //                     card.classRecording ? "Class recordings included" : null,
+  //                   ].filter(Boolean)
+  //                 : [],
+  //             examfee: "",
+  //             contact: "",
+  //             footer: "",
+  //           };
+
+  //           return {
+  //             id: card._id,
+  //             title: card.title,
+  //             price: card.price || 0,
+  //             badge: card.badge || null,
+  //             points,
+  //           };
+  //         });
+  //       });
+
+  //       // Only override coursesByTab/courseDetails if we built something useful
+  //       if (Object.keys(grouped).length > 0) {
+  //         setCoursesByTab(grouped);
+
+  //         // select first course for active tab
+  //         const firstTab = tabNames[0];
+  //         if (firstTab && grouped[firstTab] && grouped[firstTab][0]) {
+  //           setSelectedCourse(grouped[firstTab][0]);
+  //         }
+
+  //         setCourseDetails((prev) => ({ ...prev, ...detailsMap }));
+  //       }
+  //     } catch (err) {
+  //       // Keep static fallback on any error
+  //       console.error("Error fetching mobile pricing API:", err);
+  //     }
+  //   };
+
+  //   fetchMobilePricing();
+  // }, []);
+
   useEffect(() => {
-    const fetchPricingData = async () => {
+    const fetchMobilePricing = async () => {
       try {
-        // Fetch tabs
-        const tabsRes = await fetch(`${API_BASE_URL}/pricing-tabs`);
-        if (tabsRes.ok) {
-          const tabsData = await tabsRes.json();
-          if (tabsData && tabsData.length > 0) {
-            const tabNames = tabsData.map((t) => t.tab_name);
-            setTabs(tabNames);
-            setActiveTab(tabNames[0]);
-
-            // Fetch cards for all tabs
-            const cardsRes = await fetch(`${API_BASE_URL}/pricing-cards`);
-            if (cardsRes.ok) {
-              const cardsData = await cardsRes.json();
-
-              // Group cards by tab_name
-              const groupedCards = {};
-              cardsData.forEach((card) => {
-                if (!groupedCards[card.tab_name]) {
-                  groupedCards[card.tab_name] = [];
-                }
-                groupedCards[card.tab_name].push(card);
-              });
-              setCoursesByTab(groupedCards);
-
-              // Set first course as selected
-              if (groupedCards[tabNames[0]] && groupedCards[tabNames[0]][0]) {
-                setSelectedCourse(groupedCards[tabNames[0]][0]);
-              }
-
-              // Fetch popups
-              const popupsRes = await fetch(`${API_BASE_URL}/pricing-popups`);
-              if (popupsRes.ok) {
-                const popupsData = await popupsRes.json();
-
-                // Map popups by card title
-                const popupsByTitle = {};
-                popupsData.forEach((popup) => {
-                  popupsByTitle[popup.card_title] = {
-                    heading: popup.heading,
-                    content: popup.content || [],
-                    validity: popup.validity,
-                    whothis: popup.who_this_for,
-                    howwill: popup.how_to_access,
-                    numberof: popup.number_of_devices || [],
-                    class: popup.class_timing || [],
-                    examfee: popup.exam_fee_covered,
-                    contact: popup.contact_info,
-                    footer: popup.footer_text,
-                  };
-                });
-                setCourseDetails(popupsByTitle);
-              }
-            }
-          }
+        const res = await fetch(
+          "https://apis.languageking.au/api/subscription-packages/mobile",
+        );
+        // ();
+        if (!res.ok) {
+          throw new Error(`Mobile pricing API returned ${res.status}`);
         }
-      } catch (error) {
-        console.error("Error fetching pricing data:", error);
-        // Fallback to static data already set in useState
+
+        const json = await res.json();
+        if (!json || !json.success || !json.data) {
+          throw new Error("Mobile pricing API returned empty data");
+        }
+
+        const { category = [], sublists = {} } = json.data;
+
+        const tabNames = category.map((c) => c.name);
+        if (tabNames.length > 0) {
+          setTabs(tabNames);
+          setActiveTab(tabNames[0]);
+        }
+
+        const grouped = {};
+        const detailsMap = {};
+
+        category.forEach((cat) => {
+          const key = cat.id;
+          const displayName = cat.name;
+          const list = sublists[key] || [];
+
+          grouped[displayName] = list.map((card) => {
+            const points = Array.isArray(card.description)
+              ? card.description
+              : [];
+
+            detailsMap[card.title] = {
+              heading: card.title,
+              popupDetails: Array.isArray(card.popupDetails)
+                ? card.popupDetails
+                : [],
+            };
+
+            return {
+              id: card._id,
+              title: card.title,
+              price: card.price || 0,
+              badge: card.badge || null,
+              points,
+            };
+          });
+        });
+
+        if (Object.keys(grouped).length > 0) {
+          setCoursesByTab(grouped);
+
+          const firstTab = tabNames[0];
+          if (firstTab && grouped[firstTab] && grouped[firstTab][0]) {
+            setSelectedCourse(grouped[firstTab][0]);
+          }
+
+          setCourseDetails((prev) => ({ ...prev, ...detailsMap }));
+        }
+      } catch (err) {
+        console.error("Error fetching mobile pricing API:", err);
       }
     };
 
-    fetchPricingData();
+    fetchMobilePricing();
   }, []);
 
   useEffect(() => {
@@ -452,7 +585,7 @@ function Transparent_Pricing() {
         "1-to-1 Feedback",
         `AI Portal with 5000+ exam questions 
      <br/>
-     <span class="ai-text">( 5 Full + 20 Sectional Test can be taken once )</span>`,
+     <span style="color:#838383; font-size:0.8597883598vw; font-weight:385; font-style:italic">( 5 Full + 20 Sectional Test can be taken once )</span>`,
         "5 Full + 20 Sectional Test (once)",
         "Prediction File & Course documents",
       ],
@@ -1036,7 +1169,7 @@ function Transparent_Pricing() {
                       <div className="flex justify-between items-center">
                         <button
                           onClick={() => setSelectedCourse1(null)}
-                          className="absolute right-4 text-white mb-2 lg:mb-[0.9920634921vw]"
+                          className="absolute right-4 text-white mb-[2.6041666667vw] lg:mb-[0.9920634921vw]"
                         >
                           <svg
                             className="lg:h-[1.09375em] lg:w-[1.09375em] h-[3.8333333333em] w-[3.8333333333em]"
@@ -1064,93 +1197,58 @@ function Transparent_Pricing() {
                     </div>
 
                     <div
-                      className="flex-1 overflow-y-scroll px-[4.6875vw] lg:px-0 lg:p-[0] lg:mr-[0.6613756614vw] mr-2
-              [&::-webkit-scrollbar]:w-[2px]
-              [&::-webkit-scrollbar-track]:bg-[#929292]
-              [&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
-              [&::-webkit-scrollbar-thumb]:rounded-full"
+                      className="flex-1 overflow-y-scroll lg:p-[0] lg:mr-[0.6613756614vw] mr-2
+[&::-webkit-scrollbar]:w-[2px]
+[&::-webkit-scrollbar-track]:bg-[#929292]
+[&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
+[&::-webkit-scrollbar-thumb]:rounded-full"
                     >
-                      <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-[1.8229166667vw] lg:mb-[0.5291005291vw]">
-                        What’s Included:
-                      </p>
+                      {(currentCourseDetail.popupDetails || []).map(
+                        (section, sIndex) => (
+                          <div key={sIndex} className="px-[4.6875vw] lg:px-0">
+                            <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-[1.8229166667vw] mt-[4.4270833333vw] lg:mt-0 lg:mb-[0.5291005291vw]">
+                              <RenderText text={section.title} />
+                            </p>
 
-                      <ul className="space-y-[0.6613756614vw] text-[#838383] lg:text-[1.1044973545vw] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 list-disc pl-5 lg:pl-[1.5211640212vw] lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] ">
-                        {(currentCourseDetail.content || []).map((item, i) => (
-                          <li
-                            key={i}
-                            className="leading-relaxed lg:leading-[1.30] lg:[margin-block-end: 0.6613756614vw] font-[385] lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw]"
-                            dangerouslySetInnerHTML={{ __html: item }}
-                          />
-                        ))}
-                      </ul>
+                            <ul className="space-y-[0.6613756614vw] text-[#838383] lg:text-[1.1044973545vw] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 list-disc pl-5 lg:pl-[1.5211640212vw] lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw]">
+                              {(section.desc || []).map((d, i) => (
+                                <li
+                                  key={i}
+                                  className="leading-relaxed lg:leading-[1.30]"
+                                >
+                                  <span className="block lg:[margin-block-end:0] [margin-block-end:0.9114583333vw] font-[385] lg:pl-[0.1322751323vw] pl-[0.5208333333vw]">
+                                    <RenderText text={d.descText} />
+                                  </span>
 
-                      <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-[2.0833333333vw] lg:mb-[0.5291005291vw] lg:mt-[1.455026455vw] mt-[4.4270833333vw]">
-                        Validity
-                      </p>
-                      <ul className="list-disc pl-5  text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]">{currentCourseDetail.validity}</li>
-                      </ul>
+                                  {d.descNotes && (
+                                    <span
+                                      className="block italic text-[#838383] lg:text-[0.9597883598vw] text-[3.3854166667vw] leading-5.25  lg:leading-normal"
+                                      // style={{
+                                      //   fontSize: "0.8597883598vw",
+                                      //   fontWeight: 385,
+                                      // }}
+                                      dangerouslySetInnerHTML={{
+                                        __html: `(${d.descNotes})`,
+                                      }}
+                                    />
+                                  )}
 
-                      <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-[2.0833333333vw] lg:mb-[0.5291005291vw] lg:mt-[1.455026455vw] mt-[4.4270833333vw]">
-                        Who this course for?
-                      </p>
-                      <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]">{currentCourseDetail.whothis}</li>
-                      </ul>
-
-                      <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-[2.0833333333vw] lg:mb-[0.5291005291vw] lg:mt-[1.455026455vw] mt-[4.4270833333vw]">
-                        How Will i Access This Course?
-                      </p>
-                      <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        <li
-                          className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]"
-                          dangerouslySetInnerHTML={{
-                            __html: currentCourseDetail.howwill || "",
-                          }}
-                        />
-                      </ul>
-
-                      <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-[2.0833333333vw] lg:mb-[0.5291005291vw] lg:mt-[1.455026455vw] mt-[4.4270833333vw]">
-                        Number of devices?
-                      </p>
-                      <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 space-y-2 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        {(currentCourseDetail.numberof || []).map((item, i) => (
-                          <li key={i} className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]">
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-[2.0833333333vw] lg:mb-[0.5291005291vw] lg:mt-[1.455026455vw] mt-[4.4270833333vw]">
-                        Class Timing and Live Classes?
-                      </p>
-                      <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 space-y-2 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        {(currentCourseDetail.class || []).map((item, i) => (
-                          <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]" key={i}>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <p className="text-white lg:text-[1.1458333333em] md:text-[1.1458333333em] text-[4.4444444444em] mb-[2.0833333333vw] lg:mb-[0.5291005291vw] lg:mt-[1.455026455vw] mt-[4.4270833333vw]">
-                        Is Exam fee coverd?
-                      </p>
-                      <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]">{currentCourseDetail.examfee}</li>
-                      </ul>
-
-                      <p
-                        className="text-[#FFDB15] lg:text-[1.09375em] md:text-[1.09375em] text-[3.8888888889em] mb-4"
-                        dangerouslySetInnerHTML={{
-                          __html: currentCourseDetail.contact || "",
-                        }}
-                      />
-                      <p
-                        className="text-white lg:text-[1.14583vw] md:text-[1.09375em] text-[4.44444vw] mb-[0.529101vw] lg:mt-[1.455026455vw] mt-[4.4270833333vw] lg:max-w-[21.4947089947vw]"
-                        dangerouslySetInnerHTML={{
-                          __html: currentCourseDetail.footer || "",
-                        }}
-                      />
+                                  {Array.isArray(d.descSubList) &&
+                                    d.descSubList.length > 0 && (
+                                      <ul className="list-disc pl-5 mt-2  lg:text-[1.0144973545vw] md:text-[1.09375em] text-[3.5588888889vw] italic">
+                                        {d.descSubList.map((sub, j) => (
+                                          <li key={j}>
+                                            <RenderText text={sub} />
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
                 </div>,
@@ -1212,7 +1310,6 @@ function Transparent_Pricing() {
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    onClick={() => navigate("/transparent-pricing-mobile")}
                   >
                     <path
                       d="M4.58313 12.4717C3.7401 12.4717 3.06267 13.1697 3.06267 14.03C3.06267 14.8919 3.7401 15.59 4.58313 15.59C5.42783 15.59 6.11028 14.8919 6.11028 14.03C6.11028 13.1697 5.42783 12.4717 4.58313 12.4717ZM0 0V1.56002H1.52882L4.27368 7.47071L3.24331 9.38063C3.12456 9.60763 3.05597 9.86024 3.05597 10.1333C3.05597 10.9953 3.7401 11.6916 4.58313 11.6916H13.7494V10.1333H4.90762C4.80057 10.1333 4.71694 10.048 4.71694 9.93875C4.71694 9.90291 4.7253 9.87219 4.74036 9.84488L5.42281 8.57501H11.1149C11.687 8.57501 12.1871 8.25072 12.4514 7.77111L15.1812 2.71212C15.2431 2.60459 15.2765 2.47487 15.2765 2.33833C15.2765 1.90651 14.9336 1.56002 14.5138 1.56002H3.2199L2.49396 0H0ZM12.2222 12.4717C11.3775 12.4717 10.7018 13.1697 10.7018 14.03C10.7018 14.8919 11.3775 15.59 12.2222 15.59C13.0653 15.59 13.7494 14.8919 13.7494 14.03C13.7494 13.1697 13.0653 12.4717 12.2222 12.4717Z"
@@ -1220,7 +1317,7 @@ function Transparent_Pricing() {
                     />
                   </svg>
 
-                  <h2 className="text-white lg:text-[1.3888888889vw] lg:leading-[1.23] lg:tracking-[0.2px] md:text-[1.3541666667vw] text-[3.8888888889em] mb-4 lg:mb-[1.0582010582vw] font-medium">
+                  <h2 className="text-white lg:text-[1.3888888889vw] lg:leading-[1.23] lg:tracking-[0.2px] md:text-[1.3541666667vw] text-[3.8888888889em] mb-4 lg:mb-[1.0582010582vw] font-medium ">
                     Order Summary
                   </h2>
                 </div>
@@ -1487,7 +1584,7 @@ ${
           </h2>
 
           {/* Desktop */}
-          <div className="hidden md:flex flex-col md:flex-row flex-wrap items-center justify-center gap-[3.1746031746vw] mb-[1.3227513228vw]">
+          <div className="hidden md:flex flex-col md:flex-row flex-wrap items-center justify-center gap-[3.1746031746vw] mb-10">
             <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-[1.1458333333vw]">
               <div className="flex -space-x-3">
                 {trustedSection.avatar_images.map((avatar, index) => (
@@ -1517,9 +1614,9 @@ ${
           </div>
 
           {/* Mobile */}
-          <div className="flex md:hidden md:flex-row items-center md:items-start justify-center lg:gap-[9.1746031746vw] gap-[7.5520833333vw] mb-10 p-4 lg:pl-0 pl-[10.15625vw] py-[4.1666666667vw] lg:py-0" >
+           <div className="flex md:hidden md:flex-row items-center md:items-start justify-center lg:gap-[9.1746031746vw] gap-[7.5520833333vw] mb-10 p-4 lg:pl-0 pl-[10.15625vw] py-[4.1666666667vw] lg:py-0" >
             <div className="flex flex-col items-center md:items-start gap-[3.6458333333vw] max-w-[37.7777777778vw]">
-              <div className="flex -space-x-3 mb-4">
+              <div className="flex -space-x-3 mb-4 ">
                 {trustedSection.avatar_images.map((avatar, index) => (
                   <img
                     key={index}
@@ -1546,7 +1643,7 @@ ${
             </div>
           </div>
 
-          <div className="relative flex justify-center  overflow-hidden">
+          <div className="relative flex justify-center overflow-hidden">
             <div className="w-full flex items-center justify-center">
               <img
                 src={Frame}

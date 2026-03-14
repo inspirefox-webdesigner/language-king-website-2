@@ -808,6 +808,20 @@ header {
   }
 }
 
+.ai-text{
+  color:#838383;
+  font-weight:385;
+  font-style:italic;
+  font-size:3.4635416667vw;
+  line-height: 1.21;
+}
+
+@media (min-width:1024px){
+  .ai-text{
+    font-size:0.8597883598vw;
+  }
+}
+
 
 /* 🌍 All Browsers Scrollbar Styling */
 
