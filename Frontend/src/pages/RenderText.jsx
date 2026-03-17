@@ -15,7 +15,7 @@ const RenderText = ({ text }) => {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: "#1e6cff",
+                // color: "#1e6cff",
                 textDecoration: "underline",
                 marginRight: 4,
               }}

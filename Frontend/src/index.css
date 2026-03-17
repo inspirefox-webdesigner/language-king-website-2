@@ -856,3 +856,66 @@ header {
   scrollbar-color: #FFFFFF #929292; */
 /* } */
   /* WebKit properties inhert honge */
+
+.custom-a a{
+  color: #838383;
+}
+
+
+/* animation */
+/* ── Animations ── */
+@keyframes strikeThrough {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes priceBounce {
+  0%   { transform: scale(1); color: #fff; }
+  40%  { transform: scale(1.22); color: #4ade80; }
+  100% { transform: scale(1); color: #fff; }
+}
+
+@keyframes btnShimmer {
+  from { left: -100%; }
+  to   { left: 200%; }
+}
+
+@keyframes cardSweep {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+/* Floating sparks around success banner */
+@keyframes sparkFloat {
+  0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.3) rotate(var(--rot)); }
+}
+
+/* Price bounce class */
+.price-zoom {
+  animation: priceBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both;
+}
+
+/* Old price — strikethrough stays after animation */
+.old-price-anim {
+  opacity: 1 !important;
+}
+.old-price-anim .strike-line {
+  animation: strikeThrough 0.4s ease 1.0s forwards !important;
+}
+
+/* Buy button shimmer */
+.btn-shimmer-span {
+  animation: btnShimmer 0.8s ease 1.1s forwards !important;
+}
+
+/* Card sweep */
+.card-sweep-div {
+  animation: cardSweep 0.9s ease 0.2s forwards !important;
+}
+
+@keyframes priceBounce {
+  0%   { transform: scale(1);    color: #ffffff; }
+  40%  { transform: scale(1.22); color: #4ade80; }
+  100% { transform: scale(1);    color: #ffffff; }
+}
