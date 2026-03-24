@@ -441,7 +441,7 @@ function Transparent_Pricing() {
     </svg>
   );
 
-  const STATIC_COURSE_DETAILS = {
+  const STATIC_COURSE_DETAILS = { 
     /* PTE POPUP START HERE*/
     "1 Month PTE Coaching": {
       heading: "1 Month PTE Coaching",
@@ -1078,7 +1078,7 @@ function Transparent_Pricing() {
                         {(currentCourseDetail.content || []).map((item, i) => (
                           <li
                             key={i}
-                            className="leading-relaxed lg:leading-[1.30] lg:[margin-block-end: 0.6613756614vw] font-[385] lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw]"
+                            className="leading-relaxed lg:leading-[1.30] lg:[margin-block-end: 0.6613756614vw] font-[385] lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end:0.9114583333vw]"
                             dangerouslySetInnerHTML={{ __html: item }}
                           />
                         ))}
@@ -1088,7 +1088,7 @@ function Transparent_Pricing() {
                         Validity
                       </p>
                       <ul className="list-disc pl-5  text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]">
+                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end:0.9114583333vw] lg:[margin-block-end:0]">
                           {currentCourseDetail.validity}
                         </li>
                       </ul>
@@ -1097,7 +1097,7 @@ function Transparent_Pricing() {
                         Who this course for?
                       </p>
                       <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]">
+                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end:0.9114583333vw] lg:[margin-block-end:0]">
                           {currentCourseDetail.whothis}
                         </li>
                       </ul>
@@ -1107,7 +1107,7 @@ function Transparent_Pricing() {
                       </p>
                       <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
                         <li
-                          className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]"
+                          className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end:0.9114583333vw] lg:[margin-block-end:0]"
                           dangerouslySetInnerHTML={{
                             __html: currentCourseDetail.howwill || "",
                           }}
@@ -1121,7 +1121,7 @@ function Transparent_Pricing() {
                         {(currentCourseDetail.numberof || []).map((item, i) => (
                           <li
                             key={i}
-                            className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]"
+                            className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end:0.9114583333vw] lg:[margin-block-end:0]"
                           >
                             {item}
                           </li>
@@ -1134,7 +1134,7 @@ function Transparent_Pricing() {
                       <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 space-y-2 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
                         {(currentCourseDetail.class || []).map((item, i) => (
                           <li
-                            className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]"
+                            className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end:0.9114583333vw] lg:[margin-block-end:0]"
                             key={i}
                           >
                             {item}
@@ -1146,7 +1146,7 @@ function Transparent_Pricing() {
                         Is Exam fee coverd?
                       </p>
                       <ul className="list-disc pl-5 text-[#838383] lg:text-[1.09375em] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] lg:pl-[1.5873015873vw]">
-                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end: 0.9114583333vw] lg:[margin-block-end: 0]">
+                        <li className="lg:pl-[0.1322751323vw] pl-[0.5208333333vw] [margin-block-end:0.9114583333vw] lg:[margin-block-end:0]">
                           {currentCourseDetail.examfee}
                         </li>
                       </ul>
@@ -1171,10 +1171,10 @@ function Transparent_Pricing() {
 
             {/*whatsapp div mobile view*/}
             <div className="w-full flex justify-center items-center lg:hidden">
-              <div className="flex items-center gap-[2.6041666667vw] lg:gap-[0.9259259259vw] px-[2.8645833333vw] lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-[1.5625vw] lg:py-[0.5952380952vw] border-[0.3944444444vw] border-[#00BF63] rounded-[2.6041666667vw] w-[87.2395833333vw]">
+              <div className="flex items-center gap-[3.3854166667vw] lg:gap-[0.9259259259vw] px-[2.8645833333vw] lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-[1.5625vw] lg:py-[0.5952380952vw] border-[0.3944444444vw] border-[#00BF63] rounded-[2.6041666667vw] w-[87.2395833333vw]">
                 <div className=" rounded-full flex items-center justify-center">
                   <svg
-                    className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
+                    className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[12.2395833333vw] h[12.2395833333vw] my-[0.78125vw]"
                     viewBox="0 0 1540 1555"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -1221,11 +1221,11 @@ function Transparent_Pricing() {
                 // ${showSuccessAnim ? "success-glow success-sweep" : ""}
               > */}
               <div
-                className={`bg-[#212121] rounded-xl lg:rounded-[1.3227513228vw] p-5 lg:px-[2.0502645503vw] lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] flex flex-col`}
+                className={`bg-[#212121] rounded-xl lg:rounded-[1.3227513228vw] lg:p-[1.3227513228vw] pt-[3.6458333333vw] pb-[4.1666666667vw] px-[20px] lg:px-[2.0502645503vw] lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] flex flex-col`}
               >
-                <div className="flex items-center gap-3 lg:gap-[0.9259259259vw]">
+                <div className="flex items-center gap-[2.8645833333vw] lg:gap-[0.9259259259vw] lg:mb-0 mb-[3.125vw]">
                   <svg
-                    className="mb-4 lg:h-[1.2896825397vw] lg:w-[1.2896825397vw] w-[3.8888888889em] h-[3.8888888889em]"
+                    className="lg:mb-4 lg:h-[1.2896825397vw] lg:w-[1.2896825397vw] w-[4.6875vw] h-[4.6875vw]"
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -1237,15 +1237,15 @@ function Transparent_Pricing() {
                     />
                   </svg>
 
-                  <h2 className="text-white lg:text-[1.3888888889vw] lg:leading-[1.23] lg:tracking-[0.2px] md:text-[1.3541666667vw] text-[3.8888888889em] mb-4 lg:mb-[1.0582010582vw] font-medium">
+                  <h2 className="text-white lg:text-[1.3888888889vw] lg:leading-[1.23] lg:tracking-[0.2px] md:text-[1.3541666667vw] text-[3.8888888889em] lg:mb-[1.0582010582vw] font-medium">
                     Order Summary
                   </h2>
                 </div>
 
-                <hr className="border-[#838383] mb-4 lg:mb-[1.3227513228vw]" />
+                <hr className="border-[#838383] lg:mb-[1.3227513228vw]" />
 
-                <div className="flex justify-between items-center mb-4">
-                  <div className="bg-black lg:px-[0.7275132275vw] lg:py-[0.4431216931vw] px-[1.8229166667vw] py-[1.5625vw] rounded-[2.0833333333vw] lg:rounded-[0.6613756614vw]">
+                <div className="flex justify-between items-center lg:mb-4 mb-[4.9479166667vw] lg:mt-0 mt-[3.90625vw]">
+                  <div className="bg-black lg:px-[0.7275132275vw] lg:py-[0.4431216931vw] px-[1.8229166667vw] py-[1.5625vw] rounded-[2.0833333333vw] lg:rounded-[0.6613756614vw] ">
                     <h3 className="text-[#EDE4CD] font-[550] lg:text-[1.4814814815vw] md:text-[1.4583333333vw] text-[4.4444444444em] leading-[1.14286] lg:tracking-[0.2px]">
                       {selectedCourse?.title || "Select a course"}
                     </h3>
@@ -1397,7 +1397,7 @@ ${
                   <input
                     id="disclaimer-checkbox"
                     type="checkbox"
-                    className="h-[10px] lg:h-[2.1825396825vw] lg:w-[2.1825396825vw] w-[10px] mt-[0.2777777778vw] lg:-mt-[0.3306878307vw]"
+                    className="h-[4.1666666667vw] lg:h-[2.5132275132vw] lg:w-[2.5132275132vw] w-[4.1666666667vw] mt-[0.5208333333vw] lg:-mt-[0.4166666667vw]"
                     checked={isChecked}
                     onChange={(e) => {
                       setIsChecked(e.target.checked);
@@ -1412,10 +1412,10 @@ ${
                   </span>
 
                   {showError && (
-                    <div className="absolute -bottom-4 left-33 -translate-x-1/2 sm:-bottom-[10px] sm:-left-20 sm:translate-x-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 sm:px-4 text-xs sm:text-sm text-gray-700 flex items-center gap-2 w-max max-w-[90vw] sm:max-w-none">
+                    <div className="absolute -bottom-4 left-33 -translate-x-1/2 sm:-bottom-[10px] sm:-left-20 sm:translate-x-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 sm:px-4 text-xs sm:text-sm text-gray-700 flex items-center gap-2 w-max max-w-[90vw] sm:max-w-none lg:text-[0.9259259259vw] text-[3.125vw]">
                       <span className="text-orange-500 font-bold">!</span>
                       Please tick the disclaimer checkbox to proceed.
-                      <div className="absolute -top-1 lg:left-20 left-6 w-3 h-3 bg-white border-l border-t border-gray-300 rotate-45"></div>
+                      <div className="absolute -top-1 lg:left-20 left-4 w-3 h-3 bg-white border-l border-t border-gray-300 rotate-45"></div>
                     </div>
                   )}
                 </div>
@@ -1461,7 +1461,7 @@ ${
 
       {/*whatsapp div*/}
       <div className="w-full py-10 px-6 lg:flex justify-center items-center hidden">
-        <div className="flex items-center gap-4 lg:gap-[0.9259259259vw] px-3 lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-2 lg:py-[0.5952380952vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
+        <div className="flex items-center gap-4 lg:gap-[1.0582010582vw] px-3 lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-2 lg:py-[0.5952380952vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
           <div className=" rounded-full flex items-center justify-center">
             {/* <img
               src={WP}
@@ -1469,7 +1469,7 @@ ${
               className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
             /> */}
             <svg
-              className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
+              className="lg:w-[3.5846560847vw] lg:h-[3.5846560847vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em] mt-[0.1984126984vw] mb-[0.2976190476vw] mx-[0.1984126984vw]"
               viewBox="0 0 1540 1555"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1514,7 +1514,7 @@ ${
 
       <div className="w-full text-white py-[7.2916666667em] lg:px-6 mt-3 pt-[28.90625vw] lg:pt-[5.0925925926vw] lg:pb-[12.4338624339vw]">
         <div className=" mx-auto text-center">
-          <h2 className="text-[6.1111111111em] md:text-[2.380952381vw] lg:text-[2.380952381vw] lg:font-[400] font-[500] lg:mb-[1.9841269841vw] mb-[4.6875vw] tracking-[0.2px] leading-[1.22727] lg:leading-normal">
+          <h2 className="text-[6.1111111111em] md:text-[2.380952381vw] lg:text-[2.380952381vw] lg:font-[400] font-[500] lg:mb-[1.9841269841vw] mb-[1.0416666667vw] tracking-[0.2px] leading-[1.22727] lg:leading-normal">
             {trustedSection.heading}
           </h2>
 
@@ -1549,9 +1549,9 @@ ${
           </div>
 
           {/* Mobile */}
-          <div className="flex md:hidden md:flex-row items-center md:items-start justify-center lg:gap-[9.1746031746vw] gap-[7.5520833333vw] p-4 lg:pl-0 pl-[10.15625vw] py-[4.1666666667vw] lg:py-0">
-            <div className="flex flex-col items-center md:items-start gap-[3.6458333333vw] max-w-[37.7777777778vw]">
-              <div className="flex -space-x-3 mb-4">
+          <div className="flex md:hidden md:flex-row items-center md:items-start justify-center lg:gap-[9.1746031746vw] gap-[7.5520833333vw] p-4 lg:pl-0 pl-[10.15625vw] py-[4.1666666667vw] lg:py-0 mb-[3.90625vw]">
+            <div className="flex flex-col items-center md:items-start gap-[2.6041666667vw] max-w-[37.7777777778vw]">
+              <div className="flex -space-x-3 mb-4 mt-[3.3854166667vw]">
                 {trustedSection.avatar_images.map((avatar, index) => (
                   <img
                     key={index}
@@ -1567,8 +1567,8 @@ ${
               </div>
             </div>
 
-            <div className="flex flex-col md:items-start items-start gap-[3.6458333333vw] max-w-[37.7777777778vw]">
-              <p className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886] leading-[1.28571] lg:leading-normal text-left">
+            <div className="flex flex-col md:items-start items-start gap-[3.6458333333vw] max-w-[37.7777777778vw] mt-[3.3854166667vw]">
+              <p className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886] leading-[1.28571] lg:leading-normal text-left ">
                 {trustedSection.avatar_text}
               </p>
 
@@ -1583,7 +1583,7 @@ ${
               <img
                 src={Frame}
                 alt=""
-                className="w-[125%] md:w-full max-w-none object-contain mix-blend-screen lg:my-2 lg:mb-0 mb-[5.2083333333vw]"
+                className="w-[125%] md:w-full max-w-none object-contain mix-blend-screen lg:my-2 lg:mb-0 mb-[7.03125vw]"
                 style={{
                   maskImage:
                     "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
@@ -1594,7 +1594,7 @@ ${
             </div>
           </div>
 
-          <p className="text-[5.5555555556em] md:text-[1.9791666667em] lg:text-[2.0502645503vw] tracking-[0.6px] mb-3">
+          <p className="text-[5.5555555556em] md:text-[1.9791666667em] lg:text-[2.0502645503vw] tracking-[0.6px] lg:mb-3 leading-[1.30] lg:leading-normal lg:w-full w-[97.9166666667vw] mb-[2.8645833333vw]">
             <span className="text-[#757575]">“</span>{" "}
             {trustedSection.bottom_heading}{" "}
             <span className="text-[#757575]">”</span>
@@ -1611,7 +1611,7 @@ ${
       {/* Faqs Section Start here*/}
 
       <div className=" relative z-10 sm:mb-[0] mb-[-13.8888888889vw]">
-        <div className="custom-container mx-auto md:py-[6.6137566138em] sm:py-[4.6296296296em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative pt-[20.5729166667vw] pb-[18.4895833333vw] lg:pt-0 lg:pb-0">
+        <div className="custom-container mx-auto md:py-[6.6137566138em] sm:py-[4.6296296296em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative pt-[20.5729166667vw] pb-[18.4895833333vw] lg:pt-0 lg:pb-[5.6216931217vw]">
           {/* <h2 className="font-inter font-normal md:text-[4.0211640212em] sm:text-[6.258148631em] text-[11em] leading-[1.11] 2xl:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-white text-center sm:mb-[0.6578947368em] mb-[7.8125vw] xs:tracking-normal tracking-[2.2px]"> */}
           <h2 className="font-inter font-[500] lg:font-[400] md:text-[3.0423280423vw] sm:text-[6.258148631em] text-[8.59375vw] leading-[1.2258] lg:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-[#FBFFDB] text-center sm:mb-[0.6578947368em] mb-[10.4166666667vw] md:mb-[3.3068783069vw] xs:tracking-normal tracking-[0.5px]">
             Frequenty Asked Questions

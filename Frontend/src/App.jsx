@@ -22,6 +22,8 @@ import TermsOfUse from './pages/Terms-of-Use';
 import Faq from "./pages/faq";
 import Transparent_Pricing from "./pages/Transparent_Pricing";
 import Transparent_Pricing2 from "./pages/Transparent_Pricing(MobileApi)";
+import PaymentSuccessMessage from "./pages/PaymentSuccessMessage";
+import PaymentCancelMessage from "./pages/PaymentCancelMessage";
 
 function App() {
   const location = useLocation();
@@ -51,6 +53,8 @@ function App() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/transparent-pricing" element={<Transparent_Pricing />} />
           <Route path="/transparent-pricing-mobile" element={<Transparent_Pricing2 />} />
+          <Route path="/payment-success" element={<PaymentSuccessMessage />} />
+          <Route path="/payment-cancel" element={<PaymentCancelMessage />} />
         </Routes>
       </main>
       <Footer />

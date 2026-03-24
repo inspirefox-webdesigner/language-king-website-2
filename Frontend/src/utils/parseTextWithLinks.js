@@ -1,5 +1,41 @@
+// export const parseTextWithLinks = (text = "") => {
+//   const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+
+//   const parts = [];
+//   let lastIndex = 0;
+//   let match;
+
+//   while ((match = regex.exec(text)) !== null) {
+//     if (match.index > lastIndex) {
+//       parts.push({
+//         type: "text",
+//         text: text.slice(lastIndex, match.index),
+//       });
+//     }
+
+//     parts.push({
+//       type: "link",
+//       label: match[1],
+//       url: match[2],
+//     });
+
+//     lastIndex = regex.lastIndex;
+//   }
+
+//   if (lastIndex < text.length) {
+//     parts.push({
+//       type: "text",
+//       text: text.slice(lastIndex),
+//     });
+//   }
+
+//   return parts;
+// };
+
+
 export const parseTextWithLinks = (text = "") => {
-  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+  // Matches either i{(...)} italic syntax or markdown links [label](url)
+  const regex = /i\{(\([^)]*\))\}|\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
 
   const parts = [];
   let lastIndex = 0;
@@ -13,11 +49,20 @@ export const parseTextWithLinks = (text = "") => {
       });
     }
 
-    parts.push({
-      type: "link",
-      label: match[1],
-      url: match[2],
-    });
+    if (match[1] !== undefined) {
+      // i{(...)} — already includes parens, render as italic grey
+      parts.push({
+        type: "italic",
+        text: match[1], // e.g. "(Melbourne Time)"
+      });
+    } else {
+      // markdown link
+      parts.push({
+        type: "link",
+        label: match[2],
+        url: match[3],
+      });
+    }
 
     lastIndex = regex.lastIndex;
   }

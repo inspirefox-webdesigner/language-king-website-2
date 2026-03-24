@@ -10,6 +10,7 @@ import API_BASE_URL from "../config/api";
 import { FILE_BASE_URL } from "../config/api";
 import { createPortal } from "react-dom";
 import RenderText from "../components/RenderText";
+import { useNavigate } from "react-router-dom";
 
 // Static fallback data
 const STATIC_COURSES_BY_TAB = {
@@ -165,6 +166,7 @@ const faqs = [
 ];
 
 function Transparent_Pricing() {
+  const navigate = useNavigate();
   const [openIndex, setOpenIndex] = useState(0);
   const [selectedCourse1, setSelectedCourse1] = useState(null);
   const [dynamicFaqs, setDynamicFaqs] = useState(faqs);
@@ -264,13 +266,75 @@ function Transparent_Pricing() {
   const [showSuccessAnim, setShowSuccessAnim] = useState(false);
   const [priceZoom, setPriceZoom] = useState(false);
 
-  const handleBuyNow = () => {
+  // Stripe checkout loading state — button disable karvaa mate
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+
+  const handleBuyNow = async () => {
+    // Step 1: Disclaimer checkbox check karo — same as before
     if (!isChecked) {
       setShowError(true);
       return;
     }
     setShowError(false);
-    console.log("Proceed to payment");
+
+    // Step 2: Selected course ni id validate karo
+    if (!selectedCourse?.id) {
+      console.error("No course selected");
+      return;
+    }
+
+    try {
+      // Step 3: Loading start karo — button disable thashe
+      setIsCheckoutLoading(true);
+
+      // Step 4: Backend API call — Stripe Checkout Session banavo
+      const response = await fetch(
+        "https://apis.languageking.au/api/payments/create-checkout/web",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            subscriptionPackageId: selectedCourse.id, // selected course no _id API thi aave che
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      // Step 5: Response check karo — backend may return different field names.
+      // Try common variants: `checkoutUrl`, `url`, `checkout_url`, or nested `data`.
+      const checkoutUrl =
+        data?.checkoutUrl ||
+        data?.url ||
+        data?.checkout_url ||
+        (data?.data &&
+          (data.data.checkoutUrl || data.data.url || data.data.checkout_url));
+
+      if (!response.ok || !checkoutUrl) {
+        // If backend responded ok but did not include a URL, log full response
+        // to help debugging (backend might return a message like
+        // "Checkout session created" but omit the URL).
+        console.error("Create checkout response:", data);
+        alert(
+          data?.message ||
+            "Failed to create checkout session. Please try again.",
+        );
+        return;
+      }
+
+      // Step 6: Redirect the browser to Stripe hosted checkout page
+      // Use window.location.href (full redirect). This is what Stripe expects.
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      // Step 7: Error handle karo
+      console.error("Checkout error:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      // Step 8: Loading band karo (redirect na thay tyare)
+      setIsCheckoutLoading(false);
+    }
   };
 
   const discountedPrice =
@@ -1077,103 +1141,101 @@ function Transparent_Pricing() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 md:grid-cols-12 gap-8 lg:gap-[7.3412698413vw] items-stretch">
             <div className="lg:col-span-6 md:col-span-6">
+              <style>{`
+    @-moz-document url-prefix() {
+      .firefox-scroll-fix {
+        position: absolute;
+        inset: 0;
+        right: -6px;
+        padding-right: 4px;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #FFFFFF #929292;
+      }
+      .firefox-scroll-wrapper {
+        overflow: hidden;
+        position: relative;
+      }
+    }
+  `}</style>
+
               <div
-                className="rounded-[1.0416666667vw]  lg:h-[35.1475em] md:h-[40.9895833333em] h-[107.7777777778em] overflow-y-scroll space-y-4 [&::-webkit-scrollbar]:w-[2px]
-[&::-webkit-scrollbar-track]:bg-[#929292]
-[&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
-[&::-webkit-scrollbar-thumb]:rounded-full"
+                className="firefox-scroll-wrapper rounded-[1.0416666667vw] lg:h-[35.1475em] md:h-[40.9895833333em] h-[107.7777777778em] overflow-y-scroll space-y-4
+      [&::-webkit-scrollbar]:w-[2px]
+      [&::-webkit-scrollbar-track]:bg-[#929292]
+      [&::-webkit-scrollbar-thumb]:bg-[#FFFFFF]
+      [&::-webkit-scrollbar-thumb]:rounded-full"
               >
-                {(coursesByTab[activeTab] || []).map((course) => (
-                  <div
-                    key={course.id}
-                    onClick={() => {
-                      setSelectedCourse(course);
-                      setDiscountApplied(false);
-                      setCoupon("");
-                    }}
-                    className={`lg:w-[30.625em] md:w-[30.625em] w-[91.9444444444em] mx-auto cursor-pointer lg:rounded-[1.0416666667vw] rounded-[3.8888888889vw] pt-[3.6458333333vw] pr-[4.6875vw] pl-[3.6458333333vw] pb-[4.9479166667vw] lg:pr-[1.455026455vw] lg:pl-[1.1243386243vw] lg:pt-[1.3227513228vw] lg:pb-[1.455026455vw] lg:border-[0.1666666667vw] border-[0.5555555556vw] transition-all lg:[margin-block-end:1.2566137566vw]
+                <div className="firefox-scroll-fix">
+                  {(coursesByTab[activeTab] || []).map((course) => (
+                    <div
+                      key={course.id}
+                      onClick={() => {
+                        setSelectedCourse(course);
+                        setDiscountApplied(false);
+                        setCoupon("");
+                      }}
+                      className={`lg:w-[30.625em] md:w-[30.625em] w-[91.9444444444em] mx-auto cursor-pointer lg:rounded-[1.0416666667vw] rounded-[3.8888888889vw] pt-[3.6458333333vw] pr-[4.6875vw] pl-[3.6458333333vw] pb-[4.9479166667vw] lg:pr-[1.455026455vw] lg:pl-[1.1243386243vw] lg:pt-[1.3227513228vw] lg:pb-[1.455026455vw] lg:border-[0.1666666667vw] border-[0.5555555556vw] transition-all lg:[margin-block-end:1.2566137566vw]
+            ${
+              selectedCourse && selectedCourse.id === course.id
+                ? "border-white bg-[#16181D]"
+                : "border-transparent bg-[#15181d]"
+            }`}
+                    >
+                      <div className="flex justify-between items-center lg:mb-[1.3227513228vw] mb-[3.6458333333vw]">
+                        <h3 className="text-[#9D9B9B] lg:text-[1.3541666667em] md:text-[1.3541666667em] text-[4.5572916667vw] font-[550] leading-[1.1875]">
+                          {course.title}
+                        </h3>
 
-
-        ${
-          selectedCourse && selectedCourse.id === course.id
-            ? "border-white bg-[#16181D]"
-            : "border-transparent bg-[#15181d]"
-        }`}
-                  >
-                    <div className="flex justify-between items-center lg:mb-[1.3227513228vw] mb-[3.6458333333vw]">
-                      <h3 className="text-[#9D9B9B] lg:text-[1.3541666667em] md:text-[1.3541666667em] text-[4.5572916667vw] font-[550] leading-[1.1875]">
-                        {course.title}
-                      </h3>
-
-                      <span
-                        className="text-[2.7777777778em] lg:text-[0.9375em] md:text-[0.9375em] text-[#838383] underline-offset-[2px] underline"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedCourse1(course.title);
-                        }}
-                      >
-                        See Details
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between mb-[3.6458333333vw] lg:mb-[1.5873015873vw]">
-                      <p className="text-white lg:text-[1.6666666667em] md:text-[1.6666666667em] text-[5.5555555556em] lg:font-[550] font-[500] lg:leading-[1]">
-                        ${Math.floor(course.price)}
-                      </p>
-
-                      {course.badge && (
-                        <div className="bg-[#FFFFFF] text-black lg:text-[0.8854166667em] md:text-[0.8854166667em] text-[3.0555555556em] lg:px-[0.8928571429vw] lg:py-[0.376984127vw] px-[2.8645833333vw] py-[1.25vw] rounded-full tracking-[0.2em]">
-                          {course.badge}
-                        </div>
-                      )}
-                    </div>
-
-                    <ul className="space-y-5]">
-                      {course.points.map((point, i) => (
-                        // <li
-                        //   key={i}
-                        //   className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw]"
-                        // >
-                        //   {" "}
-                        //   <svg
-                        //     className="flex-shrink-0 lg:w-[1.1904761905vw] lg:h-[1.1904761905vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
-                        //     viewBox="0 0 24 24"
-                        //     fill="none"
-                        //   >
-                        //     {" "}
-                        //     <path
-                        //       d="M7.87967 20.8238L0 12.9385L1.70341 11.2351L7.87967 17.417L22.2966 3.00006L24 4.70347L7.87967 20.8238Z"
-                        //       fill="#EF94CA"
-                        //     />{" "}
-                        //   </svg>{" "}
-                        //   <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350] [margin-block-end:3.90625vw]  md:[margin-block-end:0] lg:[margin-block-end:0] ">
-                        //     {" "}
-                        //     {point}{" "}
-                        //   </span>{" "}
-                        // </li>
-                        <li
-                          key={i}
-                          className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw] last:lg:[margin-block-end:0] [margin-block-end:3.90625vw] last:[margin-block-end:0]"
+                        <span
+                          className="text-[2.7777777778em] lg:text-[0.9375em] md:text-[0.9375em] text-[#838383] underline-offset-[2px] underline"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedCourse1(course.title);
+                          }}
                         >
-                          <svg
-                            className="flex-shrink-0 lg:w-[1.1904761905vw] lg:h-[1.1904761905vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                          >
-                            <path
-                              d="M7.87967 20.8238L0 12.9385L1.70341 11.2351L7.87967 17.417L22.2966 3.00006L24 4.70347L7.87967 20.8238Z"
-                              fill="#EF94CA"
-                            />
-                          </svg>
+                          See Details
+                        </span>
+                      </div>
 
-                          <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350]">
-                            {point}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                      <div className="flex items-center justify-between mb-[3.6458333333vw] lg:mb-[1.5873015873vw]">
+                        <p className="text-white lg:text-[1.6666666667em] md:text-[1.6666666667em] text-[5.5555555556em] lg:font-[550] font-[500] lg:leading-[1]">
+                          ${Math.floor(course.price)}
+                        </p>
+
+                        {course.badge && (
+                          <div className="bg-[#FFFFFF] text-black lg:text-[0.8854166667em] md:text-[0.8854166667em] text-[3.0555555556em] lg:px-[0.8928571429vw] lg:py-[0.376984127vw] px-[2.8645833333vw] py-[1.25vw] rounded-full tracking-[0.2em]">
+                            {course.badge}
+                          </div>
+                        )}
+                      </div>
+
+                      <ul className="space-y-5]">
+                        {course.points.map((point, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start lg:gap-5 gap-[3.6458333333vw] text-white lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:[margin-block-end:1.5211640212vw] last:lg:[margin-block-end:0] [margin-block-end:3.90625vw] last:[margin-block-end:0]"
+                          >
+                            <svg
+                              className="flex-shrink-0 lg:w-[1.1904761905vw] lg:h-[1.1904761905vw] md:w-[1.09375em] md:h-[1.09375em] w-[3.7239583333vw] h-[3.7239583333vw] mt-1"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                            >
+                              <path
+                                d="M7.87967 20.8238L0 12.9385L1.70341 11.2351L7.87967 17.417L22.2966 3.00006L24 4.70347L7.87967 20.8238Z"
+                                fill="#EF94CA"
+                              />
+                            </svg>
+
+                            <span className="leading-[1.45] lg:leading-[1.5283] opacity-[0.75] text-[3.4vw] lg:text-[1.1243386243vw] font-[350]">
+                              {point}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -1229,7 +1291,10 @@ function Transparent_Pricing() {
                                   : "mt-0 lg:mt-1"
                               }`}
                             >
-                              <RenderText text={section.title} />
+                              <RenderText
+                                text={section.title}
+                                linkColor="#FFFFFF"
+                              />
                             </p>
 
                             <ul className="space-y-[0.6613756614vw] text-[#838383] lg:text-[1.1044973545vw] md:text-[1.09375em] text-[3.9192708333vw] mb-[1.8229166667vw] lg:mb-4 list-disc pl-5 lg:pl-[1.5211640212vw] lg:marker:text-[0.9920634921vw] lg:max-w-[21.2301587302vw] custom-a">
@@ -1238,13 +1303,13 @@ function Transparent_Pricing() {
                                   key={i}
                                   className="leading-relaxed lg:leading-[1.30]"
                                 >
-                                  <span className="block lg:[margin-block-end:0] [margin-block-end:0.9114583333vw] font-[385] lg:pl-[0.1322751323vw] pl-[0.5208333333vw]">
+                                  <span className="block lg:[margin-block-end:0] [margin-block-end:0.9114583333vw] font-[385] lg:pl-[0.1322751323vw] pl-[0.5208333333vw] text-[#838383]">
                                     <RenderText text={d.descText} />
                                   </span>
 
                                   {d.descNotes && (
                                     <span
-                                      className="block italic text-[#838383] lg:text-[0.9597883598vw] text-[3.3854166667vw] leading-5.25  lg:leading-normal"
+                                      className="block italic text-[#838383] lg:text-[0.9597883598vw] text-[3.3854166667vw] leading-[1.21]  lg:leading-normal"
                                       // style={{
                                       //   fontSize: "0.8597883598vw",
                                       //   fontWeight: 385,
@@ -1279,7 +1344,7 @@ function Transparent_Pricing() {
 
             {/*whatsapp div mobile view*/}
             <div className="w-full flex justify-center items-center lg:hidden">
-              <div className="flex items-center gap-[2.6041666667vw] lg:gap-[0.9259259259vw] px-[2.8645833333vw] lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-[1.5625vw] lg:py-[0.5952380952vw] border-[0.3944444444vw] border-[#00BF63] rounded-[2.6041666667vw] w-[87.2395833333vw]">
+              <div className="flex items-center gap-[3.3854166667vw] lg:gap-[0.9259259259vw] px-[2.8645833333vw] lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-[1.5625vw] lg:py-[0.5952380952vw] border-[0.3944444444vw] border-[#00BF63] rounded-[2.6041666667vw] w-[87.2395833333vw]">
                 <div className=" rounded-full flex items-center justify-center">
                   {/* <img
                     src={WP}
@@ -1287,7 +1352,7 @@ function Transparent_Pricing() {
                     className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[12.2395833333vw] h[9.7222222222em]"
                   /> */}
                   <svg
-                    className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
+                    className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[12.2395833333vw] h[12.2395833333vw] my-[0.78125vw]"
                     viewBox="0 0 1540 1555"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -1330,9 +1395,7 @@ function Transparent_Pricing() {
 
             <div className="lg:col-span-6 md:col-span-6 flex justify-center items-center ml-[5px] lg:ml-0">
               <div
-                className={`bg-[#212121] rounded-xl lg:rounded-[1.3227513228vw] p-5 lg:px-[2.0502645503vw] 
-      lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] flex flex-col
-      relative overflow-hidden`}
+                className={`bg-[#212121] rounded-xl lg:rounded-[1.3227513228vw] lg:p-[1.3227513228vw] pt-[3.6458333333vw] pb-[4.1666666667vw] px-[20px] lg:px-[2.0502645503vw] lg:w-[35.3125em] md:w-[35.3125em] w-[94.4444444444em] flex flex-col overflow-hidden`}
               >
                 {/* ── Card light sweep ── */}
                 <div
@@ -1352,9 +1415,9 @@ function Transparent_Pricing() {
                 {/* ── All existing content — z-index 1 so sweep goes behind ── */}
                 <div className="relative z-[1] flex flex-col flex-1">
                   {/* Header */}
-                  <div className="flex items-center gap-3 lg:gap-[0.9259259259vw]">
+                  <div className="flex items-center gap-[2.8645833333vw] lg:gap-[0.9259259259vw] lg:mb-0 mb-[3.125vw]">
                     <svg
-                      className="mb-4 lg:h-[1.2896825397vw] lg:w-[1.2896825397vw] w-[3.8888888889em] h-[3.8888888889em]"
+                      className="lg:mb-4 lg:h-[1.2896825397vw] lg:w-[1.2896825397vw] w-[4.6875vw] h-[4.6875vw]"
                       viewBox="0 0 16 16"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -1364,15 +1427,15 @@ function Transparent_Pricing() {
                         fill="white"
                       />
                     </svg>
-                    <h2 className="text-white lg:text-[1.3888888889vw] lg:leading-[1.23] lg:tracking-[0.2px] md:text-[1.3541666667vw] text-[3.8888888889em] mb-4 lg:mb-[1.0582010582vw] font-medium">
+                    <h2 className="text-white lg:text-[1.3888888889vw] lg:leading-[1.23] lg:tracking-[0.2px] md:text-[1.3541666667vw] text-[3.8888888889em] lg:mb-[1.0582010582vw] font-medium">
                       Order Summary
                     </h2>
                   </div>
 
-                  <hr className="border-[#838383] mb-4 lg:mb-[1.3227513228vw]" />
+                  <hr className="border-[#838383] lg:mb-[1.3227513228vw]" />
 
                   {/* Course badge */}
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex justify-between items-center lg:mb-4 mb-[4.9479166667vw] lg:mt-0 mt-[3.90625vw]">
                     <div className="bg-black lg:px-[0.7275132275vw] lg:py-[0.4431216931vw] px-[1.8229166667vw] py-[1.5625vw] rounded-[2.0833333333vw] lg:rounded-[0.6613756614vw]">
                       <h3 className="text-[#EDE4CD] font-[550] lg:text-[1.4814814815vw] md:text-[1.4583333333vw] text-[4.4444444444em] leading-[1.14286] lg:tracking-[0.2px]">
                         {selectedCourse?.title || "Select a course"}
@@ -1648,7 +1711,7 @@ function Transparent_Pricing() {
                     <input
                       id="disclaimer-checkbox"
                       type="checkbox"
-                      className="h-[10px] lg:h-[2.1825396825vw] lg:w-[2.1825396825vw] w-[10px] mt-[0.2777777778vw] lg:-mt-[0.3306878307vw]"
+                      className="h-[4.1666666667vw] lg:h-[2.5132275132vw] lg:w-[2.5132275132vw] w-[4.1666666667vw] mt-[0.5208333333vw] lg:-mt-[0.4166666667vw]"
                       checked={isChecked}
                       onChange={(e) => {
                         setIsChecked(e.target.checked);
@@ -1661,10 +1724,10 @@ function Transparent_Pricing() {
                       before joining this course.
                     </span>
                     {showError && (
-                      <div className="absolute -bottom-4 left-33 -translate-x-1/2 sm:-bottom-[10px] sm:-left-20 sm:translate-x-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 sm:px-4 text-xs sm:text-sm text-gray-700 flex items-center gap-2 w-max max-w-[90vw] sm:max-w-none">
+                      <div className="absolute -bottom-4 left-33 -translate-x-1/2 sm:-bottom-[10px] sm:-left-5 sm:translate-x-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 sm:px-4 text-xs sm:text-sm text-gray-700 flex items-center gap-2 w-max max-w-[90vw] sm:max-w-none lg:text-[0.9259259259vw] text-[3.125vw]">
                         <span className="text-orange-500 font-bold">!</span>
                         Please tick the disclaimer checkbox to proceed.
-                        <div className="absolute -top-1 lg:left-20 left-6 w-3 h-3 bg-white border-l border-t border-gray-300 rotate-45"></div>
+                        <div className="absolute -top-1 lg:left-5 left-6 w-3 h-3 bg-white border-l border-t border-gray-300 rotate-45"></div>
                       </div>
                     )}
                   </div>
@@ -1673,19 +1736,22 @@ function Transparent_Pricing() {
                   <div className="lg:mt-[0.5291005291vw] mt-auto flex items-center justify-center">
                     <button
                       onClick={handleBuyNow}
+                      // Loading hoy tyare button disable karo — double click avoid karvaa
+                      disabled={isCheckoutLoading}
                       className={`lg:w-[22.4479166667vw] md:w-[20.4479166667em] w-[80.2083333333vw] 
             bg-[#4BAF4F] text-white py-[4.5572916667vw] lg:py-[1.1243386243vw] 
             lg:text-[1.3020833333vw] md:text-[1.3020833333vw] text-[4.4444444444em] 
             rounded-lg font-medium mt-[0.5063291139vw] lg:mt-[1.0416666667vw] 
             lg:mb-[1.0416666667vw] mb-[3.3854166667vw] cursor-pointer
             relative overflow-hidden
+            ${isCheckoutLoading ? "opacity-70 cursor-not-allowed" : ""}
             ${
               status === "valid"
                 ? "shadow-[0_0_18px_0_rgba(178,255,0,0.40)] hover:shadow-[0_0_18px_0_rgba(178,255,0,0.60)]"
                 : "hover:shadow-[0_0_18px_0_rgba(178,255,0,0.60)]"
             }`}
                     >
-                      {/* Shimmer span */}
+                      {/* Shimmer span — same as before */}
                       <span
                         className={showSuccessAnim ? "btn-shimmer-span" : ""}
                         style={{
@@ -1700,7 +1766,10 @@ function Transparent_Pricing() {
                           pointerEvents: "none",
                         }}
                       />
-                      Buy Now – A${Math.floor(discountedPrice)}
+                      {/* Loading hoy tyare alag text — redirect thata sudhi dikhadshe */}
+                      {isCheckoutLoading
+                        ? "Redirecting to payment..."
+                        : `Buy Now – A$${Math.floor(discountedPrice)}`}
                     </button>
                   </div>
 
@@ -1734,7 +1803,7 @@ function Transparent_Pricing() {
 
       {/*whatsapp div*/}
       <div className="w-full py-10 px-6 lg:flex justify-center items-center hidden">
-        <div className="flex items-center gap-4 lg:gap-[0.9259259259vw] px-3 lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-2 lg:py-[0.5952380952vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
+        <div className="flex items-center gap-4 lg:gap-[1.0582010582vw] px-3 lg:px-0 lg:pl-[0.9259259259vw] lg:pr-[2.2486772487vw] py-2 lg:py-[0.5952380952vw] border-[0.1322751323vw] border-[#00BF63] rounded-xl">
           <div className=" rounded-full flex items-center justify-center">
             {/* <img
               src={WP}
@@ -1742,7 +1811,7 @@ function Transparent_Pricing() {
               className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
             /> */}
             <svg
-              className="lg:w-[4.1666666667vw] lg:h-[4.1666666667vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em]"
+              className="lg:w-[3.5846560847vw] lg:h-[3.5846560847vw] md:w-[3.3333333333em] md:h-[3.3333333333em] w-[9.7222222222em] h[9.7222222222em] mt-[0.1984126984vw] mb-[0.2976190476vw] mx-[0.1984126984vw]"
               viewBox="0 0 1540 1555"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1787,7 +1856,7 @@ function Transparent_Pricing() {
 
       <div className="w-full text-white py-[7.2916666667em] lg:px-6 mt-3 pt-[28.90625vw] lg:pt-[5.0925925926vw] lg:pb-[12.4338624339vw]">
         <div className=" mx-auto text-center">
-          <h2 className="text-[6.1111111111em] md:text-[2.380952381vw] lg:text-[2.380952381vw] lg:font-[400] font-[500] lg:mb-[1.9841269841vw] mb-[4.6875vw] tracking-[0.2px] leading-[1.22727] lg:leading-normal">
+          <h2 className="text-[6.1111111111em] md:text-[2.380952381vw] lg:text-[2.380952381vw] lg:font-[400] font-[500] lg:mb-[1.9841269841vw] mb-[1.0416666667vw] tracking-[0.2px] leading-[1.22727] lg:leading-normal">
             {trustedSection.heading}
           </h2>
 
@@ -1822,9 +1891,9 @@ function Transparent_Pricing() {
           </div>
 
           {/* Mobile */}
-          <div className="flex md:hidden md:flex-row items-center md:items-start justify-center lg:gap-[9.1746031746vw] gap-[7.5520833333vw] p-4 lg:pl-0 pl-[10.15625vw] py-[4.1666666667vw] lg:py-0">
-            <div className="flex flex-col items-center md:items-start gap-[3.6458333333vw] max-w-[37.7777777778vw]">
-              <div className="flex -space-x-3 mb-4 ">
+          <div className="flex md:hidden md:flex-row items-center md:items-start justify-center lg:gap-[9.1746031746vw] gap-[7.5520833333vw] p-4 lg:pl-0 pl-[10.15625vw] py-[4.1666666667vw] lg:py-0 mb-[3.90625vw]">
+            <div className="flex flex-col items-center md:items-start gap-[2.6041666667vw] max-w-[37.7777777778vw]">
+              <div className="flex -space-x-3 mb-4 mt-[3.3854166667vw]">
                 {trustedSection.avatar_images.map((avatar, index) => (
                   <img
                     key={index}
@@ -1840,7 +1909,7 @@ function Transparent_Pricing() {
               </div>
             </div>
 
-            <div className="flex flex-col md:items-start items-start gap-[3.6458333333vw] max-w-[37.7777777778vw]">
+            <div className="flex flex-col md:items-start items-start gap-[3.6458333333vw] max-w-[37.7777777778vw] mt-[3.3854166667vw]">
               <p className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886] leading-[1.28571] lg:leading-normal text-left">
                 {trustedSection.avatar_text}
               </p>
@@ -1856,7 +1925,7 @@ function Transparent_Pricing() {
               <img
                 src={Frame}
                 alt=""
-                className="w-[125%] md:w-full max-w-none object-contain mix-blend-screen lg:my-2 lg:mb-0 mb-[5.2083333333vw]"
+                className="w-[125%] md:w-full max-w-none object-contain mix-blend-screen lg:my-2 lg:mb-0 mb-[7.03125vw]"
                 style={{
                   maskImage:
                     "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
@@ -1867,7 +1936,7 @@ function Transparent_Pricing() {
             </div>
           </div>
 
-          <p className="text-[5.5555555556em] md:text-[1.9791666667em] lg:text-[2.0502645503vw] tracking-[0.6px] mb-3">
+          <p className="text-[5.5555555556em] md:text-[1.9791666667em] lg:text-[2.0502645503vw] tracking-[0.6px] lg:mb-3 leading-[1.30] lg:leading-normal lg:w-full w-[97.9166666667vw] mb-[2.8645833333vw]">
             <span className="text-[#757575]">“</span>{" "}
             {trustedSection.bottom_heading}{" "}
             <span className="text-[#757575]">”</span>
@@ -1884,7 +1953,7 @@ function Transparent_Pricing() {
       {/* Faqs Section Start here*/}
 
       <div className=" relative z-10 sm:mb-[0] mb-[-13.8888888889vw]">
-        <div className="custom-container mx-auto md:py-[6.6137566138em] sm:py-[4.6296296296em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative pt-[20.5729166667vw] pb-[18.4895833333vw] lg:pt-0 lg:pb-0">
+        <div className="custom-container mx-auto md:py-[6.6137566138em] sm:py-[4.6296296296em] py-[40px] px-4 sm:px-[2.1164021164em] w-full z-10 relative pt-[20.5729166667vw] pb-[18.4895833333vw] lg:pt-0 lg:pb-[5.6216931217vw]">
           {/* <h2 className="font-inter font-normal md:text-[4.0211640212em] sm:text-[6.258148631em] text-[11em] leading-[1.11] 2xl:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-white text-center sm:mb-[0.6578947368em] mb-[7.8125vw] xs:tracking-normal tracking-[2.2px]"> */}
           <h2 className="font-inter font-[500] lg:font-[400] md:text-[3.0423280423vw] sm:text-[6.258148631em] text-[8.59375vw] leading-[1.2258] lg:mt-[0.1315789474em] xs:mt-0 mt-[3.125vw] text-[#FBFFDB] text-center sm:mb-[0.6578947368em] mb-[10.4166666667vw] md:mb-[3.3068783069vw] xs:tracking-normal tracking-[0.5px]">
             Frequenty Asked Questions
@@ -1919,6 +1988,20 @@ function Transparent_Pricing() {
               </div>
             ))}
           </div>
+        </div>
+        <div className="flex justify-center gap-5">
+          <button
+            className="text-[14px] bg-white text-center"
+            onClick={() => navigate("/payment-success")}
+          >
+            home
+          </button>
+          <button
+            className="text-[14px] bg-white text-center"
+            onClick={() => navigate("/payment-cancel")}
+          >
+            home2
+          </button>
         </div>
       </div>
 

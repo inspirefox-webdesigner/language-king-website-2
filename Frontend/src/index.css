@@ -822,6 +822,13 @@ header {
   }
 }
 
+@media (max-width: 768px){
+  .ai-text{
+    font-size:3.3854166667vw;
+    line-height:1.21;
+  }
+}
+
 
 /* 🌍 All Browsers Scrollbar Styling */
 
