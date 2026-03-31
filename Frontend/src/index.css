@@ -894,8 +894,9 @@ header {
 
 /* Floating sparks around success banner */
 @keyframes sparkFloat {
-  0%   { opacity: 1; transform: translate(0, 0) scale(1); }
-  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.3) rotate(var(--rot)); }
+  0%   { opacity: 1; transform: translate(0, 0) scale(1.2); }
+  60%  { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--rot)); }
 }
 
 /* Price bounce class */

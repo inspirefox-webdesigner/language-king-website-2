@@ -193,70 +193,59 @@ function Transparent_Pricing() {
   const [coupon, setCoupon] = useState("");
   const [status, setStatus] = useState("idle");
   // idle | typing | invalid | expired | valid
+  const [couponData, setCouponData] = useState(null);
+  const [strikeVisible, setStrikeVisible] = useState(false);
 
-  const VALID_CODE = "Dis150Ja2602";
-
-  const [strikeVisible, setStrikeVisible] = useState(false); // permanent — strikethrough st transient — price bounce
-
-  // ── handleChange — strikeVisible pn reset karo ──
   const handleChange = (e) => {
     setCoupon(e.target.value);
     setStatus("typing");
-    setStrikeVisible(false); // jyare navo code type kare to line jaay
+    setStrikeVisible(false);
+    setCouponData(null);
   };
 
-  // const handleApply = () => {
-  //   const value = coupon.trim();
-
-  //   if (!value) return;
-
-  //   if (value === VALID_CODE) {
-  //     setStatus("valid");
-  //     return;
-  //   }
-
-  //   if (VALID_CODE.toLowerCase().startsWith(value.toLowerCase().slice(0, 5))) {
-  //     setStatus("expired");
-  //   } else {
-  //     setStatus("invalid");
-  //   }
-  // };
-
-  const handleApply = () => {
+  const handleApply = async () => {
     const value = coupon.trim();
+    if (!value || !selectedCourse?.id) return;
 
-    if (!value) return;
+    try {
+      const response = await fetch(
+        "https://apis.languageking.au/api/payments/validate-coupon",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            code: value,
+            subscriptionPackageId: selectedCourse.id,
+          }),
+        }
+      );
 
-    if (value === VALID_CODE) {
-      setStatus("valid");
-      setStrikeVisible(false); // reset for fresh animation
-      setPriceZoom(false);
-      setShowSuccessAnim(false);
+      const data = await response.json();
 
-      // Step 1 — thodi der pachhi old price fade in + strikethrough draw
-      setTimeout(() => {
-        setStrikeVisible(true); // stays true permanently — line rahi jaay
-      }, 700);
+      if (data.success && data.data) {
+        setStatus("valid");
+        setCouponData(data.data);
+        setStrikeVisible(false);
+        setPriceZoom(false);
+        setShowSuccessAnim(false);
 
-      // Step 2 — new price bounce
-      setTimeout(() => {
-        setPriceZoom(true);
-        setTimeout(() => setPriceZoom(false), 600);
-      }, 900);
-
-      // Step 3 — card sweep + sparks + btn shimmer (transient)
-      setTimeout(() => {
-        setShowSuccessAnim(true);
-        setTimeout(() => setShowSuccessAnim(false), 950);
-      }, 200);
-
-      return;
-    }
-
-    if (VALID_CODE.toLowerCase().startsWith(value.toLowerCase().slice(0, 5))) {
-      setStatus("expired");
-    } else {
+        setTimeout(() => setStrikeVisible(true), 700);
+        setTimeout(() => {
+          setPriceZoom(true);
+          setTimeout(() => setPriceZoom(false), 600);
+        }, 900);
+        setTimeout(() => {
+          setShowSuccessAnim(true);
+          setTimeout(() => setShowSuccessAnim(false), 950);
+        }, 200);
+      } else {
+        setStatus("invalid");
+        setCouponData(null);
+      }
+    } catch (error) {
+      console.error("Coupon validation error:", error);
       setStatus("invalid");
+      setCouponData(null);
     }
   };
 
@@ -270,41 +259,40 @@ function Transparent_Pricing() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
 
   const handleBuyNow = async () => {
-    // Step 1: Disclaimer checkbox check karo — same as before
     if (!isChecked) {
       setShowError(true);
       return;
     }
     setShowError(false);
 
-    // Step 2: Selected course ni id validate karo
     if (!selectedCourse?.id) {
       console.error("No course selected");
       return;
     }
 
     try {
-      // Step 3: Loading start karo — button disable thashe
       setIsCheckoutLoading(true);
 
-      // Step 4: Backend API call — Stripe Checkout Session banavo
+      const payload = {
+        subscriptionPackageId: selectedCourse.id,
+      };
+
+      // Add coupon code if valid
+      if (status === "valid" && coupon.trim()) {
+        payload.couponCode = coupon.trim();
+      }
+
       const response = await fetch(
         "https://apis.languageking.au/api/payments/create-checkout/web",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            subscriptionPackageId: selectedCourse.id, // selected course no _id API thi aave che
-          }),
-        },
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
       );
 
       const data = await response.json();
 
-      // Step 5: Response check karo — backend may return different field names.
-      // Try common variants: `checkoutUrl`, `url`, `checkout_url`, or nested `data`.
       const checkoutUrl =
         data?.checkoutUrl ||
         data?.url ||
@@ -313,34 +301,30 @@ function Transparent_Pricing() {
           (data.data.checkoutUrl || data.data.url || data.data.checkout_url));
 
       if (!response.ok || !checkoutUrl) {
-        // If backend responded ok but did not include a URL, log full response
-        // to help debugging (backend might return a message like
-        // "Checkout session created" but omit the URL).
         console.error("Create checkout response:", data);
         alert(
           data?.message ||
-            "Failed to create checkout session. Please try again.",
+            "Failed to create checkout session. Please try again."
         );
         return;
       }
 
-      // Step 6: Redirect the browser to Stripe hosted checkout page
-      // Use window.location.href (full redirect). This is what Stripe expects.
       window.location.href = checkoutUrl;
     } catch (error) {
-      // Step 7: Error handle karo
       console.error("Checkout error:", error);
       alert("Something went wrong. Please try again.");
     } finally {
-      // Step 8: Loading band karo (redirect na thay tyare)
       setIsCheckoutLoading(false);
     }
   };
 
   const discountedPrice =
-    status === "valid" && selectedCourse
-      ? selectedCourse.price - 50
+    status === "valid" && couponData
+      ? couponData.finalPrice
       : selectedCourse?.price || 0;
+
+  const originalPrice = selectedCourse?.price || 0;
+  const discountAmount = couponData?.discountAmount || 0;
 
   // Fetch dynamic tabs, cards, and popups from the single mobile API
   // Mapping rules:
@@ -1494,74 +1478,203 @@ function Transparent_Pricing() {
                         <>
                           {[
                             {
-                              top: "-8px",
-                              left: "10%",
-                              tx: "-20px",
-                              ty: "-28px",
-                              rot: "40deg",
-                              dur: "0.7s",
-                              delay: "0.1s",
+                              top: "90%",
+                              left: "6%",
+                              tx: "-100px",
+                              ty: "-170px",
+                              rot: "35deg",
+                              dur: "0.82s",
+                              delay: "0.01s",
                               color: "#4ade80",
+                              size: "9px",
                             },
                             {
-                              top: "-6px",
-                              left: "30%",
-                              tx: "14px",
-                              ty: "-32px",
-                              rot: "-30deg",
-                              dur: "0.65s",
-                              delay: "0.15s",
+                              top: "90%",
+                              left: "13%",
+                              tx: "-70px",
+                              ty: "-160px",
+                              rot: "-25deg",
+                              dur: "0.78s",
+                              delay: "0.04s",
                               color: "#fbbf24",
+                              size: "8px",
                             },
                             {
-                              top: "-8px",
-                              left: "55%",
-                              tx: "22px",
-                              ty: "-26px",
-                              rot: "60deg",
-                              dur: "0.75s",
-                              delay: "0.05s",
+                              top: "90%",
+                              left: "21%",
+                              tx: "-30px",
+                              ty: "-175px",
+                              rot: "50deg",
+                              dur: "0.88s",
+                              delay: "0.07s",
                               color: "#22d3ee",
+                              size: "10px",
                             },
                             {
-                              top: "-6px",
-                              left: "75%",
-                              tx: "-16px",
-                              ty: "-30px",
-                              rot: "-50deg",
-                              dur: "0.6s",
-                              delay: "0.2s",
-                              color: "#f472b6",
-                            },
-                            {
-                              top: "-6px",
-                              left: "88%",
-                              tx: "10px",
-                              ty: "-24px",
-                              rot: "25deg",
-                              dur: "0.7s",
+                              top: "90%",
+                              left: "28%",
+                              tx: "40px",
+                              ty: "-165px",
+                              rot: "-30deg",
+                              dur: "0.82s",
                               delay: "0.1s",
+                              color: "#f472b6",
+                              size: "9px",
+                            },
+                            {
+                              top: "90%",
+                              left: "36%",
+                              tx: "80px",
+                              ty: "-170px",
+                              rot: "60deg",
+                              dur: "0.86s",
+                              delay: "0.13s",
                               color: "#a78bfa",
+                              size: "10px",
                             },
                             {
-                              top: "50%",
-                              left: "-6px",
-                              tx: "-24px",
-                              ty: "-18px",
-                              rot: "-40deg",
-                              dur: "0.65s",
-                              delay: "0.12s",
+                              top: "90%",
+                              left: "44%",
+                              tx: "-20px",
+                              ty: "-180px",
+                              rot: "-45deg",
+                              dur: "0.74s",
+                              delay: "0.16s",
                               color: "#4ade80",
+                              size: "8px",
                             },
                             {
-                              top: "50%",
-                              right: "-6px",
-                              tx: "24px",
-                              ty: "-16px",
-                              rot: "45deg",
-                              dur: "0.7s",
-                              delay: "0.08s",
+                              top: "90%",
+                              left: "52%",
+                              tx: "30px",
+                              ty: "-160px",
+                              rot: "28deg",
+                              dur: "0.91s",
+                              delay: "0.19s",
                               color: "#fbbf24",
+                              size: "9px",
+                            },
+                            {
+                              top: "90%",
+                              left: "60%",
+                              tx: "90px",
+                              ty: "-155px",
+                              rot: "-50deg",
+                              dur: "0.8s",
+                              delay: "0.22s",
+                              color: "#22d3ee",
+                              size: "9px",
+                            },
+                            {
+                              top: "90%",
+                              left: "68%",
+                              tx: "-60px",
+                              ty: "-150px",
+                              rot: "42deg",
+                              dur: "0.83s",
+                              delay: "0.25s",
+                              color: "#f472b6",
+                              size: "9px",
+                            },
+                            {
+                              top: "90%",
+                              left: "76%",
+                              tx: "110px",
+                              ty: "-140px",
+                              rot: "48deg",
+                              dur: "0.84s",
+                              delay: "0.28s",
+                              color: "#a78bfa",
+                              size: "10px",
+                            },
+                            {
+                              top: "90%",
+                              left: "84%",
+                              tx: "-120px",
+                              ty: "-145px",
+                              rot: "-40deg",
+                              dur: "0.79s",
+                              delay: "0.31s",
+                              color: "#4ade80",
+                              size: "8px",
+                            },
+                            {
+                              top: "90%",
+                              left: "92%",
+                              tx: "60px",
+                              ty: "-150px",
+                              rot: "30deg",
+                              dur: "0.87s",
+                              delay: "0.34s",
+                              color: "#fbbf24",
+                              size: "9px",
+                            },
+
+                            {
+                              top: "90%",
+                              left: "10%",
+                              tx: "-30px",
+                              ty: "70px",
+                              rot: "55deg",
+                              dur: "0.76s",
+                              delay: "0.37s",
+                              color: "#a78bfa",
+                              size: "8px",
+                            },
+                            {
+                              top: "90%",
+                              left: "25%",
+                              tx: "20px",
+                              ty: "90px",
+                              rot: "-20deg",
+                              dur: "0.82s",
+                              delay: "0.4s",
+                              color: "#4ade80",
+                              size: "10px",
+                            },
+                            {
+                              top: "90%",
+                              left: "40%",
+                              tx: "-10px",
+                              ty: "80px",
+                              rot: "60deg",
+                              dur: "0.78s",
+                              delay: "0.43s",
+                              color: "#22d3ee",
+                              size: "9px",
+                            },
+                            {
+                              top: "90%",
+                              left: "55%",
+                              tx: "15px",
+                              ty: "85px",
+                              rot: "-25deg",
+                              dur: "0.8s",
+                              delay: "0.46s",
+                              color: "#f472b6",
+                              size: "9px",
+                            },
+                            {
+                              top: "90%",
+                              left: "70%",
+                              tx: "-25px",
+                              ty: "75px",
+                              rot: "45deg",
+                              dur: "0.77s",
+                              delay: "0.49s",
+                              color: "#a78bfa",
+                              size: "8px",
+                            },
+                            {
+                              top: "90%",
+                              left: "85%",
+                              tx: "25px",
+                              ty: "95px",
+                              rot: "-30deg",
+                              dur: "0.83s",
+                              delay: "0.52s",
+                              color: "#4ade80",
+                              size: "10px",
                             },
                           ].map((s, i) => (
                             <span
@@ -1603,7 +1716,10 @@ function Transparent_Pricing() {
                       </svg>
 
                       <p className="text-[#FFDB15] lg:text-[1.09375em] md:text-[1.09375em] text-[3.3333333333em] lg:mt-[0.1322751323vw]">
-                        Discount applied! You saved $50 on this course
+                        Discount applied! You saved `${Math.floor(
+                            (selectedCourse?.price || 0) -
+                              discountedPrice
+                          )}` on this course
                       </p>
                     </div>
                   )}
