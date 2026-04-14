@@ -196,6 +196,14 @@ function Transparent_Pricing() {
   const [couponData, setCouponData] = useState(null);
   const [strikeVisible, setStrikeVisible] = useState(false);
 
+  // Reset coupon when course changes
+  useEffect(() => {
+    setCoupon("");
+    setStatus("idle");
+    setCouponData(null);
+    setStrikeVisible(false);
+  }, [selectedCourse?.id]);
+
   const handleChange = (e) => {
     setCoupon(e.target.value);
     setStatus("typing");
