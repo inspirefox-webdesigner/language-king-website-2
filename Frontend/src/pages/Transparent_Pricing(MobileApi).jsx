@@ -1843,12 +1843,10 @@ function Transparent_Pricing() {
                       }}
                     />
                     <span className="lg:text-[1.0251322751vw]">
-                      Disclaimer: There will be no refund for this course, as
-                      all our products are online. Please make up your mind
-                      before joining this course.
+                      Disclaimer: All enrolments are final and non-transferable. Refunds are not provided for change of mind. Please be certain before enrolling.
                     </span>
                     {showError && (
-                      <div className="absolute -bottom-4 left-33 -translate-x-1/2 sm:-bottom-[10px] sm:-left-5 sm:translate-x-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 sm:px-4 text-xs sm:text-sm text-gray-700 flex items-center gap-2 w-max max-w-[90vw] sm:max-w-none lg:text-[0.9259259259vw] text-[3.125vw]">
+                      <div className="absolute -bottom-4 left-33 -translate-x-1/2 sm:-bottom-[10px] sm:-left-5 sm:translate-x-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 lg:px-2 text-xs sm:text-sm text-gray-700 flex items-center gap-2 w-max max-w-[90vw] sm:max-w-none lg:text-[0.9259259259vw] text-[3.125vw]">
                         <span className="text-orange-500 font-bold">!</span>
                         Please tick the disclaimer checkbox to proceed.
                         <div className="absolute -top-1 lg:left-5 left-6 w-3 h-3 bg-white border-l border-t border-gray-300 rotate-45"></div>
@@ -2033,12 +2031,12 @@ function Transparent_Pricing() {
               </div>
             </div>
 
-            <div className="flex flex-col md:items-start items-start gap-[3.6458333333vw] max-w-[37.7777777778vw] mt-[3.3854166667vw]">
-              <p className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886] leading-[1.28571] lg:leading-normal text-left">
+            <div className="flex flex-col md:items-start items-start gap-[3.6458333333vw] max-w-[37.7777777778vw]">
+              <p className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886] leading-[1.28571] lg:leading-normal text-left mt-[3.38542vw]">
                 {trustedSection.avatar_text}
               </p>
 
-              <span className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886] text-left">
+              <span className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886] text-leftmt-[3.38542vw]">
                 {trustedSection.star_text}
               </span>
             </div>
@@ -2052,9 +2050,9 @@ function Transparent_Pricing() {
                 className="w-[125%] md:w-full max-w-none object-contain mix-blend-screen lg:my-2 lg:mb-0 mb-[7.03125vw]"
                 style={{
                   maskImage:
-                    "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+                    "linear-gradient(to bottom, transparent 0%, black 44%, black 80%, transparent 100%)",
                   WebkitMaskImage:
-                    "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+                    "linear-gradient(to bottom, transparent 0%, black 44%, black 80%, transparent 100%)",
                 }}
               />
             </div>

@@ -15,7 +15,7 @@ class DropdownManager {
       this.activeDropdown = null;
     }
   }
- 
+
   openDropdown(id) {
     // Close all other dropdowns
     this.dropdowns.forEach((setIsOpen, dropdownId) => {
