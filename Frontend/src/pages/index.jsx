@@ -146,7 +146,7 @@ const courses = [
     btnClass: "bg-gradient-GreenBtn",
     btn1Text: "Take the Course",
     btn2Text: "View Details",
-    btn1Link: "/transparent-pricing", // if you want to use openPopup instead, pass null
+    btn1Link: "/transparent-pricing2", // if you want to use openPopup instead, pass null
     btn2Link: "/naaticcl",
   },
   {
@@ -162,7 +162,7 @@ const courses = [
     btnClass: "bg-gradient-secondary",
     btn1Text: "Take the Course",
     btn2Text: "View Details",
-    btn1Link: "/transparent-pricing",
+    btn1Link: "/transparent-pricing2",
     btn2Link: "/pte-masterclass",
   },
   {

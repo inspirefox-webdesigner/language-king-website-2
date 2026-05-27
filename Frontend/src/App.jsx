@@ -52,7 +52,7 @@ function App() {
           <Route path="/Terms-of-Use" element={<TermsOfUse />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/transparent-pricing" element={<Transparent_Pricing />} />
-          <Route path="/transparent-pricing-mobile" element={<Transparent_Pricing2 />} />
+          <Route path="/transparent-pricing2" element={<Transparent_Pricing2 />} />
           <Route path="/payment-success" element={<PaymentSuccessMessage />} />
           <Route path="/payment-cancel" element={<PaymentCancelMessage />} />
         </Routes>
