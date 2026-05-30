@@ -2111,20 +2111,7 @@ function Transparent_Pricing() {
             ))}
           </div>
         </div>
-        <div className="flex justify-center gap-5">
-          <button
-            className="text-[14px] bg-white text-center"
-            onClick={() => navigate("/payment-success")}
-          >
-            home
-          </button>
-          <button
-            className="text-[14px] bg-white text-center"
-            onClick={() => navigate("/payment-cancel")}
-          >
-            home2
-          </button>
-        </div>
+        
       </div>
 
       {/*Faqs section end Here*/}
