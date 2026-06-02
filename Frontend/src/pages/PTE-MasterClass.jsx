@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PTEBanner from "../assets/students/abhishek-pte.jfif";
+import PTEBanner from "../assets/students/abhushek-pte2.png";
 import HomeBanner from "../assets/Homepage-banner.png";
 import avatar from "../assets/avatar-img.png";
 import AppleIcon from "../assets/icons/apple-icon.svg";
