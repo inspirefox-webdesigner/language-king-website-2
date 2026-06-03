@@ -565,7 +565,7 @@ const PTEMasterClass = () => {
         <section className="course-banner lg:pt-[17.8571428571em] sm:pt-[26.3671875em] pt-[450px] sm:pb-[6.6137566138em] pb-[60px] mt-[-150px] relative flex flex-column justify-center items-center">
           {/* <div className="2xl:w-[66%] w-full 2xl:h-[75%] sm:h-full h-[50%] top-0 right-0 bottom-0 absolute"> */}
           <div className="lg:w-[66%] w-full lg:h-[75%] sm:h-full h-[50%] top-[6vw] right-0 bottom-0 absolute">
-            <div className="course-banner-gradient course-banner-gradient-symmetric absolute w-full h-full top-0 left-0 right-0 bottom-0"></div>
+              <div className="course-banner-gradient course-banner-gradient-symmetric absolute w-full h-full top-0 left-0 right-0 bottom-0"></div>
             <ImageWithToggle
               src={PTEBanner}
               alt="HomeBanner"
