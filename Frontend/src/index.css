@@ -359,7 +359,7 @@ header {
 }
 
 .course-banner-gradient {
-  background: linear-gradient(90deg, rgb(13 13 13), transparent 20%), linear-gradient(transparent 80%, rgb(13 13 13));
+  background: linear-gradient(90deg, rgb(13 13 13), transparent 20%), linear-gradient(transparent 80%, rgb(13 13 13)), linear-gradient(to bottom, rgb(13 13 13) 0%, transparent 15%);
 }
 
 .course-banner-gradient-symmetric {
@@ -537,7 +537,7 @@ header {
 
 @media (max-width: 1536px) {
   .course-banner-gradient {
-    background: linear-gradient(90deg, rgb(13 13 13), transparent 50%), linear-gradient(transparent 80%, rgb(13 13 13));
+    background: linear-gradient(90deg, rgb(13 13 13), transparent 50%), linear-gradient(transparent 80%, rgb(13 13 13)), linear-gradient(to bottom, rgb(13 13 13) 0%, transparent 15%);
   }
 }
 
