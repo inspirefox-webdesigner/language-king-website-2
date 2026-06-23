@@ -2002,10 +2002,9 @@ function Transparent_Pricing() {
             </div>
 
             <div className="flex items-center gap-[1.1458333333vw]">
-              <div className="flex text-[#FFDB15] text-[4.1666666667em] md:text-[1.5211640212vw] lg:text-[1.5211640212vw]">
-                ★★★★★
-              </div>
-
+            <div className="flex text-[#FFDB15] text-[4.1666666667em] md:text-[1.5211640212vw] lg:text-[1.5211640212vw]">
+  {"★".repeat(Number(trustedSection.star_rating))}
+</div>
               <span className="text-[3.8888888889em] md:text-[1.1904761905vw] lg:text-[1.1904761905vw] font-[500] -tracking-[0.44px] text-[#737886]">
                 {trustedSection.star_text}
               </span>

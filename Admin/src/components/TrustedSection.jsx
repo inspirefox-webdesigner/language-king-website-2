@@ -132,7 +132,7 @@ const TrustedSection = () => {
           <label className="block text-sm font-medium mb-2">
             Avatar Images
           </label>
-          
+
           {existingImages.length > 0 && (
             <div className="mb-4">
               <p className="text-sm font-medium mb-2">Existing Images:</p>
@@ -171,7 +171,11 @@ const TrustedSection = () => {
                     />
                     <button
                       type="button"
-                      onClick={() => setAvatarFiles(avatarFiles.filter((_, i) => i !== index))}
+                      onClick={() =>
+                        setAvatarFiles(
+                          avatarFiles.filter((_, i) => i !== index),
+                        )
+                      }
                       className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs"
                     >
                       ✕
@@ -184,7 +188,7 @@ const TrustedSection = () => {
 
           <button
             type="button"
-            onClick={() => document.getElementById('avatar-upload').click()}
+            onClick={() => document.getElementById("avatar-upload").click()}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 font-medium"
           >
             + Add New Image
@@ -291,13 +295,14 @@ const TrustedSection = () => {
         </div>
       </form>
 
-      {toast.show && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast({ show: false, message: "", type: "" })}
-        />
-      )}
+     {toast.show && (
+  <Toast
+    show={toast.show}
+    message={toast.message}
+    type={toast.type}
+    onClose={() => setToast({ show: false, message: "", type: "" })}
+  />
+)}
     </div>
   );
 };
