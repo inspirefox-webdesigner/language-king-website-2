@@ -5,7 +5,7 @@ import Avatar9 from "../assets/avatar9.png";
 import Avatar10 from "../assets/avatar10.png";
 import Avatar11 from "../assets/avatar11.png";
 import Frame from "../assets/trusted bg 2.png";
-import WP from "../assets/iconswp.svg";
+import WP from "../assets/Iconswp.svg";
 import API_BASE_URL from "../config/api";
 import { FILE_BASE_URL } from "../config/api";
 import { createPortal } from "react-dom";

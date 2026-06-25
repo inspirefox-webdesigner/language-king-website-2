@@ -27,7 +27,7 @@ import Avatar1 from "../assets/avatar1.png";
 import Avatar2 from "../assets/avatar2.png";
 import Avatar3 from "../assets/avatar3.png";
 import Avatar4 from "../assets/avatar4.png";
-import Star from "../assets/icons/star.svg";
+import Star from "../assets/icons/Star.svg";
 import Google from "../assets/icons/google.svg";
 import HomeBanner from "../assets/Homepage-banner.png";
 import GrainIMG from "../assets/testimonial-grain.png";
@@ -36,7 +36,7 @@ import checklist from "../assets/icons/checkmark.svg";
 import video from "../assets/videos/placeholder-video.mp4";
 import VideoModal from "../components/videoModal";
 import CallbackForm from "../components/callback-popup";
-import CallbackThankyou from "../components/Callback-thankyou";
+import CallbackThankyou from "../components/callback-thankyou";
 // import Thankyou from "../components/Thankyou"; Remove this file when website done
 import ImageWithToggle from "../components/ImageWithToggle";
 
