@@ -80,7 +80,9 @@ const initDatabase = async () => {
 
 initDatabase();
 
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
 
 // Serve static files from uploads directory
