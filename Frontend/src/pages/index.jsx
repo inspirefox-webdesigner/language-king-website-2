@@ -25,7 +25,7 @@ import Avatar1 from "../assets/avatar1.png";
 import Avatar2 from "../assets/avatar2.png";
 import Avatar3 from "../assets/avatar3.png";
 import Avatar4 from "../assets/avatar4.png";
-import Star from "../assets/icons/star.svg";
+import Star from "../assets/icons/Star.svg";
 import Google from "../assets/icons/google.svg";
 import HomeBanner from "../assets/Homepage-banner.png";
 import GrainIMG from "../assets/testimonial-grain.png";

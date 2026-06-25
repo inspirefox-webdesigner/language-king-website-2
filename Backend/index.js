@@ -149,11 +149,4 @@ app.post("/send-email", async (req, res) => {
 
 app.listen(port, () => {
   console.log(` Server is running on port ${port}`);
-  // console.log('Available endpoints:')
-  // console.log('- GET /api/pte-students - Get PTE students')
-  // console.log('- GET /api/naati-ccl-students - Get NAATI-CCL students')
-  // console.log('- GET /api/frontend/pte-students - Get PTE students for frontend')
-  // console.log('- GET /api/frontend/naati-ccl-students - Get NAATI-CCL students for frontend')
-  // console.log('- POST /api/upload - Upload files')
-  // console.log('- POST /send-email - Send email')
 });
