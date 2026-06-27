@@ -30,59 +30,10 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-// Initialize database
-const initDatabase = async () => {
-  try {
-    const pool = mysql.createPool({
-      host: "localhost",
-      user: "root",
-      password: "admin123",
-      database: "language_king",
-    });
 
-    const sqlFile = path.join(__dirname, "db", "createTables.sql");
-    const sql = fs.readFileSync(sqlFile, "utf8");
-    const queries = sql.split(";").filter((query) => query.trim().length > 0);
-
-    for (const query of queries) {
-      try {
-        await pool.execute(query);
-      } catch (err) {
-        if (!err.message.includes("already exists")) {
-          console.error("Database query error:", err.message);
-        }
-      }
-    }
-
-    // Initialize admin auth table
-    const authSqlFile = path.join(__dirname, "db", "create_admin_auth_table.sql");
-    const authSql = fs.readFileSync(authSqlFile, "utf8");
-    const authQueries = authSql.split(";").filter((query) => query.trim().length > 0);
-
-    for (const query of authQueries) {
-      try {
-        await pool.execute(query);
-      } catch (err) {
-        if (!err.message.includes("already exists")) {
-          console.error("Auth table query error:", err.message);
-        }
-      }
-    }
-
-    console.log(" Database initialized successfully!");
-    await pool.end();
-  } catch (error) {
-    console.error(" Database initialization failed:", error.message);
-  }
-};
-
-initDatabase();
-
-app.use(cors({
-  origin: "*"
-}));
+app.use(cors());
 app.use(express.json());
 
 // Serve static files from uploads directory

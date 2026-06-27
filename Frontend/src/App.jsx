@@ -27,10 +27,7 @@ import PaymentCancelMessage from "./pages/PaymentCancelMessage";
 
 function App() {
   const location = useLocation();
-  const isHomePage =
-    location.pathname === "/" ||
-    location.pathname === "/language-king-website-2/" ||
-    location.pathname === "/language-king-website-new/";
+  const isHomePage = location.pathname === "/";
 
   return (
     <>
