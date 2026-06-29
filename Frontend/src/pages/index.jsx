@@ -42,6 +42,9 @@ import ImageWithToggle from "../components/ImageWithToggle";
 import axios from "axios";
 import API_BASE_URL from "../config/api";
 import { FILE_BASE_URL } from "../config/api";
+import Avatar9 from "../assets/avatar9.png";
+import Avatar10 from "../assets/avatar10.png";
+import Avatar11 from "../assets/avatar11.png"
 
 const testimonials = [
   {
@@ -286,6 +289,51 @@ const Home = () => {
                   Join 10,000+ satisfied students in achieving their desired
                   Test Scores. Helped many students, now it's your turn!
                 </p>
+              </div>
+              <div className="flex items-center mt-3 gap-5">
+                {/* Avatars */}
+                <div className="flex -space-x-3">
+                  <img
+                    src={Avatar4}
+                    alt=""
+                    className="w-11 h-11 rounded-full border-2 border-white object-cover"
+                  />
+                  <img
+                    src={Avatar2}
+                    alt=""
+                    className="w-11 h-11 rounded-full border-2 border-white object-cover"
+                  />
+                  <img
+                    src={Avatar9}
+                    alt=""
+                    className="w-11 h-11 rounded-full border-2 border-white object-cover"
+                  />
+                  <img
+                    src={Avatar10}
+                    alt=""
+                    className="w-11 h-11 rounded-full border-2 border-white object-cover"
+                  />
+                  <img
+                    src={Avatar11}
+                    alt=""
+                    className="w-11 h-11 rounded-full border-2 border-white object-cover"
+                  />
+                </div>
+
+                {/* Text */}
+                <div className="flex flex-col">
+                  <p className="text-white text-lg font-bold">
+                    Trusted by 10,000+ students
+                  </p>
+
+                  <div className="flex items-center gap-3 mt-1">
+                    <div className="text-[#FFDB15] text-xl">★★★★★</div>
+
+                    <span className="text-[#828284] text-lg font-medium">
+                      (4.92/5 Roted by students)
+                    </span>
+                  </div>
+                </div>
               </div>
               <div className="sm:mt-[1.8229166667vw] mt-[11.1111111111em] flex sm:flex-nowrap flex-wrap sm:gap-[2.050em] gap-[16px] xl:max-w-[39.6825396825em] lg:max-w-[46.875em] md:max-w-[58.59375em]">
                 <Link
@@ -723,7 +771,6 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="md:w-[50%] w-full">
-                  
                   <div className="">
                     <BookFreeTrail />
                   </div>

@@ -91,10 +91,10 @@ const PTEFame = () => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
-            {/* <PTEFameForm entryId={editingId} onBack={handleBack} /> */}
+            <PTEFameForm entryId={editingId} onBack={handleBack} />
           </div>
           <div>
-            <TestimonialVideoForm onBack={handleBack} />
+            {/* <TestimonialVideoForm onBack={handleBack} /> */}
           </div>
         </div>
       </div>
